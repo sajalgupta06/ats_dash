@@ -1,0 +1,135 @@
+.candidates {
+  &-container {
+    display: grid;
+    grid-template-columns: 33rem 1fr;
+  }
+
+  // &-right {
+  //   grid-column: 2/-1;
+  // }
+
+  &-left {
+    &-container {
+      position: fixed;
+      overflow-y: scroll;
+      padding: 3rem;
+      margin-right: 3rem;
+      background-color: #fff;
+      border-radius: 2rem;
+      height: calc(100vh - 11rem);
+      width: 30rem;
+      box-shadow: 0px 12px 23px rgb(0 0 0 / 10%);
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+
+    &-filter-box {
+      &-heading {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.7rem;
+        margin: 1rem 0;
+        cursor: pointer;
+        svg {
+          margin-left: 0.5rem;
+        }
+      }
+
+      .filter-dropdown1 {
+        display: flex;
+        height: 8rem;
+        transition: all 0.3s ease-in-out;
+
+        .form-group {
+          &:first-child {
+            margin-right: 1rem;
+          }
+        }
+      }
+      .filter-dropdown2 {
+        height: 26rem;
+        transition: all 0.3s ease-in-out;
+
+        .check-form {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          input {
+            margin-right: 2rem;
+          }
+        }
+      }
+      .filter-dropdown3 {
+        height: 5rem;
+        transition: all 0.3s ease-in-out;
+      }
+      .filter-dropdown4 {
+        height: 15rem;
+        transition: all 0.3s ease-in-out;
+      }
+      .filter-dropdown5 {
+        height: 13rem;
+        transition: all 0.3s ease-in-out;
+
+        .check-form {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          input {
+            margin-right: 2rem;
+          }
+        }
+      }
+      .filter-dropdown6 {
+        height: 32rem;
+        transition: all 0.3s ease-in-out;
+
+        .check-form {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          input {
+            margin-right: 2rem;
+          }
+        }
+      }
+    }
+
+    &-heading {
+      font-size: 2.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      margin-bottom: 2.5rem;
+
+      svg {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.form-label {
+  display: block;
+  margin: 1rem 0;
+}
+.form-input {
+  border: 1px solid #ccc !important;
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  width: 10rem;
+}
+
+// filter toggle
+.form-visible {
+  opacity: 0;
+  height: 0 !important;
+  visibility: hidden;
+}

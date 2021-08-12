@@ -1,0 +1,45 @@
+.cad {
+  &-heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &-count {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-right: 3rem;
+    // width: 30%;
+  }
+
+  &-search-box {
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    justify-content: center;
+    align-items: center;
+    background: var(--search-bar);
+    min-width: 85%;
+    padding: 0.8rem 1.5rem;
+
+    border-radius: 2rem;
+
+    input {
+      padding: 0.3rem;
+    }
+
+    svg {
+      height: 2rem;
+    }
+  }
+}
+
+.job-cad-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 3rem;
+  grid-column-gap: 2rem;
+}
