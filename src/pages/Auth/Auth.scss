@@ -94,3 +94,10 @@
   text-align: center;
   margin-bottom: 8rem;
 }
+
+.wrong-pass link{
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,107 @@
+.message {
+  &-container {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-gap: 3rem;
+    height: calc(100vh - 25rem);
+    margin-bottom: 2rem;
+  }
+
+  &-left {
+    overflow-y: scroll;
+    margin-bottom: 3rem;
+    .side-heading {
+      margin-bottom: 2rem;
+    }
+
+    &-btns {
+      display: flex;
+      text-align: center;
+      margin: 3rem 0;
+    }
+  }
+
+  &-right {
+    display: grid;
+    grid-template-rows: 6rem 10rem 1fr 15rem;
+    height: calc(100vh - 7rem);
+    background: #fff;
+    padding: 1rem;
+    border-radius: 2rem;
+
+    &-topbar {
+      font-weight: 800;
+      margin: 1rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+
+      &-info {
+        display: flex;
+        height: 9rem;
+        display: flex;
+        justify-content: space-between;
+        &-content {
+          display: flex;
+          justify-content: space-between;
+          img {
+            height: 6rem;
+            width: 6rem;
+          }
+          h1 {
+            font-weight: 300;
+            margin-left: 2rem;
+            color: #878787;
+
+            h6 {
+              margin-top: 1rem;
+              font-weight: 400;
+            }
+          }
+        }
+        .time{
+            margin-right: 2rem;
+        }
+      }
+    }
+
+    &-middle {
+      overflow-y: scroll;
+      margin-bottom: 3rem;
+      &-overflow {
+        h3 {
+          height: 100%;
+          font-weight: 400;
+          line-height: 1.6;
+          margin: 1.5rem;
+          color: #878787;
+        }
+      }
+    }
+
+    &-bottom {
+      width: 100%;
+      textarea {
+        height: 10rem;
+        width: 100%;
+        border: 2px solid #2186f2;
+
+        border-radius: 1rem;
+      }
+    }
+  }
+
+  &-search-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem 1.3rem;
+    margin-bottom: 2rem;
+    border-radius: 2rem;
+
+    svg {
+      height: 1.8rem;
+      margin-right: 0.5rem;
+      transform: rotate(270deg);
+    }
+  }
+}

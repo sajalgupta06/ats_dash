@@ -9,6 +9,7 @@ import Requirement from "../Requirements/Requirement";
 import Submission from "../Submission/Submission";
 import Candidate from "./../Candidates/Candidates";
 import Email from "./../Email/Email";
+import ConfigureEmail from "./../Email/ConfigureEmail";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Profile from "./../../components/Profile/Profile";
 
@@ -31,6 +32,7 @@ const Hero = () => {
             {view === "submissions" && <Submission />}
             {view === "messages" && <Message />}
             {view === "email" && <Email />}
+            {view === "configureEmail" && <ConfigureEmail />}
             {view === "profile" && <Profile />}
           </div>
         </div>
