@@ -14,18 +14,22 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Profile from "./../../components/Profile/Profile";
 import Joined from "../Submission/Joined";
 import InterviewScheduled from "../Submission/InterviewScheduled";
-
+import { Route, Switch } from "react-router-dom";
 const Hero = () => {
   const [view, setView] = useState("dashboard");
 
   return (
+
     <div style={{ height: "100%", backgroundColor: "#2186F2" }}>
-      <Sidebar setView={setView} />
+      {/* <Sidebar setView={setView} /> */}
       <section className='hero-container'>
         <div></div>
         <div className='hero-right'>
-          <Navbar setView={setView} view={view} />
+          {/* <Navbar setView={setView} view={view} /> */}
           <div className='view-holder'>
+       
+           
+
             {view === "dashboard" && <Dashboard />}
             {view === "job listings" && <JobListing />}
             {view === "requirements" && <Requirement />}
@@ -33,12 +37,13 @@ const Hero = () => {
             {view === "notifications" && <Notification />}
             {view === "submissions" && <Submission setView={setView} view={view}/>}
             {view === "messages" && <Message />}
-            {view === "email" && <Email />}
+            {/* {view === "email" && <Email />} */}
             {view === "configureEmail" && <ConfigureEmail />}
             {view === "profile" && <Profile />}
             {view === "joined" && <Joined  setView={setView} view={view} />}
             {view === "interviewScheduled" && <InterviewScheduled  setView={setView} view={view} />}
          
+           
           </div>
         </div>
       </section>

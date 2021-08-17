@@ -10,9 +10,15 @@ import NewSubmissionCard from "../../components/NewSubmissionCard/NewSubmissionC
 import CandidateProfile from "../../components/CandidateProfile/CandidateProfile";
 import JobPost from "../../components/JobPost/JobPost";
 import Tables from "../../components/Table/Tables";
+import { Link } from "react-router-dom";
+import AllSubmissions from "./AllSubmissions";
+import Joined from "./Joined";
+import InterviewScheduled from "./InterviewScheduled";
 
-const Submissions = ({ view, setView }) => {
+const Submissions = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
+  const [clicked, setClicked] = useState("AllSubmissions");
+  const [active, setActive] = useState("inactive");
 
   const handleDropdown = (cs) => {
     const dropdown = document.querySelector(`.${cs}`);
@@ -23,23 +29,38 @@ const Submissions = ({ view, setView }) => {
     return <CandidateProfile setCandidateDetail={setCandidateDetail} />;
   } else {
     return (
-
-      <div className='submissions-container'>
+      <div className="submissions-container">
         {/* submissions-left */}
 
-       <div className="header">
-       <div className='tob-btns'>
-            <button className='btn btn-w btn-active' >All Submissions</button>
-            <button className='btn btn-w btn-inactive' onClick={() => setView("mysubmission")}>My Submissions</button>
-            <button className='btn btn-w btn-inactive' onClick={() => setView("interviewScheduled")}>Interview Scheduled</button>
-            <button className='btn btn-w btn-inactive' onClick={() => setView("joined")}>
+        <div className="header">
+          <div className="tob-btns">
+            <button
+              className={`btn btn-w btn-active`}
+              onClick={() => setClicked("AllSubmissions")}
+            >
+              All Submissions
+            </button>
+            <button className="btn btn-w btn-inactive">My Submissions</button>
+
+            <button
+              className={`btn btn-w btn-${active}`}
+              onClick={() => setClicked("InterviewScheduled")}
+              clicked={true}
+            >
+              Interview Scheduled
+            </button>
+
+            <button
+              className={`btn btn-w btn-${active}`}
+              onClick={() => setClicked("Joined")}
+            >
               Joined
             </button>
           </div>
-          <div className='listings-bar' style={{margin:'2rem 0'}}>
-            <div className='listings-bar-left'>
-              <button className='btn btn-white'>
-                <span className='batch-action-rel'>
+          <div className="listings-bar" style={{ margin: "2rem 0" }}>
+            <div className="listings-bar-left">
+              <button className="btn btn-white">
+                <span className="batch-action-rel">
                   <span>Batch Actions</span>
                   {/* <>
                   <ul className='batch-action'>
@@ -64,41 +85,48 @@ const Submissions = ({ view, setView }) => {
                 </> */}
                 </span>
 
-                <DownArrIcon className='batch-arrow' />
+                <DownArrIcon className="batch-arrow" />
               </button>
-              <div className='listings-bar-search'>
+              <div className="listings-bar-search">
                 <input
-                  type='text'
-                  placeholder='Search Job Title, Job ID, Tags'
+                  type="text"
+                  placeholder="Search Job Title, Job ID, Tags"
                 />
               </div>
             </div>
-            <div className='listings-bar-right'>
-              <div className='plus'>
+            <div className="listings-bar-right">
+              <div className="plus">
                 <CheckboxIcon />
               </div>
-              <div className='listings-bar-right-filter'>
+              <div className="listings-bar-right-filter">
                 <FilterIcon />
                 <div>Newest</div>
                 <DownArrIcon />
               </div>
             </div>
           </div>
-
-
-       </div>
-      
-       <div className='job-listings-jobs'>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-        
-    \
         </div>
-      
-       </div>
+        {clicked === "AllSubmissions" && (
+          <>
+            <AllSubmissions></AllSubmissions>
+          </>
+        )}
+        {clicked === "MySubmissions" && (
+          <>
+            <AllSubmissions></AllSubmissions>
+          </>
+        )}
+        {clicked === "Joined" && (
+          <>
+            <Joined></Joined>
+          </>
+        )}
+        {clicked === "InterviewScheduled" && (
+          <>
+            <InterviewScheduled></InterviewScheduled>
+          </>
+        )}
+      </div>
     );
   }
 };

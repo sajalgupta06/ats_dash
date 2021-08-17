@@ -9,6 +9,10 @@
   display: grid;
   grid-template-rows: 6rem 1fr;
 
+
+  Link{
+    text-decoration: none;
+  }
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -16,6 +20,9 @@
 
   ul {
     margin-left: 4rem;
+    a{
+      text-decoration: none;
+    }
     li {
       display: grid;
       grid-template-columns: 4.8rem 1fr;
@@ -31,3 +38,4 @@
     }
   }
 }
+

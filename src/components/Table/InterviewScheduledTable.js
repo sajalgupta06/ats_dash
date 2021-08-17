@@ -157,11 +157,7 @@ export default function InterviewScheduledTable() {
                 Skywest Aviations
               </td>
             </tr>
-          
-
-
-
-
+        
 
 
             <tr className="spacer"></tr>
