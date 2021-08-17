@@ -12,6 +12,8 @@ import Email from "./../Email/Email";
 import ConfigureEmail from "./../Email/ConfigureEmail";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Profile from "./../../components/Profile/Profile";
+import Joined from "../Submission/Joined";
+import InterviewScheduled from "../Submission/InterviewScheduled";
 
 const Hero = () => {
   const [view, setView] = useState("dashboard");
@@ -29,11 +31,14 @@ const Hero = () => {
             {view === "requirements" && <Requirement />}
             {view === "candidates" && <Candidate />}
             {view === "notifications" && <Notification />}
-            {view === "submissions" && <Submission />}
+            {view === "submissions" && <Submission setView={setView} view={view}/>}
             {view === "messages" && <Message />}
             {view === "email" && <Email />}
             {view === "configureEmail" && <ConfigureEmail />}
             {view === "profile" && <Profile />}
+            {view === "joined" && <Joined  setView={setView} view={view} />}
+            {view === "interviewScheduled" && <InterviewScheduled  setView={setView} view={view} />}
+         
           </div>
         </div>
       </section>

@@ -135,6 +135,7 @@ const Sidebar = ({ setView }) => {
           </svg>
           <span>Configure Email</span>
         </li>
+        
         <li onClick={() => setView("dashboard")}>
           <svg
             width='27'

@@ -1,0 +1,147 @@
+.newSub {
+    box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    padding: 2rem 1.5rem;
+    background-color: #fff;
+    cursor: pointer;
+  
+    &-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      &-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-right: 1rem;
+      }
+  
+      &-active {
+        background-color: #0ee84b;
+        color: #fff;
+        padding: 0.2rem 0.8rem;
+        border-radius: 2rem;
+        display: inline-block;
+      }
+  
+      &-cs {
+        padding: 0.2rem 0.8rem;
+  
+        background-color: #e3fff3;
+        color: #036a20;
+        margin: 0 1rem;
+        border-radius: 2rem;
+      }
+  
+      &-lock {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--primary);
+        border-radius: 2rem;
+        margin-right: 1rem;
+        cursor: pointer;
+  
+        svg {
+          margin-right: 0.7rem;
+        }
+      }
+  
+      &-left,
+      &-right {
+        display: flex;
+        align-items: center;
+      }
+  
+      &-right {
+        img {
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+    }
+  
+    &-role {
+      margin: 1rem 0;
+      display: inline-block;
+    }
+  
+    &-desc {
+      color: #797979;
+      font-size: 1.5rem;
+    }
+  
+    &-infski {
+ 
+      align-items: center;
+      font-size: 1.4rem;
+      margin-top: 2rem;
+  
+      .jobpost-user-info {
+        margin: 0;
+        // display: inline;
+        margin-bottom: 2rem;
+      }
+    }
+  
+    &-bottom {
+      color: #797979;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      &-lock {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border: 1px solid #000;
+        border-radius: 2rem;
+        margin-right: 1rem;
+        cursor: pointer;
+  
+        svg {
+          margin-left: 0.7rem;
+          fill: #000;
+        }
+      }
+  
+      &-left {
+        display: flex;
+        align-items: center;
+      }
+  
+      &-right {
+        display: flex;
+        align-items: center;
+  
+        svg {
+          height: 2.2rem;
+          cursor: pointer;
+          margin-left: 1rem;
+        }
+      }
+  
+      &-txt {
+        color: #ffa31a;
+      }
+    }
+  }
+  
+  .mr1 {
+    margin-right: 1rem;
+  }
+  .mr3 {
+    margin-right: 3rem;
+  }
+  
+  .mb2 {
+    margin-bottom: 2rem;
+  }
+  .mb5 {
+    margin-bottom: 5rem;
+  }
+  
+  .ed-ex {
+    display: flex !important;
+  }
+  
