@@ -2,25 +2,24 @@ import React from "react";
 import { SearchIcon } from "../../asserts/icons";
 import "./Email.scss";
 import EmailCard from "./../../components/EmailCard/EmailCard";
-import ChatMessage from "../../components/ChatMessage/ChatMessage";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
 const Email = () => {
   return (
-    <div className="message-container">
-      <div className="message-left">
+    <div className="email-container">
+      <div className="email-left">
         <div className="side-heading">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>Inbox</h1>  
             <div className="btn btn-w btn-active" style={{minWidth:'0rem'}}>Compose</div>
           </div>
         </div>
-        <div className="message-search-box">
+        <div className="email-search-box">
           <SearchIcon />
           <input type="text" placeholder="Search here" />
         </div>
 
-        <div className="message-left-info-box">
+        <div className="email-left-info-box">
          <EmailCard></EmailCard>
          <EmailCard></EmailCard>
          <EmailCard></EmailCard>
@@ -30,10 +29,10 @@ const Email = () => {
          <EmailCard></EmailCard>
         </div>
       </div>
-      <div className="message-right">
-        <div className="message-right-topbar">New Candidate Profile  </div>
-        <div className="message-right-topbar-info">
-          <div className="message-right-topbar-info-content"> 
+      <div className="email-right">
+        <div className="email-right-topbar">New Candidate Profile  </div>
+        <div className="email-right-topbar-info">
+          <div className="email-right-topbar-info-content"> 
 
           <div className="image">
           <img src={Placeholder} alt="placeholder" />
@@ -48,8 +47,8 @@ const Email = () => {
 
         </div>
       
-        <div className="message-right-middle">
-          <div className="message-right-middle-overflow">
+        <div className="email-right-middle">
+          <div className="email-right-middle-overflow">
             <h3>
               Regards,
               <br></br>
@@ -89,7 +88,7 @@ const Email = () => {
             </h3>
           </div>
         </div>
-        <div className="message-right-bottom"><textarea type="text" placeholder="Start Typing Here.."></textarea></div>
+        <div className="email-right-bottom"><textarea type="text" placeholder="Start Typing Here.."></textarea></div>
       </div>
     </div>
   );

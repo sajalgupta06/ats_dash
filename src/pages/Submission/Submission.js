@@ -14,15 +14,25 @@ import { Link } from "react-router-dom";
 import AllSubmissions from "./AllSubmissions";
 import Joined from "./Joined";
 import InterviewScheduled from "./InterviewScheduled";
+import Correct from "./../../asserts/images/correct.png";
+import Delete from "./../../asserts/images/delete.png";
+import Share from "./../../asserts/images/share.png";
+import Cancel from "./../../asserts/images/cancel.png";
+import Popup from "../../components/Bulk-Email-Popup/Popup";
 
 const Submissions = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
   const [clicked, setClicked] = useState("AllSubmissions");
   const [active, setActive] = useState("inactive");
+  const [PopupOpen, setPopupOpen] = useState(false);
 
-  const handleDropdown = (cs) => {
-    const dropdown = document.querySelector(`.${cs}`);
-    dropdown.classList.toggle("form-visible");
+
+  const handleBatch = () => {
+    const dropdown = document.querySelector(".batch-action");
+    const batchArrow = document.querySelector(".batch-arrow");
+
+    dropdown.classList.toggle("batch-visible");
+    batchArrow.classList.toggle("batch-rotate");
   };
 
   if (candidateDetail) {
@@ -59,10 +69,10 @@ const Submissions = () => {
           </div>
           <div className="listings-bar" style={{ margin: "2rem 0" }}>
             <div className="listings-bar-left">
-              <button className="btn btn-white">
-                <span className="batch-action-rel">
-                  <span>Batch Actions</span>
-                  {/* <>
+            <button onClick={handleBatch} className='btn btn-white'>
+              <span className='batch-action-rel'>
+                <span>Batch Actions</span>
+                <>
                   <ul className='batch-action'>
                     <div className='batch-action-square'>&nbsp;</div>
                     <li>
@@ -77,16 +87,22 @@ const Submissions = () => {
                       <img src={Delete} alt='Delete icon' />
                       <span>Delete</span>
                     </li>
-                    <li>
-                      <img src={Share} alt='Share icon' />
-                      <span>Share</span>
-                    </li>
-                  </ul>
-                </> */}
-                </span>
+                    <li onClick={()=>setPopupOpen(true)} >
 
-                <DownArrIcon className="batch-arrow" />
-              </button>
+                      <img src={Share} alt='Share icon' />
+                      <span>Email</span>
+                   
+                      </li>
+               
+                  </ul>
+                </>
+              </span>
+              {PopupOpen && (
+                      <Popup setPopupOpen={setPopupOpen}/>
+                      
+                      )}
+              <DownArrIcon className='batch-arrow' />
+            </button>
               <div className="listings-bar-search">
                 <input
                   type="text"

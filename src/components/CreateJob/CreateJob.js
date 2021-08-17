@@ -581,7 +581,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                     setJobSuccess={setJobSuccess}
                   />
                 )}
-
+            
                 {questionsGenerated ? (
                   <div
                     onClick={() => setSharePopUp(true)}

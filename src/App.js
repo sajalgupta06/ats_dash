@@ -7,6 +7,7 @@ import ForgotPassword from "./pages/Auth/ForgotPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import Candidates from "./pages/Candidates/Candidates";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ConfigureEmail from "./pages/Email/ConfigureEmail";
 import Email from "./pages/Email/Email";
 import Hero from "./pages/Hero/Hero";
 import JobListing from "./pages/Jobs/JobListing";
@@ -36,7 +37,8 @@ function App() {
                 <Route exact path="/submissions" component={Submissions} />
                 <Route exact path="/notifications" component={Notification} />
                 <Route exact path="/message" component={Message} />
-                <Route exact path="/email" component={Email} />
+                <Route exact path="/configureEmail" component={ConfigureEmail } />
+                <Route exact path="/email" component={Email } />
 
                 <Route
                   exact

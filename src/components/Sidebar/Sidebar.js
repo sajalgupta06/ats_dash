@@ -255,6 +255,8 @@ const Sidebar = ({ setView }) => {
           <span>Email</span>
         </li>
               </Link>
+    
+    
               <Link to="/configureEmail">
       <li>
           <svg
