@@ -26,7 +26,6 @@ const Submissions = () => {
   const [active, setActive] = useState("inactive");
   const [PopupOpen, setPopupOpen] = useState(false);
 
-
   const handleBatch = () => {
     const dropdown = document.querySelector(".batch-action");
     const batchArrow = document.querySelector(".batch-arrow");
@@ -45,7 +44,7 @@ const Submissions = () => {
         <div className="header">
           <div className="tob-btns">
             <button
-              className={`btn btn-w btn-active`}
+              className={`btn btn-w btn-inactive`}
               onClick={() => setClicked("AllSubmissions")}
             >
               All Submissions
@@ -53,9 +52,9 @@ const Submissions = () => {
             <button className="btn btn-w btn-inactive">My Submissions</button>
 
             <button
-              className={`btn btn-w btn-${active}`}
-              onClick={() => setClicked("InterviewScheduled")}
-              clicked={true}
+              className='btn btn-w btn-inactive'
+              onClick={() => {setClicked("InterviewScheduled")}}
+            
             >
               Interview Scheduled
             </button>
@@ -67,61 +66,7 @@ const Submissions = () => {
               Joined
             </button>
           </div>
-          <div className="listings-bar" style={{ margin: "2rem 0" }}>
-            <div className="listings-bar-left">
-            <button onClick={handleBatch} className='btn btn-white'>
-              <span className='batch-action-rel'>
-                <span>Batch Actions</span>
-                <>
-                  <ul className='batch-action'>
-                    <div className='batch-action-square'>&nbsp;</div>
-                    <li>
-                      <img src={Correct} alt='Correct icon' />
-                      <span>Appove</span>
-                    </li>
-                    <li>
-                      <img src={Cancel} alt='Cancel icon' />
-                      <span>Dissapprove</span>
-                    </li>
-                    <li>
-                      <img src={Delete} alt='Delete icon' />
-                      <span>Delete</span>
-                    </li>
-                    <li onClick={()=>setPopupOpen(true)} >
-
-                      <img src={Share} alt='Share icon' />
-                      <span>Email</span>
-                   
-                      </li>
-               
-                  </ul>
-                </>
-              </span>
-              {PopupOpen && (
-                      <Popup setPopupOpen={setPopupOpen}/>
-                      
-                      )}
-              <DownArrIcon className='batch-arrow' />
-            </button>
-              <div className="listings-bar-search">
-                <input
-                  type="text"
-                  placeholder="Search Job Title, Job ID, Tags"
-                />
-              </div>
-            </div>
-            <div className="listings-bar-right">
-              <div className="plus">
-                <CheckboxIcon />
-              </div>
-              <div className="listings-bar-right-filter">
-                <FilterIcon />
-                <div>Newest</div>
-                <DownArrIcon />
-              </div>
-            </div>
-          </div>
-        </div>
+        
         {clicked === "AllSubmissions" && (
           <>
             <AllSubmissions></AllSubmissions>
@@ -142,6 +87,7 @@ const Submissions = () => {
             <InterviewScheduled></InterviewScheduled>
           </>
         )}
+      </div>
       </div>
     );
   }

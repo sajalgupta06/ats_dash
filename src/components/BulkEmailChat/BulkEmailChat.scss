@@ -1,0 +1,38 @@
+
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+  
+    img {
+      width: 4.8rem;
+      height: 4.8rem;
+      margin-right: 2rem;
+      object-fit: cover;
+    }
+  }
+  
+  .message-top {
+    display: flex;
+  
+    &-msg {
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: #eeeeee;
+      max-width: 50rem;
+    }
+  }
+  
+  .message-date {
+    margin: 1rem 0;
+  }
+  
+  .message-own {
+    align-items: flex-end;
+  }
+  
+  .cbg {
+    background-color: var(--primary);
+    color: #fff;
+  }
+  

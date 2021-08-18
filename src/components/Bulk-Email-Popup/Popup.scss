@@ -48,22 +48,28 @@
         // background-color: red;
         // margin-top: 10rem;
         text-align: left;
-    
+        
+        
+
+
 
         label {
           display: block;
           margin-bottom: 1rem;
         //   margin-left: 4rem;
         font-size: 1.7rem;
+        color:#515151;
           
         }
+        
         .input-box{
             display: flex;
             // justify-content: center;
             input{
                 height: 4rem;
                 width: 40%;
-                border:1px solid #878787
+                border:1px solid #EBE9E9;
+                border-radius: 0.7rem;
     
           
             }
@@ -124,6 +130,30 @@
         font-size: 1.2rem;
         margin-left: 1rem;
       }
+      .reply{
+        background-color: #2186f2;
+        height:3rem;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.4rem;
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2rem;
+        
+      
+      }
+      .btn-cancel{
+        background-color:   #F4F4F4 ;
+        color: #9F9F9F;
+            font-weight: 700;
+            font-size: 1.9rem;
+            width: 13rem;
+            text-align: center;
+            position: relative;
+            top:-0.8rem;
+    
+        }
     }
   }
   

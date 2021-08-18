@@ -3,6 +3,15 @@ import { SearchIcon } from "../../asserts/icons";
 import "./Email.scss";
 import EmailCard from "./../../components/EmailCard/EmailCard";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
+import smile from '../../asserts/icons/smile.png'
+import send from '../../asserts/icons/send.png'
+import attach from '../../asserts/icons/attach.png'
+import U from '../../asserts/icons/U.png'
+import B from '../../asserts/icons/B.png'
+import I from '../../asserts/icons/I.png'
+import undo from '../../asserts/icons/undo.png'
+import redo from '../../asserts/icons/redo.png'
+import text from '../../asserts/icons/text.png'
 
 const Email = () => {
   return (
@@ -10,8 +19,10 @@ const Email = () => {
       <div className="email-left">
         <div className="side-heading">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h1>Inbox</h1>  
-            <div className="btn btn-w btn-active" style={{minWidth:'0rem'}}>Compose</div>
+            <h1>Inbox</h1>
+            <div className="btn btn-w btn-active" style={{ minWidth: "0rem" }}>
+              Compose
+            </div>
           </div>
         </div>
         <div className="email-search-box">
@@ -20,33 +31,34 @@ const Email = () => {
         </div>
 
         <div className="email-left-info-box">
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
-         <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
+          <EmailCard></EmailCard>
         </div>
       </div>
       <div className="email-right">
-        <div className="email-right-topbar">New Candidate Profile  </div>
+        <div className="email-right-topbar">New Candidate Profile </div>
         <div className="email-right-topbar-info">
-          <div className="email-right-topbar-info-content"> 
+          <div className="email-right-topbar-info-content">
+            <div className="image">
+              <img src={Placeholder} alt="placeholder" />
+            </div>
 
-          <div className="image">
-          <img src={Placeholder} alt="placeholder" />
+            <h1>
+              Ajita Balakrishnan{" "}
+              <span style={{ fontSize: "2rem" }}>(ajita@jobsmarket.com)</span>
+              <br></br>
+              <h6>to Me, Vaibhav, Abhinav, Surabhi</h6>
+            </h1>
           </div>
 
-          <h1>Ajita Balakrishnan <span style={{fontSize:"2rem"}}>(ajita@jobsmarket.com)</span><br></br>
-          <h6>to Me, Vaibhav, Abhinav, Surabhi</h6>
-          </h1>
-          </div>
-          
           <div className="time">4:30</div>
-
         </div>
-      
+
         <div className="email-right-middle">
           <div className="email-right-middle-overflow">
             <h3>
@@ -88,7 +100,25 @@ const Email = () => {
             </h3>
           </div>
         </div>
-        <div className="email-right-bottom"><textarea type="text" placeholder="Start Typing Here.."></textarea></div>
+        <div className="email-right-bottom">
+          <textarea type="text" placeholder="Start Typing Here.."></textarea>
+          <div className="email-right-bottom-editorOption" >
+            <div className="buttons1">
+              <button className="btn btn-w btn-inactive reply"><img src={send}></img>Reply</button>
+              <img src={smile} height="20px"></img>
+              <img src={attach} height="20px"></img>
+            </div>
+            <div className="buttons2">
+            <img src={undo} height="20px"></img>
+            <img src={redo} height="20px"></img>
+            <img src={text} height="20px"></img>
+            <img src={B} height="17px"></img>
+            <img src={I} height="17px"></img>
+            <img src={U} height="17px"></img>
+            
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

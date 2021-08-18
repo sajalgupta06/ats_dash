@@ -1,8 +1,14 @@
-.submission{
+.submissions{
  &-container{
 
-    &-header{
+    .header{
         
+      .tob-btns{
+         button:focus{
+            background-color: #2186f2;
+            color: #fff;
+         }
+      }
     }
 
  }

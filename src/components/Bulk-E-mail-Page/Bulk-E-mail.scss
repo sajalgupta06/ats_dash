@@ -1,0 +1,81 @@
+.bulkEmail {
+    &-container {
+      display: grid;
+      grid-template-columns: 40% 3% 1fr;
+      grid-gap: 3rem;
+      height: calc(100vh - 25rem);
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+    }
+  
+    &-left {
+      overflow-y: scroll;
+      margin-bottom: 3rem;
+  
+      &-btns {
+        display: flex;
+        text-align: center;
+        margin: 3rem 0;
+      }
+    }
+  
+    &-right {
+      display: grid;
+      grid-template-rows: 15rem 2rem 0.9fr 2rem;
+      height: calc(100vh - 7rem);
+      background: #fff;
+      padding: 0rem!important;
+      border-radius: 4rem;
+  
+      &-topbar {
+        margin: 2rem;
+        display: flex;
+        justify-content: space-between;
+        img{
+            margin-top: 3rem;
+        }
+    }
+      &-spacer{
+          background-color: #f2f2f2;
+          width: 103%;
+          position: relative;
+          left: -2rem;
+      }
+  
+      &-middle {
+        overflow-y: scroll;
+        margin-bottom: 3rem;
+        background-color: #F8F8F8;
+        &-overflow {
+          height: 100%;
+          margin-top: 2rem;
+        }
+      }
+  
+      &-bottom {
+        background-color: #fff  ;
+        margin-bottom: 5rem;
+        display: flex;
+        justify-content: space-between;
+        img{
+            margin-right: 5rem;
+        }
+    }
+    }
+  
+    &-search-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--search-bar);
+      padding: 1rem 1.3rem;
+  
+      border-radius: 2rem;
+  
+      svg {
+        height: 1.8rem;
+        margin-right: 0.5rem;
+        transform: rotate(270deg);
+      }
+    }
+  }
+  

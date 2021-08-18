@@ -137,14 +137,14 @@ const JobListing = () => {
                 <path
                   d='M12 3V21'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
                 <path
                   d='M3 12L21 12'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
@@ -233,14 +233,14 @@ const JobListing = () => {
                 <path
                   d='M12 18.5L6 12.5L12 6.5'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
                 <path
                   d='M19 18.5L13 12.5L19 6.5'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
@@ -284,14 +284,14 @@ const JobListing = () => {
                 <path
                   d='M12 18.5L6 12.5L12 6.5'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
                 <path
                   d='M19 18.5L13 12.5L19 6.5'
                   stroke='#2186F2'
-                  stroke-width='2'
+                  strokeWidth='2'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />

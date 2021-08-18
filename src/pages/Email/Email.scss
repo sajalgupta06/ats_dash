@@ -23,7 +23,7 @@
 
   &-right {
     display: grid;
-    grid-template-rows: 6rem 10rem 1fr 15rem;
+    grid-template-rows: 6rem 10rem 1fr 20rem;
     height: calc(100vh - 7rem);
     background: #fff;
     padding: 1rem;
@@ -86,9 +86,56 @@
         border: 2px solid #2186f2;
 
         border-radius: 1rem;
+        
+      }
+      textarea::-webkit-input-placeholder {
+        margin: 1rem;
+        position: relative;
+        top: 2rem;
+        left:2rem
+      }
+      &-editorOption{
+        // background-color: green;
+        height: 7rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        .buttons1{
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          .reply{
+            background-color: #2186f2;
+            height:5rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: 2rem;
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 2rem;
+            
+          
+          }
+          img{
+            margin-right: 2rem;
+          }
+        }
+        .buttons2{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          img{
+            margin-right: 2rem;
+          }
+        }
+        
       }
     }
   }
+
+  
 
   &-search-box {
     display: flex;

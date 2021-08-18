@@ -5,10 +5,17 @@ import MessageBox from "./../../components/MessageBox/MessageBox";
 import ChatMessage from "../../components/ChatMessage/ChatMessage";
 import dots from '../../asserts/icons/dots.png'
 
-import Correct from "./../../asserts/images/correct.png";
-import Delete from "./../../asserts/images/delete.png";
-import Share from "./../../asserts/images/share.png";
-import Cancel from "./../../asserts/images/cancel.png";
+import smile from '../../asserts/icons/smile.png'
+import send from '../../asserts/icons/send.png'
+import attach from '../../asserts/icons/attach.png'
+import U from '../../asserts/icons/U.png'
+import B from '../../asserts/icons/B.png'
+import I from '../../asserts/icons/I.png'
+import undo from '../../asserts/icons/undo.png'
+import redo from '../../asserts/icons/redo.png'
+import text from '../../asserts/icons/text.png'
+
+
 import ChatPopup from "../../components/ChatPopup.js/ChatPopup";
 
 const Message = () => {
@@ -77,7 +84,7 @@ const Message = () => {
         </div>
       </div>
       <div className='message-right'>
-        <div className='message-right-topbar'>hello</div>
+        <div className='message-right-topbar'></div>
         <div className='message-right-middle'>
           <div className='message-right-middle-overflow'>
             <ChatMessage />
@@ -85,8 +92,26 @@ const Message = () => {
             <ChatMessage />
             <ChatMessage />
           </div>
+        </div>   <div className="email-right-bottom">
+          <textarea type="text" placeholder="Start Typing Here.."></textarea>
+          <div className="email-right-bottom-editorOption" >
+            <div className="buttons1">
+              <button className="btn btn-w btn-inactive reply"><img src={send}></img>Reply</button>
+              <img src={smile} height="20px"></img>
+              <img src={attach} height="20px"></img>
+            </div>
+            <div className="buttons2">
+            <img src={undo} height="20px"></img>
+            <img src={redo} height="20px"></img>
+            <img src={text} height="20px"></img>
+            <img src={B} height="17px"></img>
+            <img src={I} height="17px"></img>
+            <img src={U} height="17px"></img>
+            
+            </div>
+          </div>
         </div>
-        <div className='message-right-bottom'>hello</div>
+    
       </div>
     </div>
   );

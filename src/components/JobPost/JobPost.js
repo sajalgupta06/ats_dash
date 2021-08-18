@@ -29,7 +29,7 @@ const JobPost = ({
         setBatchDelete((b) => [...b, job._id]);
       }
     } else if (requirement) {
-      setReqView("r2");
+      setReqView("r2"); 
     } else {
       const temp1 = job.salary.split(",");
       job.salary1 = temp1[0];
