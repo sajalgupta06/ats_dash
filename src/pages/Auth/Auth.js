@@ -14,21 +14,21 @@ const Auth = (props) => {
   // login
   const login = async () => {
     try {
-      const response = await axios({
-        url: "http://localhost:8000/api/dash/login",
-        method: "POST",
-        data: {
-          email,
-          password,
-        },
-      });
-      console.log(response.data.data);
-      const { token, user } = response.data.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", user);
-      if (token) {
-        history.push("/overview");
-      }
+      // const response = await axios({
+      //   url: "http://localhost:8000/api/dash/login",
+      //   method: "POST",
+      //   data: {
+      //     email,
+      //     password,
+      //   },
+      // });
+      // console.log(response.data.data);
+      // const { token, user } = response.data.data;
+      // localStorage.setItem("token", token);
+      // localStorage.setItem("user", user);
+      // if (token) {
+        // }
+          history.push("/overview");
     } catch (err) {
       console.log(err.response);
     }
