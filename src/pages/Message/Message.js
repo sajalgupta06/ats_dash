@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchIcon } from "../../asserts/icons";
 import "./Message.scss";
 import MessageBox from "./../../components/MessageBox/MessageBox";
@@ -9,6 +9,7 @@ import Correct from "./../../asserts/images/correct.png";
 import Delete from "./../../asserts/images/delete.png";
 import Share from "./../../asserts/images/share.png";
 import Cancel from "./../../asserts/images/cancel.png";
+import ChatPopup from "../../components/ChatPopup.js/ChatPopup";
 
 const Message = () => {
   const handleBatch = () => {
@@ -16,9 +17,44 @@ const Message = () => {
 
     dropdown.classList.toggle("batch-visible");
   };
+
+  const [chatPopupOpen,setChatPopupOpen] = useState(false)
   return (
     <div className='message-container'>
       <div className='message-left'>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center", marginBottom:"2rem"}}>
+
+        <h3 style={{display:"inline-block"}}>Chats</h3>
+        <div>
+
+      <img src={dots}  onClick={handleBatch} height="20px" style={{marginRight:"7rem"}}/> 
+            
+      <span className='batch-action-rel' style={{"left":"-14rem"}}>
+               
+               <>
+                 <ul className='batch-action' style={{width:"14rem"}} >
+                   <div className='batch-action-square'>&nbsp;</div>
+                   <li>
+                    
+                     <span> New Chat</span>
+                   </li>
+                   <li onClick={()=>setChatPopupOpen(true)}>
+                     <span>New Group</span>
+                   </li>
+                   <li>
+                     
+                     <span>Starred Message</span>
+                   </li>
+              
+                 </ul>
+               </>
+             </span>
+        </div>
+        </div>
+        {chatPopupOpen &&(
+          <ChatPopup setChatPopupOpen={setChatPopupOpen}></ChatPopup>
+        )}
+
         <div className='message-search-box'>
           <SearchIcon />
           <input type='text' placeholder='Search here' />
@@ -26,27 +62,8 @@ const Message = () => {
         <div className='message-left-btns'>
           <div className='btn btn-w btn-active'>Internal</div>
           <div className='btn btn-w btn-inactive'>External</div>
-          <img src={dots}  onClick={handleBatch} height="30px" style={{marginLeft:"16rem"}}/> 
          
-          
-          <span className='batch-action-rel'>
-               
-                <>
-                  <ul className='batch-action' style={{"left":"-9rem","top":"5.8rem"}}>
-                    <div className='batch-action-square'>&nbsp;</div>
-                    <li>
-                     
-                      <span>Create a new group</span>
-                    </li>
-                    <li>
-                      
-                      <span>Dissapprove</span>
-                    </li>
-           
-               
-                  </ul>
-                </>
-              </span>
+    
              
         </div>
         <div className='message-left-info-box'>

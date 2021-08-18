@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Auth from "./pages/Auth/Auth";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
@@ -39,6 +40,7 @@ function App() {
                 <Route exact path="/message" component={Message} />
                 <Route exact path="/configureEmail" component={ConfigureEmail } />
                 <Route exact path="/email" component={Email } />
+                <Route exact path="/profile" component={Profile } />
 
                 <Route
                   exact

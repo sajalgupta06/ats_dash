@@ -3,6 +3,7 @@ import "./Navbar.scss";
 
 import PlaceHolder from "./../../asserts/images/placeholder.jpg";
 import { SearchIcon } from "../../asserts/icons";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ view, setView }) => {
   return (
@@ -14,7 +15,8 @@ const Navbar = ({ view, setView }) => {
           <SearchIcon />
         </div>
 
-        <div onClick={() => setView("profile")} className='navbar-user'>
+       <Link to="/profile">
+        <div className='navbar-user'>
           <div className='credits'>Credits: 485/500</div>
           <img className='user-img' src={PlaceHolder} alt='' />
           <div>
@@ -22,6 +24,8 @@ const Navbar = ({ view, setView }) => {
             <div className='user-type'>Recruiter</div>
           </div>
         </div>
+       </Link>
+
       </div>
     </div>
   );
