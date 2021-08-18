@@ -18,6 +18,9 @@
     grid-template-columns: 1fr 1.1fr 1fr;
     align-items: center;
     padding: 1.6rem 3.2rem;
+    a{
+      text-decoration: none;
+    }
   }
 
   &-search-box {

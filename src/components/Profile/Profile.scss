@@ -7,6 +7,46 @@
     padding: 1.5rem;
     border-radius: 1rem;
     width: 75%;
+    .socialLinks{
+      // background-color: green;
+      height: 35rem;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      .companyLinks{
+        // background-color: red;
+        height: 35rem;
+        width: 100%;
+        .link{
+          display: flex;
+          justify-content: space-between;
+          margin-left: 1rem;
+          margin-right: 2rem;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          
+        }
+      }
+      .personalLinks{
+        // background-color: red;
+        height: 35rem;
+        width: 100%;
+        margin-left: 3rem;
+        .link{
+          display: flex;
+          justify-content: space-between;
+          margin-left: 1rem;
+          margin-right: 2rem;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+        
+        }
+      }
+      button{
+        background-color: #CBF6FF;
+        font-size: 1.8rem;
+      }
+    }
   }
 
   &-right {
@@ -84,6 +124,7 @@
     display: flex;
   }
 }
+
 
 .currently-hiring-dev {
   display: flex;

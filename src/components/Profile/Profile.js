@@ -5,6 +5,11 @@ import { InformationIcon, MailIcon, PhoneIcon } from "../../asserts/icons";
 import Acce from "./../../asserts/images/acc.png";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 import { PenEditIcon } from "./../../asserts/icons/index";
+import twitter from '../../asserts/icons/twitter.png'
+import instagram from '../../asserts/icons/instagram.png'
+import facebook from '../../asserts/icons/facebook.png'
+import google from '../../asserts/icons/google2.png'
+import linkedin from '../../asserts/icons/linkedin.svg'
 
 const Profile = () => {
   return (
@@ -180,6 +185,7 @@ const Profile = () => {
           </div>
           {/* end of fifth row */}
         </div>
+       
         <div className='mt fw6'>I am currently hiring for</div>
         <div className='currently-hiring'>
           <div className='currently-hiring-dev'>
@@ -245,6 +251,59 @@ const Profile = () => {
           </div>
         </div>
 
+        <div className='mt fw6'>Social Media Links</div>
+        
+        <div className="socialLinks">
+
+        <div className="companyLinks">
+          <h4 style={{textAlign:"left",marginLeft:"0rem"}}>Company Social Links (Auto Posting is on)
+</h4>
+          <div className="link">
+            <div><img src={twitter}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+          <div className="link">
+            <div><img src={linkedin}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>  <div className="link">
+            <div><img src={facebook}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div> 
+           <div className="link">
+            <div><img src={instagram}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+          <div className="link">
+            <div><img src={google}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+          
+        </div>
+        <div className="personalLinks">
+        <h4 style={{textAlign:"left",marginLeft:"1rem"}}>Company Social Links (Auto Posting is on)
+</h4>
+<div className="link">
+            <div><img src={twitter}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+          <div className="link">
+            <div><img src={linkedin}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>  <div className="link">
+            <div><img src={facebook}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div> 
+           <div className="link">
+            <div><img src={instagram}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+          <div className="link">
+            <div><img src={google}></img></div>
+            <div><button className="btn btn-connect">Connect</button></div>
+          </div>
+
+        </div>
+        </div>
         {/* end of profile body */}
       </div>
       {/*end of left  */}
