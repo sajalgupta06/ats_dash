@@ -8,11 +8,8 @@ import {
   Filter2Icon,
   FilterIcon,
 } from "../../asserts/icons";
-
-import Correct from "./../../asserts/images/correct.png";
-import Delete from "./../../asserts/images/delete.png";
-import Share from "./../../asserts/images/share.png";
-import Cancel from "./../../asserts/images/cancel.png";
+import message from "./../../asserts/icons/message.png";
+import email from "./../../asserts/icons/email.png";
 import Popup from "../../components/Bulk-Email-Popup/Popup";
 import BulkEmailPage from '../../components/Bulk-E-mail-Page/Bulk-E-mail';
 
@@ -30,7 +27,7 @@ export default function Joined() {
     const dropdown = document.querySelector(".batch-action");
     const batchArrow = document.querySelector(".batch-arrow");
 
-    dropdown.classList.toggle("batch-visible");
+    dropdown.classList.toggle("joined-batch-visible");
     batchArrow.classList.toggle("batch-rotate");
   };
     return (
@@ -49,11 +46,11 @@ export default function Joined() {
               <ul className="batch-action" >
                 <div className="batch-action-square">&nbsp;</div>
                 <li>
-                  <img src={Correct} alt="Correct icon" />
+                  <img src={message} alt="Correct icon" />
                   <span>Send Bulk Message </span>
                 </li>
                 <li  onClick={() => setPopupOpen(true)}>
-                  <img src={Cancel} alt="Cancel icon" />
+                  <img src={email} alt="Cancel icon" />
                   <span>Send Bulk E-mail  </span>
                 </li>
              

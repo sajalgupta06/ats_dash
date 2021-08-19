@@ -1,24 +1,13 @@
 import React, { useState } from "react";
-import "./Submission.scss";
-import {
-  CheckboxIcon,
-  DownArrIcon,
-  Filter2Icon,
-  FilterIcon,
-} from "../../asserts/icons";
-import NewSubmissionCard from "../../components/NewSubmissionCard/NewSubmissionCard";
+
 import CandidateProfile from "../../components/CandidateProfile/CandidateProfile";
-import JobPost from "../../components/JobPost/JobPost";
-import Tables from "../../components/Table/Tables";
-import { Link } from "react-router-dom";
+
 import AllSubmissions from "./AllSubmissions";
 import Joined from "./Joined";
+import "./Submission.scss";
+
 import InterviewScheduled from "./InterviewScheduled";
-import Correct from "./../../asserts/images/correct.png";
-import Delete from "./../../asserts/images/delete.png";
-import Share from "./../../asserts/images/share.png";
-import Cancel from "./../../asserts/images/cancel.png";
-import Popup from "../../components/Bulk-Email-Popup/Popup";
+
 
 const Submissions = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
@@ -46,6 +35,7 @@ const Submissions = () => {
             <button
               className={`btn btn-w btn-inactive`}
               onClick={() => setClicked("AllSubmissions")}
+              clicked
             >
               All Submissions
             </button>

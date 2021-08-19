@@ -9,6 +9,17 @@ import {
 import NewCandidate from "../../components/NewCandidate/NewCandidate";
 import CandidateProfile from "../../components/CandidateProfile/CandidateProfile";
 
+
+import Delete from "./../../asserts/images/delete.png";
+import Share from "./../../asserts/images/share.png";
+import Popup from "../../components/Bulk-Email-Popup/Popup";
+
+import updateField from "./../../asserts/icons/updateField.png";
+import publish from "./../../asserts/icons/publish.png";
+import addToFolder from "./../../asserts/icons/addToFolder.png";
+import addToPipeline from "./../../asserts/icons/addToPipeline.png";
+import tagCandidate from "./../../asserts/icons/tagCandidate.png";
+
 const Candidates = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
 
@@ -17,12 +28,17 @@ const Candidates = () => {
     dropdown.classList.toggle("form-visible");
   };
 
+  const [isFilter , setIsFilter] = useState(false)
+
   if (candidateDetail) {
     return <CandidateProfile setCandidateDetail={setCandidateDetail} />;
   } else {
     return (
-      <div className='candidates-container'>
+      <div className={isFilter ? 'candidates-container':'candidate-nrml'}>
         {/* candidates-left */}
+        {isFilter && (
+
+     <>
         <div className='candidates-left'>
           <div className='candidates-left-container'>
             <div className='candidates-left-heading'>
@@ -30,6 +46,7 @@ const Candidates = () => {
               <div>Filters</div>
             </div>
 
+           
             {/* filter one */}
             <div className='candidates-left-filter-box'>
               <div
@@ -46,12 +63,15 @@ const Candidates = () => {
                     htmlFor='from'>
                     From
                   </label>
+                  <div className="input-box">
+
                   <input
                     className='form-input'
                     placeholder='0 years'
                     id='from'
                     type='text'
-                  />
+                    />
+                    </div>
                 </div>
                 <div className='form-group'>
                   <label
@@ -262,9 +282,10 @@ const Candidates = () => {
             {/* end of filter fifth */}
           </div>
         </div>
-        {/* end of candidates-left */}
-
-        {/*  candidates-right */}
+          
+       
+        </>  )}
+       
         <div className='candidates-right'>
           <div className='tob-btns'>
             <button className='btn btn-w btn-inactive'>All Candidates</button>
@@ -280,37 +301,58 @@ const Candidates = () => {
               <button className='btn btn-white'>
                 <span className='batch-action-rel'>
                   <span>Batch Actions</span>
-                  {/* <>
-                  <ul className='batch-action'>
-                    <div className='batch-action-square'>&nbsp;</div>
-                    <li>
-                      <img src={Correct} alt='Correct icon' />
-                      <span>Appove</span>
-                    </li>
-                    <li>
-                      <img src={Cancel} alt='Cancel icon' />
-                      <span>Dissapprove</span>
-                    </li>
-                    <li>
-                      <img src={Delete} alt='Delete icon' />
-                      <span>Delete</span>
-                    </li>
-                    <li>
-                      <img src={Share} alt='Share icon' />
-                      <span>Share</span>
-                    </li>
-                  </ul>
-                </> */}
+                  <>
+                  <ul className="batch-action">
+                      <div className="batch-action-square">&nbsp;</div>
+                      <li>
+                        <img src={updateField} alt="Correct icon" />
+                        <span>Update Field</span>
+                      </li>
+                      <li>
+                        <img src={Delete} alt="Delete icon" />
+                        <span>Delete</span>
+                      </li>
+                      <li>
+                        <img src={publish} alt="Cancel icon" />
+                        <span>Publish</span>
+                      </li>
+                      <li>
+                        <img src={publish} alt="Cancel icon" />
+                        <span>Publish in Career Portal</span>
+                      </li>
+                      <li>
+                        <img src={addToFolder} alt="Delete icon" />
+                        <span>Add to Folder</span>
+                      </li>
+                   
+                      <li >
+                        <img src={Share} alt="Share icon" />
+                        <span>Share</span>
+                      </li>
+
+                      <li>
+                        <img src={addToPipeline} alt="Delete icon" />
+                        <span>Add to Pipeline</span>
+                      </li>
+                      <li>
+                        <img src={tagCandidate} alt="Delete icon" />
+                        <span>Tag Candidate</span>
+                      </li>
+                  
+                    </ul>
+                </> 
                 </span>
 
                 <DownArrIcon className='batch-arrow' />
               </button>
+
               <div className='listings-bar-search'>
                 <input
                   type='text'
                   placeholder='Search Job Title, Job ID, Tags'
                 />
               </div>
+              <button className='btn btn-white' style={{marginLeft:"1rem"}} onClick={()=>setIsFilter(!isFilter)}> Advance Search</button>
             </div>
             <div className='listings-bar-right'>
               <div className='plus'>
@@ -333,7 +375,7 @@ const Candidates = () => {
           <NewCandidate />
           {/* end of candidates */}
         </div>
-        {/* end of candidates-right */}
+       
       </div>
     );
   }

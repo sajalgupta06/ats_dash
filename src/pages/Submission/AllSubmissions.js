@@ -8,19 +8,22 @@ import {
 } from "../../asserts/icons";
 import NewSubmissionCard from "../../components/NewSubmissionCard/NewSubmissionCard";
 import CandidateProfile from "../../components/CandidateProfile/CandidateProfile";
-import JobPost from "../../components/JobPost/JobPost";
-import Tables from "../../components/Table/Tables";
-import { Link } from "react-router-dom";
 
 
-import Correct from "./../../asserts/images/correct.png";
 import Delete from "./../../asserts/images/delete.png";
 import Share from "./../../asserts/images/share.png";
-import Cancel from "./../../asserts/images/cancel.png";
 import Popup from "../../components/Bulk-Email-Popup/Popup";
+
+import updateField from "./../../asserts/icons/updateField.png";
+import publish from "./../../asserts/icons/publish.png";
+import addToFolder from "./../../asserts/icons/addToFolder.png";
+import addToPipeline from "./../../asserts/icons/addToPipeline.png";
+import tagCandidate from "./../../asserts/icons/tagCandidate.png";
+
 
 const AllSubmissions = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
+  const [submissionDetail, setSubmissionDetail] = useState(false);
   const [clicked, setClicked] = useState("AllSubmissions");
   const [active, setActive] = useState("inactive");
   const [PopupOpen, setPopupOpen] = useState(false);
@@ -48,25 +51,44 @@ const AllSubmissions = () => {
                     <ul className="batch-action">
                       <div className="batch-action-square">&nbsp;</div>
                       <li>
-                        <img src={Correct} alt="Correct icon" />
-                        <span>Appove</span>
-                      </li>
-                      <li>
-                        <img src={Cancel} alt="Cancel icon" />
-                        <span>Dissapprove</span>
+                        <img src={updateField} alt="Correct icon" />
+                        <span>Update Field</span>
                       </li>
                       <li>
                         <img src={Delete} alt="Delete icon" />
                         <span>Delete</span>
-                      </li>{" "}
-                      <span></span>
+                      </li>
+                      <li>
+                        <img src={publish} alt="Cancel icon" />
+                        <span>Publish</span>
+                      </li>
+                      <li>
+                        <img src={publish} alt="Cancel icon" />
+                        <span>Publish in Career Portal</span>
+                      </li>
+                      <li>
+                        <img src={addToFolder} alt="Delete icon" />
+                        <span>Add to Folder</span>
+                      </li>
+                   
                       <li onClick={() => setPopupOpen(true)}>
                         <img src={Share} alt="Share icon" />
-                        <span>Email</span>
+                        <span>Share</span>
                       </li>
+
+                      <li>
+                        <img src={addToPipeline} alt="Delete icon" />
+                        <span>Add to Pipeline</span>
+                      </li>
+                      <li>
+                        <img src={tagCandidate} alt="Delete icon" />
+                        <span>Tag Candidate</span>
+                      </li>
+                  
                     </ul>
                   </>
                 </span>
+                
                 {PopupOpen && <Popup setPopupOpen={setPopupOpen} />}
                 <DownArrIcon className="batch-arrow" />
               </button>
@@ -93,11 +115,11 @@ const AllSubmissions = () => {
       
       
        <div className='job-listings-jobs'>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
-          <NewSubmissionCard  requirement={true}/>
+          <NewSubmissionCard  setSubmissionDetail={setSubmissionDetail}/>
+          <NewSubmissionCard  setSubmissionDetail={setSubmissionDetail}/>
+          <NewSubmissionCard  setSubmissionDetail={setSubmissionDetail}/>
+          <NewSubmissionCard  setSubmissionDetail={setSubmissionDetail}/>
+          <NewSubmissionCard  setSubmissionDetail={setSubmissionDetail}/>
         
     
         </div>

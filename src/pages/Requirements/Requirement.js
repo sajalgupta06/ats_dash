@@ -18,7 +18,7 @@ const Requirement = () => {
     const dropdown = document.querySelector(".batch-action");
     const batchArrow = document.querySelector(".batch-arrow");
 
-    dropdown.classList.toggle("batch-visible");
+    dropdown.classList.toggle("req-batch-visible");
     batchArrow.classList.toggle("batch-rotate");
   };
 

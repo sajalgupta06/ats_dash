@@ -1,0 +1,71 @@
+
+.candidateProfile
+{
+
+    &-container{
+        display: grid;
+        grid-template-rows: 32rem 1fr;
+        height: calc(100vh - 7rem);
+        padding: 1rem;
+        gap: 2rem;
+        border-radius: 2rem;
+        padding: 1rem;
+    }
+    &-summary{
+        display: grid;
+        grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
+        padding: 1rem;
+        gap: 2rem;
+        border-radius: 2rem;
+        padding: 1rem;
+        background-color: #fff;
+        padding-top: 3rem;
+        margin-top: 3rem;
+        .logo{
+            display: flex;
+            margin-left: 3rem;
+            img{
+                height: 10rem;
+                width: 10rem;
+                border-radius: 1000px;
+                
+            }
+            h2{
+                margin-top: 2.8rem;
+                margin-left: 2rem;
+            }
+        }
+        .applied{
+
+            .btn{
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+                background-color: #F2F2F2
+                ;
+            }
+        }
+
+
+        .status{
+
+            .btn{
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+                background-color: #E3FFF3
+
+                ;
+            }
+        }
+
+
+        .comments{
+
+            .btn{
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+                background-color: #F3F3F3
+                ;
+            }
+        }
+    }
+}
