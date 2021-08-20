@@ -6,7 +6,7 @@ import {
   Filter2Icon,
   FilterIcon,
 } from "../../asserts/icons";
-import InterviewScheduledTable from '../../components/Table/InterviewScheduledTable';
+import InterviewScheduledTable from '../../components/Table/InterviewScheduledTable/InterviewScheduledTable';
 
 export default function InterviewScheduled({ view, setView }) {
     return (

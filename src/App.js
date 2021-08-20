@@ -17,6 +17,7 @@ import Notification from "./pages/Notification/Notification";
 import Requirement from "./pages/Requirements/Requirement";
 import Joined from "./pages/Submission/Joined";
 import Submissions from "./pages/Submission/Submission";
+import Me from "./pages/Me/Me";
 // import './pages/Hero/Hero.scss'
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
                 <Route exact path="/configureEmail" component={ConfigureEmail } />
                 <Route exact path="/email" component={Email } />
                 <Route exact path="/profile" component={Profile } />
+                <Route exact path="/me" component={Me} />
 
                 <Route
                   exact

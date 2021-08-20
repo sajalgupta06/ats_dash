@@ -1,9 +1,6 @@
 import React from "react";
-import "./Tables.scss";
-import whatsapp from '../../asserts/icons/logo-whatsapp.png'
-import whatsapp2 from '../../asserts/icons/logo-whatsapp2.png'
-import message from '../../asserts/icons/logo-message.png'
-import gmail from '../../asserts/icons/logo-gmail.png'
+import "../JoinedTable/JoinedTable.scss";
+
 
 export default function InterviewScheduledTable() {
   return (

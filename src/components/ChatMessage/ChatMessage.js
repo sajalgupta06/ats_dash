@@ -11,8 +11,7 @@ const ChatMessage = ({ own }) => {
         <div>
           <div className={`${own ? "message-top-msg cbg" : "message-top-msg"}`}>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto b
+            accusantium doloremque laudantium, totam rem aperiam,
           </div>
           <div className='message-date'>
             Sunday, October 24th, 2020 at 4.30 AM

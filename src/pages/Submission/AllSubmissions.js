@@ -92,6 +92,7 @@ const AllSubmissions = () => {
                 {PopupOpen && <Popup setPopupOpen={setPopupOpen} />}
                 <DownArrIcon className="batch-arrow" />
               </button>
+              
               <div className="listings-bar-search">
                 <input
                   type="text"

@@ -1,11 +1,10 @@
 import React from "react";
-import "./Tables.scss";
-import whatsapp from '../../asserts/icons/logo-whatsapp.png'
-import whatsapp2 from '../../asserts/icons/logo-whatsapp2.png'
-import message from '../../asserts/icons/logo-message.png'
-import gmail from '../../asserts/icons/logo-gmail.png'
+import "./JoinedTable.scss";
+import whatsapp2 from '../../../asserts/icons/logo-whatsapp2.png'
+import message from '../../../asserts/icons/logo-message.png'
+import gmail from '../../../asserts/icons/logo-gmail.png'
 
-export default function Tables() {
+export default function JoinedTable() {
   return (
     <div>
       <div class="container">
@@ -30,6 +29,7 @@ export default function Tables() {
               <td class="table__cell table__cell--no-wrap">Action</td>
             </tr>
           </thead>
+          
           <tbody class="table__body">
 
           <tr className="spacer"></tr>

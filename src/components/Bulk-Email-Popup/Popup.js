@@ -15,9 +15,7 @@ import text from "../../asserts/icons/text.png";
 const Popup = ({
   setPopupOpen,
   setSend,
-  jobSuccess,
-  addNewJob,
-}) => {
+  }) => {
   return (
     <div className="email-popup-container">
       <div className="email-popup">
@@ -31,9 +29,9 @@ const Popup = ({
             alt="close icon"
           />
         </div>
-        {jobSuccess ? (
-          <div className="job-success">Job Added Successfully!</div>
-        ) : (
+        (
+      
+        
           <>
             <div className="email-popup-body">
               <div className="input-container">
@@ -115,7 +113,7 @@ const Popup = ({
               </div>
             </div>
           </>
-        )}
+        
       </div>
     </div>
   );

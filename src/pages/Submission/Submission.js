@@ -12,7 +12,6 @@ import InterviewScheduled from "./InterviewScheduled";
 const Submissions = () => {
   const [candidateDetail, setCandidateDetail] = useState(false);
   const [clicked, setClicked] = useState("AllSubmissions");
-  const [active, setActive] = useState("inactive");
   const [PopupOpen, setPopupOpen] = useState(false);
 
   const handleBatch = () => {
@@ -33,16 +32,18 @@ const Submissions = () => {
         <div className="header">
           <div className="tob-btns">
             <button
-              className={`btn btn-w btn-inactive`}
+              className={`btn btn-w btn-${clicked==="AllSubmissions"?"active":"inactive"}`}
               onClick={() => setClicked("AllSubmissions")}
-              clicked
+              
             >
               All Submissions
             </button>
-            <button className="btn btn-w btn-inactive">My Submissions</button>
+            <button className={`btn btn-w btn-${clicked==="MySubmissions"?"active":"inactive"}`}
+              onClick={() => {setClicked("MySubmissions")}}
+            >My Submissions</button>
 
             <button
-              className='btn btn-w btn-inactive'
+              className={`btn btn-w btn-${clicked==="InterviewScheduled"?"active":"inactive"}`}
               onClick={() => {setClicked("InterviewScheduled")}}
             
             >
@@ -50,7 +51,7 @@ const Submissions = () => {
             </button>
 
             <button
-              className={`btn btn-w btn-${active}`}
+              className={`btn btn-w btn-${clicked==="Joined"?"active":"inactive"}`}
               onClick={() => setClicked("Joined")}
             >
               Joined

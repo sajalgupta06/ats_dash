@@ -101,7 +101,10 @@ const Email = () => {
           </div>
         </div>
         <div className="email-right-bottom">
-          <textarea type="text" placeholder="Start Typing Here.."></textarea>
+          <div className="textbox">
+          <input type="text" placeholder="Start Typing Here.."></input>
+
+          </div>
           <div className="email-right-bottom-editorOption" >
             <div className="buttons1">
               <button className="btn btn-w btn-inactive reply"><img src={send}></img>Reply</button>

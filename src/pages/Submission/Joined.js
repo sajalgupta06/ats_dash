@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Tables from '../../components/Table/Tables'
+import Tables from '../../components/Table/JoinedTable/JoinedTable'
 import "./Submission.scss";
 import "./Joined.scss";
 import {
