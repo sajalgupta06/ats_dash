@@ -9,6 +9,7 @@ import Share from "./../../asserts/images/share.png";
 import Cancel from "./../../asserts/images/cancel.png";
 import axios from "axios";
 
+
 const JobListing = () => {
   const [jobListView, setJobListView] = useState(1);
   const [jobListings, setJobListings] = useState([]);
@@ -18,22 +19,16 @@ const JobListing = () => {
   const [batchDelete, setBatchDelete] = useState([]);
   const [reload, setReload] = useState(false);
   const [job, setJob] = useState({});
-  console.log(batchDelete);
 
-  const handleBatch = () => {
-    const dropdown = document.querySelector(".batch-action");
-    const batchArrow = document.querySelector(".batch-arrow");
 
-    dropdown.classList.toggle("batch-visible");
-    batchArrow.classList.toggle("batch-rotate");
-  };
+  const [active,setActive] = useState("AllJobs")
 
   const setPageNum = (e) => {};
 
   const deleteManyJobList = async () => {
     try {
       const response = await axios({
-        url: `http://localhost:8000/api/dash/jobs/deleteMany`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/jobs/deleteMany`,
         method: "DELETE",
         data: { ids: batchDelete },
       });
@@ -49,13 +44,44 @@ const JobListing = () => {
     }
   };
 
+  console.log(batchDelete);
+
+  const handleBatch = () => {
+    const dropdown = document.querySelector(".job-batch-action");
+    const batchArrow = document.querySelector(".job-batch-arrow");
+
+    dropdown.classList.toggle("job-batch-visible");
+    batchArrow.classList.toggle("job-batch-rotate");
+  };
+
+  const handleSort = () => {
+    const dropdown = document.querySelector(".job-sort-batch-action");
+    const batchArrow = document.querySelector(".job-sort-batch-arrow");
+
+    dropdown.classList.toggle("job-sort-batch-visible");
+    batchArrow.classList.toggle("job-sort-batch-rotate");
+  };
+
+
+
   useEffect(() => {
     const getJobListings = async () => {
       try {
+
+       const url= active==="InactiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=In Active`: active==="ActiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=Active`:active==="AllJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:""
+
+      //  const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=In Active`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=Active`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
+   
+        
         const response = await axios({
-          url: `http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`,
+          // url: `http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`,
+          
+
+          url:url,
+
           method: "GET",
         });
+        console.log(response)
 
         if (response.data.status === "success") {
           const nof = Math.ceil(response.data.totalCount / 6);
@@ -73,26 +99,32 @@ const JobListing = () => {
     if (page >= 1) {
       getJobListings();
     }
-  }, [page, reload]);
+  }, [page, reload,active]);
 
   if (jobListView === 1) {
     return (
       <div className='job-lisitngs'>
         <div className='tob-btns'>
-          <button className='btn btn-w btn-inactive'>All Jobs</button>
-          <button className='btn btn-w btn-active'>Active Jobs</button>
-          <button className='btn btn-w btn-inactive'>Inactive Jobs</button>
+          <button className={`btn btn-w btn-${active==="AllJobs"?"active":"inactive"}`}
+          onClick={()=>setActive("AllJobs")}
+          >All Jobs</button>
+          <button className={`btn btn-w btn-${active==="ActiveJobs"?"active":"inactive"}`}
+           onClick={()=>setActive("ActiveJobs")}
+          >Active Jobs</button>
+          <button className={`btn btn-w btn-${active==="InactiveJobs"?"active":"inactive"}`}
+           onClick={()=>setActive("InactiveJobs")}
+          >Inactive Jobs</button>
         </div>
 
         {/* listings bar */}
         <div className='listings-bar'>
           <div className='listings-bar-left'>
             <button onClick={handleBatch} className='btn btn-white'>
-              <span className='batch-action-rel'>
+              <span className='job-batch-action-rel'>
                 <span>Batch Actions</span>
                 <>
-                  <ul className='batch-action'>
-                    <div className='batch-action-square'>&nbsp;</div>
+                  <ul className='job-batch-action'>
+                    <div className='job-batch-action-square'>&nbsp;</div>
                     <li>
                       <img src={Correct} alt='Correct icon' />
                       <span>Appove</span>
@@ -115,13 +147,15 @@ const JobListing = () => {
 
               <svg
                 width='16'
-                className='batch-arrow'
+                className='job-batch-arrow'
                 height='12'
                 viewBox='0 0 492 492'
                 fill='#2186F2'>
                 <path d='M484.13 124.99l-16.11-16.23a26.72 26.72 0 00-19.04-7.86c-7.2 0-13.96 2.79-19.03 7.86L246.1 292.6 62.06 108.55c-5.07-5.06-11.82-7.85-19.03-7.85s-13.97 2.79-19.04 7.85L7.87 124.68a26.94 26.94 0 000 38.06l219.14 219.93c5.06 5.06 11.81 8.63 19.08 8.63h.09c7.2 0 13.96-3.57 19.02-8.63l218.93-219.33A27.18 27.18 0 00492 144.1c0-7.2-2.8-14.06-7.87-19.12z'></path>
               </svg>
+
             </button>
+           
             <div className='listings-bar-search'>
               <input type='text' placeholder='Search Job Title, Job ID, Tags' />
             </div>
@@ -193,114 +227,170 @@ const JobListing = () => {
                   fill='#2186F2'
                 />
               </svg>
-              <div>Newest</div>
-              <svg width='16' height='12' viewBox='0 0 492 492' fill='#2186F2'>
+              
+              <button onClick={handleSort} className='btn btn-white'>
+              <span className='job-sort-batch-action-rel'>
+                <>
+                <span>Newest</span>
+                  <ul className='job-sort-batch-action'>
+                    <div className='job-sort-batch-action-square'>&nbsp;</div>
+                    
+                    <li>
+                   
+                      <span>All</span>
+                    </li>
+                
+
+                    <li>
+                   
+                      <span>Experience : High to Low</span>
+                    </li>
+
+                    <li>
+                   
+                   <span>Experience : Low to High</span>
+                 </li>
+
+                 <li>
+                   
+                   <span>Matching % : High to Low</span>
+                 </li>
+
+
+                 <li>
+                   
+                   <span>Matching % : Low to High</span>
+                 </li>
+
+
+                  </ul>
+                </>
+              </span>
+
+              <svg
+                width='16'
+                className='job-sort-batch-arrow'
+                height='12'
+                viewBox='0 0 492 492'
+                fill='#2186F2'>
                 <path d='M484.13 124.99l-16.11-16.23a26.72 26.72 0 00-19.04-7.86c-7.2 0-13.96 2.79-19.03 7.86L246.1 292.6 62.06 108.55c-5.07-5.06-11.82-7.85-19.03-7.85s-13.97 2.79-19.04 7.85L7.87 124.68a26.94 26.94 0 000 38.06l219.14 219.93c5.06 5.06 11.81 8.63 19.08 8.63h.09c7.2 0 13.96-3.57 19.02-8.63l218.93-219.33A27.18 27.18 0 00492 144.1c0-7.2-2.8-14.06-7.87-19.12z'></path>
               </svg>
+
+            </button>
+           
             </div>
           </div>
         </div>
         {/* end listings bar */}
 
         {/* start of job listings */}
-        <div className='job-listings-jobs'>
-          {jobListings.map((job) => (
-            <JobPost
-              setJob={setJob}
-              setBatchDelete={setBatchDelete}
-              batchDelete={batchDelete}
-              batch={batch}
-              job={job}
-              key={job._id}
-              setJobListView={setJobListView}
-              candidate={false}
-            />
-          ))}
-        </div>
-        {/* end of job listings */}
-
-        {/* start of pagination */}
-        <div className='pagination'>
-          {page < nop && (
-            <div onClick={() => setPage(page + 1)} className='pagination-next'>
-              <div>Next</div>
-              <svg
-                width='24'
-                height='25'
-                viewBox='0 0 24 25'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M12 18.5L6 12.5L12 6.5'
-                  stroke='#2186F2'
-                  strokeWidth='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-                <path
-                  d='M19 18.5L13 12.5L19 6.5'
-                  stroke='#2186F2'
-                  strokeWidth='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-              </svg>
+      
+      
+          <div className='job-lisitngs'>
+          {/* start of job listings */}
+          <div className='job-listings-jobs'>
+            {jobListings.map((job) => (
+              <JobPost
+                setJob={setJob}
+                setBatchDelete={setBatchDelete}
+                batchDelete={batchDelete}
+                batch={batch}
+                job={job}
+                key={job._id}
+                setJobListView={setJobListView}
+                candidate={false}
+              />
+            ))}
+          </div>
+          {/* end of job listings */}
+  
+          {/* start of pagination */}
+          <div className='pagination'>
+            {page < nop && (
+              <div onClick={() => setPage(page + 1)} className='pagination-next'>
+                <div>Next</div>
+                <svg
+                  width='24'
+                  height='25'
+                  viewBox='0 0 24 25'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M12 18.5L6 12.5L12 6.5'
+                    stroke='#2186F2'
+                    strokeWidth='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                  <path
+                    d='M19 18.5L13 12.5L19 6.5'
+                    stroke='#2186F2'
+                    strokeWidth='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+              </div>
+            )}
+            <div className='pagination-numbs'>
+              {nop === 1 && <div className='page-numbs'>1</div>}
+              {nop === 2 && (
+                <>
+                  <div onClick={setPageNum} className='page-numbs'>
+                    1
+                  </div>
+                  <div className='page-numbs'>2</div>
+                </>
+              )}
+              {nop === 3 && (
+                <>
+                  <div className='page-numbs'>1</div>
+                  <div className='page-numbs'>2</div>
+                  <div className='page-numbs'>3</div>
+                </>
+              )}
+              {nop >= 4 && (
+                <>
+                  <div className='page-numbs'>1</div>
+                  <div className='page-numbs'>2</div>
+                  <div className='page-numbs'>3</div>
+                  <div className='page-numbs'>4</div>
+                </>
+              )}
             </div>
-          )}
-          <div className='pagination-numbs'>
-            {nop === 1 && <div className='page-numbs'>1</div>}
-            {nop === 2 && (
-              <>
-                <div onClick={setPageNum} className='page-numbs'>
-                  1
-                </div>
-                <div className='page-numbs'>2</div>
-              </>
-            )}
-            {nop === 3 && (
-              <>
-                <div className='page-numbs'>1</div>
-                <div className='page-numbs'>2</div>
-                <div className='page-numbs'>3</div>
-              </>
-            )}
-            {nop >= 4 && (
-              <>
-                <div className='page-numbs'>1</div>
-                <div className='page-numbs'>2</div>
-                <div className='page-numbs'>3</div>
-                <div className='page-numbs'>4</div>
-              </>
+            {page > 1 && (
+              <div onClick={() => setPage(page - 1)} className='pagination-prev'>
+                <svg
+                  width='24'
+                  height='25'
+                  viewBox='0 0 24 25'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M12 18.5L6 12.5L12 6.5'
+                    stroke='#2186F2'
+                    strokeWidth='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                  <path
+                    d='M19 18.5L13 12.5L19 6.5'
+                    stroke='#2186F2'
+                    strokeWidth='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+                <div>Previous</div>
+              </div>
             )}
           </div>
-          {page > 1 && (
-            <div onClick={() => setPage(page - 1)} className='pagination-prev'>
-              <svg
-                width='24'
-                height='25'
-                viewBox='0 0 24 25'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M12 18.5L6 12.5L12 6.5'
-                  stroke='#2186F2'
-                  strokeWidth='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-                <path
-                  d='M19 18.5L13 12.5L19 6.5'
-                  stroke='#2186F2'
-                  strokeWidth='2'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-              </svg>
-              <div>Previous</div>
-            </div>
-          )}
+          {/* end  of pagination */}
         </div>
-        {/* end  of pagination */}
+      
+      
+
+     
       </div>
     );
   } else if (jobListView === 2) {

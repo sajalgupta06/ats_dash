@@ -82,7 +82,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
       // console.log(preferences);
 
       const response = await axios({
-        url: "http://localhost:8000/api/dash/jobs",
+        // url: "http://localhost:8000/api/dash/jobs",
+        url: "https://job-market-node.codedeployment.tk/api/dash/jobs",
         method: "POST",
         data: newobj,
       });

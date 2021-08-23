@@ -5,7 +5,6 @@ import "./Sidebar.scss";
 const Sidebar = ({ setView }) => {
 
   const location = useLocation();
-  console.log(location.pathname)
 const [active,setActive] = useState (location.pathname.substring(1)
 )
   return (

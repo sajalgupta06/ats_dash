@@ -34,11 +34,9 @@ const Candidates = () => {
     return <CandidateProfile setCandidateDetail={setCandidateDetail} />;
   } else {
     return (
-      <div className={isFilter ? 'candidates-container':'candidate-nrml'}>
+      <div className='candidates-container'>
         {/* candidates-left */}
-        {isFilter && (
-
-     <>
+      
         <div className='candidates-left'>
           <div className='candidates-left-container'>
             <div className='candidates-left-heading'>
@@ -284,7 +282,7 @@ const Candidates = () => {
         </div>
           
        
-        </>  )}
+    
        
         <div className='candidates-right'>
           <div className='tob-btns'>

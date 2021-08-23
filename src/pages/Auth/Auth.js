@@ -8,30 +8,39 @@ import ForgotPassword from "./ForgotPassword";
 const Auth = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
+  
+
 
   const history = useHistory();
 
   // login
   const login = async () => {
     try {
-      // const response = await axios({
-      //   url: "http://localhost:8000/api/dash/login",
-      //   method: "POST",
-      //   data: {
-      //     email,
-      //     password,
-      //   },
-      // });
+      const response = await axios({
+        // url: "http://localhost:8000/api/dash/login",
+        url: "https://job-market-node.codedeployment.tk/api/dash//login",
+        method: "POST",
+        data: {
+          email,
+          password,
+        },
+      });
       // console.log(response.data.data);
-      // const { token, user } = response.data.data;
-      // localStorage.setItem("token", token);
-      // localStorage.setItem("user", user);
-      // if (token) {
-        // }
-          history.push("/overview");
+      console.log(response);
+    
+      const { token, user } = response.data.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", user);
+      if (token) {
+        history.push("/overview");
+      }
+      history.push("/overview");
     } catch (err) {
-      console.log(err.response);
-    }
+    //  setError(err.message)
+    setError(err.message)
+  console.log(err)  
+  }
   };
 
   // handelForgotPassword
@@ -70,7 +79,13 @@ const Auth = (props) => {
             />
           </div>
           <div className="forgot">
-            <div className="wrong-pass">wrong password</div>
+
+            {
+              error &&(
+
+                <div className="wrong-pass">{error}</div> 
+              )
+            }
             <Link
               style={{
                 fontWeight:800,

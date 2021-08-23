@@ -14,6 +14,9 @@ import CreateRequirement from "../../components/CreateRequirement/CreateRequirem
 const Requirement = () => {
   const [reqView, setReqView] = useState("r1");
 
+  const [active,setActive] = useState("AllJobs")
+
+
   const handleBatch = () => {
     const dropdown = document.querySelector(".batch-action");
     const batchArrow = document.querySelector(".batch-arrow");
@@ -25,11 +28,17 @@ const Requirement = () => {
   return (
     <div className='requirements'>
       {reqView === "r1" && (
-        <div className='tob-btns'>
-          <button className='btn btn-w btn-inactive'>All Jobs</button>
-          <button className='btn btn-w btn-active'>Active Jobs</button>
-          <button className='btn btn-w btn-inactive'>Inactive Jobs</button>
-        </div>
+           <div className='tob-btns'>
+           <button className={`btn btn-w btn-${active==="AllJobs"?"active":"inactive"}`}
+           onClick={()=>setActive("AllJobs")}
+           >All Jobs</button>
+           <button className={`btn btn-w btn-${active==="ActiveJobs"?"active":"inactive"}`}
+            onClick={()=>setActive("ActiveJobs")}
+           >Active Jobs</button>
+           <button className={`btn btn-w btn-${active==="InactiveJobs"?"active":"inactive"}`}
+            onClick={()=>setActive("InactiveJobs")}
+           >Inactive Jobs</button>
+         </div>
       )}
 
       {/* listings bar */}
