@@ -10,7 +10,7 @@ import Candidates from "./pages/Candidates/Candidates";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ConfigureEmail from "./pages/Email/ConfigureEmail";
 import Email from "./pages/Email/Email";
-import Hero from "./pages/Hero/Hero";
+// import Hero from "./pages/Hero/Hero";
 import JobListing from "./pages/Jobs/JobListing";
 import Message from "./pages/Message/Message";
 import Notification from "./pages/Notification/Notification";
@@ -18,7 +18,7 @@ import Requirement from "./pages/Requirements/Requirement";
 import Joined from "./pages/Submission/Joined";
 import Submissions from "./pages/Submission/Submission";
 import Me from "./pages/Me/Me";
-// import './pages/Hero/Hero.scss'
+import './pages/Hero/Hero.scss'
 
 function App() {
   return (

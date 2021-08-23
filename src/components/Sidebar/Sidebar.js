@@ -1,8 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
 
 const Sidebar = ({ setView }) => {
+
+  const location = useLocation();
+  console.log(location.pathname)
+const [active,setActive] = useState (location.pathname.substring(1)
+)
   return (
     <nav className='hero-left'>
       <div className='heading-primary'>Jobs Market.AI</div>
@@ -111,7 +116,8 @@ const Sidebar = ({ setView }) => {
  */}
 
               <Link to="/dashboard">
-      <li>
+      <li className={active==="dashboard"?"activeTab":""} 
+      onClick={()=>setActive("dashboard")} >
       <svg
             // width='22'
             // height='22'
@@ -130,7 +136,9 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/job-listing">
-      <li>
+      <li 
+      className={active==="job-listing"?"activeTab":""} 
+      onClick={()=>setActive("job-listing")}>
       <svg
             // width='24'
             // height='30'
@@ -149,7 +157,8 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/me">
-      <li>
+      <li  className={active==="me"?"activeTab":""} 
+      onClick={()=>setActive("me")}>
       <svg
             width='26'
             height='30'
@@ -168,7 +177,10 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/requirements">
-      <li>
+      <li  
+      className={active==="requirements"?"activeTab":""} 
+      onClick={()=>setActive("requirements")}
+      >
       <svg
             width='24'
             height='30'
@@ -187,7 +199,10 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/candidates">
-      <li>
+      <li
+      className={active==="candidates"?"activeTab":""} 
+      onClick={()=>setActive("candidates")}
+      >
       <svg
             width='26'
             height='30'
@@ -206,7 +221,10 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/submissions">
-      <li>
+      <li
+            className={active==="submissions"?"activeTab":""} 
+            onClick={()=>setActive("submissions")}
+      >
       <svg
             width='30'
             height='30'
@@ -224,7 +242,10 @@ const Sidebar = ({ setView }) => {
 
 
               <Link to="/notifications">
-      <li>
+      <li
+           className={active==="notifications"?"activeTab":""} 
+           onClick={()=>setActive("notifications")}
+      >
       <svg
             width='28'
             height='32'
@@ -243,7 +264,10 @@ const Sidebar = ({ setView }) => {
               </Link>
              
               <Link to="/message">
-      <li>
+      <li
+       className={active==="message"?"activeTab":""} 
+       onClick={()=>setActive("message")}
+      >
       
 
           <svg
@@ -263,8 +287,11 @@ const Sidebar = ({ setView }) => {
       
 
              
-  <Link to="/email">
-      <li>
+              <Link to="/email">
+      <li
+             className={active==="email"?"activeTab":""} 
+             onClick={()=>setActive("email")}
+      >
           <svg
             width='30'
             height='24'
@@ -279,25 +306,29 @@ const Sidebar = ({ setView }) => {
           <span>Email</span>
         </li>
               </Link>
+
     
-    
-              <Link to="/configureEmail">
-      <li>
-          <svg
-            width='30'
-            height='24'
-            viewBox='0 0 30 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'>
-            <path
-              d='M27 0H3C1.35 0 0.015 1.35 0.015 3L0 21C0 22.65 1.35 24 3 24H27C28.65 24 30 22.65 30 21V3C30 1.35 28.65 0 27 0ZM27 6L15 13.5L3 6V3L15 10.5L27 3V6Z'
-              fill='white'
-              />
-          </svg>
-          <span>Configure Email</span>
-        </li>
-              </Link>
-    
+
+
+              <li 
+               className={active==="logout"?"activeTab":""} 
+               onClick={()=>setActive("logout")}
+               
+              >
+              <svg
+                width='27'
+                height='28'
+                viewBox='0 0 27 28'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  d='M21.3387 2.97448C24.7681 5.44863 27 9.49524 27 14.0752C27 21.5966 20.9686 27.694 13.5272 27.7105C6.09678 27.727 0.010897 21.6076 9.93536e-06 14.0972C-0.00543361 9.51723 2.22642 5.45963 5.65041 2.97998C6.28731 2.52363 7.1746 2.71607 7.55565 3.40333L8.41573 4.9483C8.7369 5.5256 8.58448 6.25685 8.05646 6.65272C5.79739 8.34614 4.35485 11.0292 4.35485 14.0697C4.3494 19.1444 8.41029 23.312 13.5 23.312C18.4863 23.312 22.6778 19.2324 22.6452 14.0147C22.6288 11.1667 21.3006 8.41761 18.9381 6.64722C18.4101 6.25136 18.2631 5.52011 18.5843 4.9483L19.4444 3.40333C19.8254 2.72157 20.7073 2.51814 21.3387 2.97448ZM15.6774 14.515V1.31955C15.6774 0.588298 15.095 0 14.371 0H12.629C11.905 0 11.3226 0.588298 11.3226 1.31955V14.515C11.3226 15.2463 11.905 15.8346 12.629 15.8346H14.371C15.095 15.8346 15.6774 15.2463 15.6774 14.515Z'
+                  fill='white'
+                />
+              </svg>
+              <span>Logout</span>
+            </li>
+            
 
       </ul>
     </nav>

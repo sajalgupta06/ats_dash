@@ -26,10 +26,10 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-user">
-          <Link to="/profile">
             <div className="credits">Credits: 485/500</div>
             <img className="user-img" src={PlaceHolder} alt="" />
-            <div>
+          <Link to="/profile">
+            <div style={{cursor:"pointer"}}>
               <div className="user-name">Oda Dink</div>
               <div className="user-type">Recruiter</div>
             </div>

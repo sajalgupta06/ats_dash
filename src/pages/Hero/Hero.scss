@@ -22,10 +22,12 @@
         display: grid;
         grid-template-columns: 4.8rem 1fr;
         margin: 1.6rem 1.8rem;
-        padding: 1.6rem 0;
+        padding: 1.6rem 18px;
         color: #fff;
         cursor: pointer;
         align-items: center;
+       border-radius: 2rem;
+        // margin: 0;
         svg {
           height: 1.9rem;
           width: 1.9rem;

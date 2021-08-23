@@ -23,17 +23,27 @@
     a{
       text-decoration: none;
     }
+   
     li {
       display: grid;
       grid-template-columns: 4.8rem 1fr;
       margin: 2rem 1.8rem;
-      padding: 1.6rem 0;
+      padding: 1.6rem 19px;
       color: #fff;
       cursor: pointer;
       align-items: center;
       svg {
         height: 1.9rem;
         width: 1.9rem;
+      }
+    }
+    .activeTab{
+      background-color: #f2f2f2;
+      color: #2086f2;
+      svg{
+        path{
+          fill: #2086f2;
+        }
       }
     }
   }

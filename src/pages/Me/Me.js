@@ -22,10 +22,10 @@ export default function Me() {
 
         <button
           className={`btn btn-w btn-${
-            clicked === "Ticket" ? "active" : "inactive"
+            clicked === "Tickets" ? "active" : "inactive"
           }`}
           onClick={() => {
-            setClicked("Ticket");
+            setClicked("Tickets");
           }}
         >
           Ticket

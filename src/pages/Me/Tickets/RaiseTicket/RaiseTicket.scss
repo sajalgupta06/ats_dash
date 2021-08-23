@@ -1,0 +1,111 @@
+.field{
+    display: flex;
+    // justify-content: space-between;
+    // width: 20%;
+    margin-top: 4rem;
+    align-items: center;
+    margin-left: 3rem;
+    h3{
+        display: inline-block;
+        
+    }
+    .input-box{
+    border: 1px solid gray;
+    border-radius: 1.5rem;
+    margin-left: 3rem;
+    width: 65rem;
+    input{
+        margin: 1rem;
+    }
+    }
+    
+    .input-box-dropdown{
+    border: 1px solid gray;
+    border-radius: 1.5rem;
+    margin-left: 3rem;
+    width: 65rem;
+    display: flex;
+    justify-content: space-between;
+    input{
+        margin: 1rem;
+    }
+    }
+
+    .ticket-batch-action {
+        &-rel {
+          position: relative;
+        }
+      
+        &-square {
+          width: 2rem;
+          height: 2rem;
+          position: absolute;
+          background-color: #fff;
+          top: -0.9rem;
+          left: 50%;
+          transform: translatex(-50%) rotate(45deg);
+        }
+      
+        position: absolute;
+        top: 3.8rem;
+        left: -1rem;    
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: height 0.3s, visibility 0.4s, opacity 0.4s;
+        left: -12rem;
+        width: 25rem;
+      
+        box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 2rem;
+        list-style: none;
+      
+        li {
+          margin: 1rem 0;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          transition: all 0.3s;
+      
+          &:hover {
+            background-color: rgb(233, 233, 233);
+            border-radius: 2rem;
+          }
+      
+          img {
+            margin-right: 1rem;
+          }
+        }
+      }
+      
+      .ticket-batch-visible {
+        visibility: visible;
+        height: 17.7rem;
+        opacity: 1;
+        height: 35rem;
+        width: 25rem;
+        left: -12rem;
+      }
+     
+      .ticket-batch-arrow {
+        transition: all 0.2s;
+      }
+      
+      .ticket-batch-rotate {
+        transform: rotate(180deg);
+      }
+      
+      .ticket-batch-rotate {
+        transform: rotate(180deg);
+      }
+
+
+
+}
+
+
+
+
+
