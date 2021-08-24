@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RaiseTicket from "./RaiseTicket/RaiseTicket";
+import ViewOld from "./ViewOld/ViewOld";
 
 export default function Tickets() {
   const [navClicked, setNavClicked] = useState("RaiseTicket");
@@ -38,7 +39,7 @@ export default function Tickets() {
         // <FeedbackResponseTable
         //   setOpenResponseForm={setOpenResponseForm}
         // ></FeedbackResponseTable>
-        <h1>View Old</h1>
+       <ViewOld></ViewOld>
       )}
 
 

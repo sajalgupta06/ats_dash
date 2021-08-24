@@ -18,13 +18,15 @@ import Requirement from "./pages/Requirements/Requirement";
 import Joined from "./pages/Submission/Joined";
 import Submissions from "./pages/Submission/Submission";
 import Me from "./pages/Me/Me";
-import './pages/Hero/Hero.scss'
+import "./pages/Hero/Hero.scss";
 
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path="/" component={Auth} />
+                <Route exact path="/forgot-password" component={ForgotPassword} />
+                <Route exact path="/reset-password" component={ResetPassword} />
         <div style={{ height: "100%", backgroundColor: "#2186F2" }}>
           <Sidebar />
           <section className="hero-container">
@@ -39,17 +41,15 @@ function App() {
                 <Route exact path="/submissions" component={Submissions} />
                 <Route exact path="/notifications" component={Notification} />
                 <Route exact path="/message" component={Message} />
-                <Route exact path="/configureEmail" component={ConfigureEmail } />
-                <Route exact path="/email" component={Email } />
-                <Route exact path="/profile" component={Profile } />
-                <Route exact path="/me" component={Me} />
-
                 <Route
                   exact
-                  path="/forgot-password"
-                  component={ForgotPassword}
+                  path="/configureEmail"
+                  component={ConfigureEmail}
                 />
-                <Route exact path="/reset-password" component={ResetPassword} />
+                <Route exact path="/email" component={Email} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/me" component={Me} />
+
               </div>
             </div>
           </section>

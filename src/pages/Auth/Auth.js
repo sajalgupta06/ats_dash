@@ -18,8 +18,8 @@ const Auth = (props) => {
   const login = async () => {
     try {
       const response = await axios({
-        // url: "http://localhost:8000/api/dash/login",
-        url: "https://job-market-node.codedeployment.tk/api/dash//login",
+        url: "http://localhost:8000/api/dash/login",
+        // url: "https://job-market-node.codedeployment.tk/api/dash//login",
         method: "POST",
         data: {
           email,
@@ -27,19 +27,26 @@ const Auth = (props) => {
         },
       });
       // console.log(response.data.data);
+
+   
       console.log(response);
     
       const { token, user } = response.data.data;
       localStorage.setItem("token", token);
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
+      // localStorage.getItem("user1", JSON.parse(user));
+      localStorage.getItem("user");
+      // localStorage.getItem("user1");
       if (token) {
         history.push("/overview");
       }
       history.push("/overview");
     } catch (err) {
-    //  setError(err.message)
-    setError(err.message)
-  console.log(err)  
+     setError(err.response.data.message)
+    // setError(err. )
+  
+    console.log(err.response.data.message)
+  
   }
   };
 
@@ -67,7 +74,7 @@ const Auth = (props) => {
               }}
             />
           </div>
-          <div className="input-container">
+          <div className={`input-container${error===""?'':" error-div"}`}>
             <label>Password</label>
             <input
               type="password"
@@ -81,7 +88,7 @@ const Auth = (props) => {
           <div className="forgot">
 
             {
-              error &&(
+               (
 
                 <div className="wrong-pass">{error}</div> 
               )
@@ -99,8 +106,8 @@ const Auth = (props) => {
             </Link>
           </div>
           <div className="input-container">
-            <button onClick={login}> Login </button>
           </div>
+            <button onClick={login}> Login </button>
         </section>
 
         {/* end of login component */}

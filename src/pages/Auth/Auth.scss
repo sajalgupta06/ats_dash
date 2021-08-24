@@ -20,6 +20,9 @@
 
   & .right {
     padding: 3rem;
+    .primary-heading{
+      font-size: 4rem;
+    }
 
     .auth-form {
       height: 38.4rem;
@@ -27,11 +30,15 @@
 
       .input-container {
         margin-bottom: 1.8rem;
+        font-size: 2rem;
+        font-weight: 600;
         label {
           display: block;
           color: var(--primary);
+
         }
 
+       
         input {
           width: 100%;
 
@@ -40,22 +47,33 @@
           border: 1px solid #ebe9e9;
           border-radius: 1rem;
           color: #555;
+          font-size: 2rem;
         }
 
-        button {
-          cursor: pointer;
-          width: 100%;
-          margin: 25rspx 0 0 -5px;
-          padding: 1rem 1.5rem;
-          text-align: center;
-          background: var(--primary);
-          color: #fff;
-          font-size: 2rem;
-          border-radius: 1rem;
-          position: absolute;
-          bottom: 0;
+      
+      }
+
+      button {
+        cursor: pointer;
+        width: 100%;
+        margin: 25rspx 0 0 -5px;
+        padding: 1rem 1.5rem;
+        text-align: center;
+        background: var(--primary);
+        color: #fff;
+        font-size: 2rem;
+        border-radius: 1rem;
+        // position: absolute;
+        bottom: 0;
+        margin-top: 16rem;
+      }
+      .error-div{
+        input{
+
+          border:1px solid red;
         }
       }
+     
     }
   }
 }
@@ -70,9 +88,12 @@
 }
 
 .forgot {
-  font-size: 1.3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  font-size: 2rem;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+
+  display: flex;
+  justify-content: space-between;
   margin-top: -8px;
   margin-bottom: 18px;
 
@@ -87,10 +108,13 @@
 }
 .pass-reset {
   text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 .pass-text {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-bottom: 8rem;
 }

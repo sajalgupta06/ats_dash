@@ -15,7 +15,8 @@ const ForgotPassword = (props) => {
   const handelForgotPassword = async () => {
     try {
       const response = await axios({
-        url: "http://localhost:8000/api/dash/forgotPassword",
+        // url: "http://localhost:8000/api/dash/forgotPassword",
+        url: "https://job-market-node.codedeployment.tk/api/dash/forgotPassword",
         method: "POST",
         data: {
           email,
@@ -45,18 +46,17 @@ const ForgotPassword = (props) => {
             <div className='input-container'>
               <label>Email Address</label>
               <input
-                type='text'
-                //   value={email}
+                type='email'
+                  value={email}
                 placeholder='Your Email'
                 onChange={(e) => {
-                  // setEmail(e.target.value);
+                  setEmail(e.target.value);
                 }}
               />
             </div>
 
-            <div className='input-container'>
+          
               <button onClick={handelForgotPassword}> Send Link </button>
-            </div>
           </section>
         
         {/* end of forgot password */}

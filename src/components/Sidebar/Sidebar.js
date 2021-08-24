@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
 
 const Sidebar = ({ setView }) => {
@@ -7,6 +7,8 @@ const Sidebar = ({ setView }) => {
   const location = useLocation();
 const [active,setActive] = useState (location.pathname.substring(1)
 )
+
+const history = useHistory()
   return (
     <nav className='hero-left'>
       <div className='heading-primary'>Jobs Market.AI</div>
@@ -311,7 +313,14 @@ const [active,setActive] = useState (location.pathname.substring(1)
 
               <li 
                className={active==="logout"?"activeTab":""} 
-               onClick={()=>setActive("logout")}
+               onClick={()=>{
+                 setActive("logout");
+                 localStorage.removeItem("user")
+                 localStorage.removeItem("token")
+                 history.push('/')
+              
+              
+              }}
                
               >
               <svg

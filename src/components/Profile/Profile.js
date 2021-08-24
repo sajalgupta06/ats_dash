@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.scss";
+import axios from "axios";
 
-import { InformationIcon, MailIcon, PhoneIcon } from "../../asserts/icons";
+
+import { InformationIcon, PhoneIcon } from "../../asserts/icons";
+import MailIcon from "../../asserts/icons/MailIcon.png";
+import Whatsapp from "../../asserts/icons/Whatsapp.png";
+import eyeOpen from "../../asserts/icons/eye-open.png";
+import eyeClose from "../../asserts/icons/eye-close.png";
+import editPencilBlack from "../../asserts/icons/edit-pencil-black.png";
 import Acce from "./../../asserts/images/acc.png";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 import { PenEditIcon } from "./../../asserts/icons/index";
@@ -10,8 +17,114 @@ import instagram from '../../asserts/icons/instagram.png'
 import facebook from '../../asserts/icons/facebook.png'
 import google from '../../asserts/icons/google2.png'
 import linkedin from '../../asserts/icons/linkedin.svg'
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
+  const history = useHistory();
+
+  const [profileData,setProfileData] =useState({
+
+    firstName:"",
+    middleName:"",
+    lastName:"",
+    userName:"",
+    password:"",
+    phone:"",
+    whatsapp:"",
+    email:"",
+    headline:"",
+    experience:"",
+    skillSet:"",
+    designation:"",
+    recrutingFor:"",
+   
+
+  })
+
+  const [hide,setHide] = useState({
+    phone:true,
+    whatsapp:true,
+    email:true,
+  })
+const handleHide=(value)=>{
+  // setHide({[hide.value]:!hide.value})
+  // console.log(hide)
+
+  hide[value] = !hide[value]
+setHide({
+  ...hide
+  })
+
+}
+
+  const handleEventChange = (evt) => {
+    setProfileData({
+      ...profileData,
+      [evt.target.name]: evt.target.value,
+    });
+  };
+
+
+
+const handleSubmitProfile= async()=>{
+  const token = localStorage.getItem("token");
+  
+  if(!token){
+    history.push("/")
+  }
+
+  try {
+    const response = await axios({
+      // url: "http://localhost:8000/api/dash/user",
+      url: "https://job-market-node.codedeployment.tk/api/dash/user",
+      method: "PUT",
+      headers:{"Authorization":`Bearer ${token}`},
+      data: {
+        
+        profileData
+      },
+    });
+    console.log(response);
+
+  //  console.log(profileData)
+    // console.log(response);
+  
+    //  console.log(response.data.data);
+
+  } catch (err) {
+  console.log(err)
+  }
+}
+
+
+const getProfile=async()=>{
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios({
+      // url: "http://localhost:8000/api/dash/user",
+      url: "https://job-market-node.codedeployment.tk/api/dash/user",
+      method: "GET",
+      headers:{"Authorization":`Bearer ${token}`},
+    });
+    setProfileData(response.data.data)
+    console.log(profileData)
+
+  } catch (err) {
+  console.log(err)
+  }
+}
+
+const handleCancel=()=>{
+getProfile()
+}
+
+useEffect(() => {
+  getProfile()
+}, [])
+
+
+
+
   return (
     <div className='profile-container'>
       {/* left */}
@@ -20,8 +133,8 @@ const Profile = () => {
         <div className='profile-head'>
           <div className='mt fw6'>Edit Profile</div>
           <div className='profile-btns'>
-            <div className='btn btn-cancel2'>Cancel</div>
-            <div className='btn btn-save'>Save Changes</div>
+            <div className='btn btn-cancel2' onClick={handleCancel}>Cancel</div>
+            <div className='btn btn-save' onClick={handleSubmitProfile}>Save Changes</div>
           </div>
         </div>
         {/* end of profile head */}
@@ -31,34 +144,34 @@ const Profile = () => {
         <div className='createjob-adddoc-batch'>
           {/* first row */}
           <div>
-            <label htmlFor='firstname'>First Name</label>
+            <label htmlFor='firstName'>First Name</label>
             <InformationIcon className='info-icon' />
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.firstname}
-              name='firstname'
-              id='firstname'
-              type='text'
+              onChange={handleEventChange}
+              value={profileData.firstName}
+              name='firstName'
+              id='firstName'
+              type='text' 
             />
           </div>
           <div>
-            <label htmlFor='clientJobId'>Middle Name</label>
+            <label htmlFor='middleName'>Middle Name</label>
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.clientJobId}
-              name='clientJobId'
-              id='clientJobId'
+              onChange={handleEventChange}
+              value={profileData.middleName}
+              name='middleName'
+              id='middleName'
               type='text'
             />
           </div>
           <div>
-            <label htmlFor='jobtitle'>Last Name</label>
+            <label htmlFor='lastName'>Last Name</label>
 
             <input
-              name='title'
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.title}
-              id='jobtitle'
+              name='lastName'
+              onChange={handleEventChange}
+              value={profileData.lastName}
+              id='lastName'
               type='text'
             />
           </div>
@@ -66,24 +179,24 @@ const Profile = () => {
 
           {/* second row */}
           <div>
-            <label htmlFor='firstname'>Username</label>
+            <label htmlFor='userName'>Username</label>
             <InformationIcon className='info-icon' />
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.firstname}
-              name='firstname'
-              id='firstname'
+              onChange={handleEventChange}
+              value={profileData.userName}
+              name='userName'
+              id='userName'
               type='text'
             />
           </div>
           <div>
-            <label htmlFor='clientJobId'>Password</label>
+            <label htmlFor='password'>Password</label>
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.clientJobId}
-              name='clientJobId'
-              id='clientJobId'
-              type='text'
+              onChange={handleEventChange}
+              value={profileData.password}
+              name='password'
+              id='password'
+              type='password'
             />
           </div>
           {/* end of second row */}
@@ -92,70 +205,94 @@ const Profile = () => {
         <div className='mt fw6'>contact</div>
         <div className='createjob-adddoc-batch'>
           {/* third row */}
-          <div>
-            <label htmlFor='firstname'>Mobile</label>
-            <InformationIcon className='info-icon' />
-            <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.firstname}
-              name='firstname'
-              id='firstname'
-              type='text'
-            />
+          <div >
+            <label htmlFor='phone'>Phone</label>
+            <div className="icon-div">
+
+            <PhoneIcon></PhoneIcon>
+            <div className="icon-div-eye">
+       
+               <input
+               onChange={handleEventChange}
+               value={profileData.phone}
+               name='phone'
+               id='phone'
+               type={hide.phone===true?'password':"text"}
+
+               /> 
+        
+           
+              <img src={hide.phone===true? eyeOpen:eyeClose} onClick={()=>handleHide("phone")}></img>
+              </div>
+              </div>
           </div>
           <div>
-            <label htmlFor='clientJobId'>Whatsapp</label>
+            <label htmlFor='whatsapp'>Whatsapp</label>
+            <div className="icon-div">
+
+          <img src={Whatsapp}></img>
+          <div className="icon-div-eye">
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.clientJobId}
-              name='clientJobId'
-              id='clientJobId'
-              type='text'
+              onChange={handleEventChange}
+              value={profileData.whatsapp}
+              name='whatsapp'
+              id='whatsapp'
+              type={hide.whatsapp===true?'password':"text"}
             />
+            <img src={hide.whatsapp===true? eyeOpen:eyeClose}  onClick={()=>handleHide("whatsapp")}></img>
+            </div>
+          </div>
           </div>
           <div>
-            <label htmlFor='jobtitle'>Email</label>
+            <label htmlFor='email'>Email</label>
+            <div className="icon-div">
+            <img src={MailIcon}></img>
+            <div className="icon-div-eye">
 
             <input
-              name='title'
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.title}
-              id='jobtitle'
-              type='text'
+              name='email'
+              onChange={handleEventChange}
+              value={profileData.email}
+              id='email'
+              type={hide.email===true?'password':"text"}
             />
+            <img src={hide.email===true? eyeOpen:eyeClose}  onClick={()=>handleHide("email")} ></img>
+
+            </div>
+            </div>
           </div>
           {/* end of third row */}
 
           {/* fourth row */}
           <div>
-            <label htmlFor='firstname'>Headline</label>
+            <label htmlFor='headline'>Headline</label>
             <InformationIcon className='info-icon' />
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.firstname}
-              name='firstname'
-              id='firstname'
+              onChange={handleEventChange}
+              value={profileData.headline}
+              name='headline'
+              id='headline'
               type='text'
             />
           </div>
           <div>
-            <label htmlFor='clientJobId'>Experience</label>
+            <label htmlFor='experience'>Experience</label>
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.clientJobId}
-              name='clientJobId'
-              id='clientJobId'
+              onChange={handleEventChange}
+              value={profileData.experience}
+              name='experience'
+              id='experience'
               type='text'
             />
           </div>
           <div>
-            <label htmlFor='jobtitle'>Skill Set</label>
+            <label htmlFor='skillSet'>Skill Set</label>
 
             <input
-              name='title'
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.title}
-              id='jobtitle'
+              name='skillSet'
+              onChange={handleEventChange}
+              value={profileData.skillSet}
+              id='skillSet'
               type='text'
             />
           </div>
@@ -163,23 +300,23 @@ const Profile = () => {
 
           {/* fifth row */}
           <div>
-            <label htmlFor='firstname'>Designation</label>
-            <InformationIcon className='info-icon' />
+            <label htmlFor='designation'>Designation</label>
+         
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.firstname}
-              name='firstname'
-              id='firstname'
+              onChange={handleEventChange}
+              value={profileData.designation}
+              name='designation'
+              id='designation'
               type='text'
             />
           </div>
           <div>
-            <label htmlFor='clientJobId'>Recruting For</label>
+            <label htmlFor='recrutingFor'>Recruting For</label>
             <input
-              // onChange={handleEventChange}
-              // value={jobRequirementDetails.clientJobId}
-              name='clientJobId'
-              id='clientJobId'
+              onChange={handleEventChange}
+              value={profileData.recrutingFor}
+              name='recrutingFor'
+              id='recrutingFor'
               type='text'
             />
           </div>
@@ -333,10 +470,79 @@ const Profile = () => {
               <div>PhoneIcon</div>
             </div>
             <div className='profile-right-info-bottom-contact'>
-              <PhoneIcon /> <div>odadink@mail.com</div>
+              <img src={MailIcon} style={{marginRight:"1rem"}}></img><div>odadink@mail.com</div>
             </div>
-            <div className='profile-right-info-bottom-contact'>
-              <PenEditIcon /> <div>Add/Edit Email Signature</div>
+          <br></br>
+          <br></br>
+          <br></br>
+
+            <div className='profile-right-info-bottom-contact'  style={{display:"flex",justifyContent:"space-between"}}>
+               <div>Email Signature(Internal) </div>
+               <div>
+
+               <img src={eyeOpen} style={{marginLeft:"4rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+             <img src={editPencilBlack} style={{marginLeft:"2rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+            </div>
+            </div>
+            
+
+
+
+
+            <div className='profile-right-info-bottom-contact'  style={{display:"flex",justifyContent:"space-between"}}>
+               <div>Email Signature(Internal) </div>
+               <div>
+
+               <img src={eyeOpen} style={{marginLeft:"4rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+             <img src={editPencilBlack} style={{marginLeft:"2rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+            </div>
+            </div>
+            
+
+
+
+            <div className='profile-right-info-bottom-contact'  style={{display:"flex",justifyContent:"space-between"}}>
+               <div>Email Signature(Internal) </div>
+               <div>
+
+               <img src={eyeOpen} style={{marginLeft:"4rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+             <img src={editPencilBlack} style={{marginLeft:"2rem",
+              border:"1px solid gray",
+              borderRadius:"100px",
+              padding:"3px",
+            }}></img>
+            </div>
+            </div>
+            
+            <br></br>
+
+            <div className='profile-right-info-bottom-contact'
+            style={{display:"flex",justifyContent:"flex-end"}}>
+              
+
+              <PenEditIcon /> 
+              <div>Add/Edit Email Signature</div>
+             
             </div>
           </div>
         </div>
