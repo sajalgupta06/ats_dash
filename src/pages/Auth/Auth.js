@@ -18,8 +18,8 @@ const Auth = (props) => {
   const login = async () => {
     try {
       const response = await axios({
-        url: "http://localhost:8000/api/dash/login",
-        // url: "https://job-market-node.codedeployment.tk/api/dash//login",
+        // url: "http://localhost:8000/api/dash/login",
+        url: "https://job-market-node.codedeployment.tk/api/dash//login",
         method: "POST",
         data: {
           email,

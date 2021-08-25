@@ -493,6 +493,7 @@ const CandidateProfile = ({ setCandidateDetail }) => {
             <div className="mt fw6">RESUME</div>
           </div>
         </div>
+     
       </div>
     </div>
   );

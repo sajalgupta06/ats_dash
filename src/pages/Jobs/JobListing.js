@@ -184,6 +184,7 @@ const JobListing = () => {
                 />
               </svg>
             </div>
+
             <div
               onClick={() => setBatch(!batch)}
               className={`plus ${batch && "batch-border"}`}>
@@ -203,6 +204,7 @@ const JobListing = () => {
                 />
               </svg>
             </div>
+            
             <div className='listings-bar-right-filter'>
               <svg
                 width='24'

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BreifcaseIcon,
   DownArrIcon,
@@ -10,10 +10,43 @@ import {
 import "./NewCandidate.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
-const NewCandidate = ({ setCandidateDetail }) => {
+const NewCandidate = ({ 
+  setCandidateDetail,
+  batch,
+  batchDelete,
+  setBatchDelete,
+  candidate
+
+}) => {
+  const [inBatch, setInBatch] = useState(false);
+  
+
+  const checkJobListOrReq = () => {
+    if (batch) {
+      console.log("Batch In")
+      setInBatch(!inBatch);
+
+      const ind = batchDelete.indexOf(candidate._id);
+      console.log(ind);
+      if (ind !== -1) {
+        let newBatch = batchDelete.filter((f) => f !== candidate._id);
+        setBatchDelete(newBatch);
+      } else {
+        setBatchDelete((b) => [...b, candidate._id]);
+      }
+    } 
+     else {
+
+      setCandidateDetail(false)
+  
+    }
+  };
+
+
   return (
-    <div onClick={() => setCandidateDetail(true)} className='newcad mb5'>
+    <div onClick={checkJobListOrReq} className={`newcad mb5 ${batch && inBatch && "batch-border"}`}>
       <div className='newcad-top'>
+        
         <div className='newcad-top-left'>
           <div className='newcad-top-name'>P A</div>
           <div className='newcad-top-active'>Active</div>
@@ -27,7 +60,7 @@ const NewCandidate = ({ setCandidateDetail }) => {
           <img src={Placeholder} alt='placeholder' />
         </div>
       </div>
-      <div className='newcad-role'>Automation Testing Analyst</div>
+      <div className='newcad-role'>{candidate.headline}</div>
       <div className='newcad-desc'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
         vel purus erat. Pellentesque sit amet molestie justo.
@@ -35,38 +68,63 @@ const NewCandidate = ({ setCandidateDetail }) => {
       <div className='newcad-infski'>
         <div className='jobpost-user-info'>
           <span>#JT-673453</span>
-          <li>05 Positions </li>
+          <li>{candidate.jobs.length} Positions </li>
           <li>$14,000 - $25,000</li>
-          <li>Delhi, India (Remote)</li>
+          <li>{candidate.prefferedLocation}</li>
         </div>
-        <div className='job-candidate-skills'>
-          <div>Java</div>
-          <div>Automated Testing</div>
-          <div>Regression Testing</div>
-          <div>Python</div>
-          <div>Maven</div>
+        <div className='job-candidate-skills' style={{justifyContent:"unset"}}>
+          {candidate.skills.map(skill=>{
+            return(
+              <>
+
+              <div style={{marginLeft:"1rem",marginRight:"0.5rem"}}>{skill}</div>
+         
+
+            
+              
+              </>) 
+              
+
+          })}
+          
         </div>
       </div>
 
       <div className='job-candidate-ed mb2 ed-ex'>
         <div className='job-candidate-ed-left mr3'>
           <SchoolIcon />
-          <div>University Of Melbourne (BCs)</div>
+          <div>{candidate.education}</div>
         </div>
         <div className='job-candidate-ed-right'>
           <BreifcaseIcon />
-          <div>Worked as a Senior Analyst</div>
+          <div>Worked as a {candidate.currentDesignation}</div>
         </div>
       </div>
 
       {/* new candidate bottom */}
       <div className='newcad-bottom'>
         <div className='newcad-bottom-left'>
-          <div className='mr1'>Aplied for: </div>
-          <div className='newcad-bottom-lock'>
+          <div className='mr1'>Applied for: </div>
+          {/* <div className='newcad-bottom-lock'>
             <div>Senior Analyst</div>
-            <DownArrIcon />
-          </div>
+              </div> */}
+              {/* <DownArrIcon /> */}
+            <div>
+                <select
+                  // onChange={handleEventChange}
+                  // value={candidateProfile.maritalStatus}
+                  name="maritalStatus"
+                  className="select-d"
+                  id="maritalStatus"
+                  style={{width:"15rem",background:"#fff",border:"1px solid black",borderRadius:"1.3rem",marginRight:"1rem"}}
+                >
+                  {/* <option selected disabled hidden></option> */}
+               {candidate.jobs.map(job=>{
+                 return <option value="Single">{job.title}</option>
+               })}
+               
+                </select>
+              </div>
           <div className='newcad-bottom-txt'>
             Last active on 14th July 2021, 11 am • Last Modified on 5th March
             2021
