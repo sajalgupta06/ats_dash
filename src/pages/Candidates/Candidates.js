@@ -25,7 +25,9 @@ import InactiveCandidates from "./InactiveCandidates/InactiveCandidates";
 import AdvancedSearch from "./AdvancedSearch/AdvancedSearch";
 
 const Candidates = () => {
-  const [candidateDetail, setCandidateDetail] = useState(false);
+  const [isCandidateDetail, setIsCandidateDetail] = useState(false);
+  const [candidateDetail, setCandidateDetail] = useState({});
+
   const [advancedSearch, setAdvencedSearch] = useState(false);
 
   const handleDropdown = (cs) => {
@@ -35,9 +37,10 @@ const Candidates = () => {
 
   const [activeTab, setActiveTab] = useState("AllCandidates");
 
-  if (candidateDetail) {
+  if (isCandidateDetail) 
+  {
     console.log("hello");
-    return <CandidateProfile setCandidateDetail={setCandidateDetail} />;
+    return <CandidateProfile candidateDetail={candidateDetail} setIsCandidateDetail={setIsCandidateDetail} />;
   }
 
   if (advancedSearch) {
@@ -333,17 +336,19 @@ const Candidates = () => {
           {activeTab === "AllCandidates" && (
             <>
               <AllCandidates
-                setCandidateDetail={setCandidateDetail}
+                setIsCandidateDetail={setIsCandidateDetail}
                 setAdvencedSearch={setAdvencedSearch}
+                setCandidateDetail={setCandidateDetail}
               ></AllCandidates>
             </>
-          )}
+          )}  
 
           {activeTab === "ActiveCandidates" && (
             <>
               <ActiveCandidates
-                setCandidateDetail={setCandidateDetail}
+                setIsCandidateDetail={setIsCandidateDetail}
                 setAdvencedSearch={setAdvencedSearch}
+               
               ></ActiveCandidates>
             </>
           )}

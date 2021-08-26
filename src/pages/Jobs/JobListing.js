@@ -65,6 +65,7 @@ const JobListing = () => {
 
 
   useEffect(() => {
+    
     const getJobListings = async () => {
       try {
 

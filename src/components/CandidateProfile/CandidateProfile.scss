@@ -37,6 +37,9 @@
         }
         .applied{
 
+            overflow: scroll;
+            height: 23rem;
+
             .btn{
                 margin-bottom: 2rem;
                 margin-top: 2rem;
@@ -44,7 +47,9 @@
                 ;
             }
         }
-
+        .applied::-webkit-scrollbar {
+            display: none;
+        }
 
         .status{
 

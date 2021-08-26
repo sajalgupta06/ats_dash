@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CandidateProfile.scss";
 import person from "../../asserts/icons/person.png";
 import { InformationIcon } from "./../../asserts/icons/index";
@@ -15,9 +15,14 @@ import Popup from "../Bulk-Email-Popup/Popup";
 import ChatScreen from "../ChatScreen/ChatScreen";
 import ScheduleMeeting from "../ScheduleMeeting/ScheduleMeeting";
 
+import linkedin from '../../asserts/icons/linkedin.svg'
 
-const CandidateProfile = ({ setCandidateDetail }) => {
+
+const CandidateProfile = ({ setIsCandidateDetail , candidateDetail}) => {
   const [preferences, setPreferences] = useState({});
+  const [isLocked, setIsLocked] = useState(true);
+
+
 
   const [candidateProfile, setCandidateProfile] = useState({
     candidateID: "",
@@ -36,7 +41,7 @@ const CandidateProfile = ({ setCandidateDetail }) => {
     email: "",
     noticePeriod: "",
     currentLocation: "",
-    preferredLocation: "",
+    prefferedLocation: "",
     source: "",
     headline: "",
     summary: "",
@@ -47,6 +52,32 @@ const CandidateProfile = ({ setCandidateDetail }) => {
     skills: [],
   });
 
+
+
+  useEffect(() => {
+
+
+    
+    setCandidateProfile({
+      candidateName:candidateDetail.name,
+      currentDesignation:candidateDetail.currentDesignation,
+      highestEducationQual:candidateDetail.highestEducation,
+      workExperience:`${candidateDetail.experience?`${candidateDetail.experience.split(" ")[1]} Years ${candidateDetail.experience.split(" ")[0]} Months `:""}`,
+      email:candidateDetail.email,
+      phone:candidateDetail.phone,
+    
+      dateOfBirth: `${candidateDetail.birthDate?`${new Date(candidateDetail.birthDate).toLocaleDateString()}`:""}`,
+      headline:candidateDetail.headline,
+      noticePeriod:`${candidateDetail.noticePeriod?`${candidateDetail.noticePeriod.split(" ")[1]} Years ${candidateDetail.noticePeriod.split(" ")[0]} Months `:""}`,
+      education:candidateDetail.education,
+      prefferedLocation:candidateDetail.prefferedLocation,
+      summary:candidateDetail.professionalSummary,
+
+    })
+
+  }, [])
+
+  console.log(candidateDetail)
 
   const [popupOpen,setPopupOpen] = useState(false)
   const [meetingPopupOpen,setMeetingPopupOpen] = useState(false)
@@ -72,7 +103,7 @@ const CandidateProfile = ({ setCandidateDetail }) => {
 
   return (
     <div>
-      <div onClick={() => setCandidateDetail(false)} class="createjob-back">
+      <div onClick={() => setIsCandidateDetail(false)} class="createjob-back">
         ←
       </div>
 
@@ -80,15 +111,19 @@ const CandidateProfile = ({ setCandidateDetail }) => {
 
         <div className="candidateProfile-summary">
           <div className="logo">
-            <img src={person}></img>
-            <h2>P A</h2>
+            <img src={candidateDetail.profilePicture}></img>
+            <h2>{candidateDetail.name}</h2>
           </div>
           <div className="applied">
             Applied For
-            <buttom className="btn btn-white">
-              Senior Analysits At Power Energy
-            </buttom>
-            <buttom className="btn btn-white">Senior Analysits</buttom>
+         {candidateDetail.jobs.map(job=>{
+           return(
+             <>
+
+<buttom className="btn btn-white">{job.title}</buttom>
+             </>
+           )
+         })}
             <buttom className="btn btn-white">Senior Analysits</buttom>
           </div>
           <div className="status">
@@ -169,7 +204,9 @@ const CandidateProfile = ({ setCandidateDetail }) => {
                   Chat
                 </button>
 
-                <button className="btn btn-w" style={{border:"1px solid black"}}> 
+                <button className="btn btn-w" style={{border:"1px solid black"}}
+                onClick={()=>setIsLocked(false)}
+                > 
                 <LockIcon style={{marginRight:"1rem"}}></LockIcon>
               
                 Unlock Profile</button>
@@ -291,14 +328,14 @@ const CandidateProfile = ({ setCandidateDetail }) => {
                   value={candidateProfile.dateOfBirth}
                   name="dateOfBirth"
                   id="dateOfBirth"
-                  type="date"
+                  type="text"
                 />
               </div>
               <div>
                 <label htmlFor="workExperience">Work Experience</label>
                 <input
                   onChange={handleEventChange}
-                  value={candidateProfile.workExperience}
+                  value={candidateProfile.workExperience} 
                   name="workExperience"
                   id="workExperience"
                   type="text"
@@ -313,6 +350,7 @@ const CandidateProfile = ({ setCandidateDetail }) => {
                   name="maritalStatus"
                   className="select-d"
                   id="maritalStatus"
+                  style={{background:"#fff"}}
                 >
                   <option selected disabled hidden></option>
                   <option value="Single">Single</option>
@@ -356,6 +394,7 @@ const CandidateProfile = ({ setCandidateDetail }) => {
                   name="readyToRelocate"
                   className="select-d"
                   id="readyToRelocate"
+                  style={{background:"#fff"}}
                 >
                   <option selected disabled hidden></option>
                   <option value="No">Yes</option>
@@ -413,12 +452,12 @@ const CandidateProfile = ({ setCandidateDetail }) => {
               </div>
 
               <div>
-                <label htmlFor="preferredLocation">Preferred Location</label>
+                <label htmlFor="prefferedLocation">Preffered Location</label>
                 <input
                   onChange={handleEventChange}
-                  value={candidateProfile.preferredLocation}
-                  name="preferredLocation"
-                  id="preferredLocation"
+                  value={candidateProfile.prefferedLocation}
+                  name="prefferedLocation"
+                  id="prefferedLocation"
                   type="text"
                 />
               </div>
@@ -442,17 +481,21 @@ const CandidateProfile = ({ setCandidateDetail }) => {
 
             <div className="mt fw6">SUMMARY</div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              in nibh vulputate, condimentum quam eget, lobortis mi.
-              Pellentesque convallis nulla a tellus dapibus, non posuere elit
-              ultricies. Integer nec purus pulvinar, lacinia sem a, laoreet
-              turpis. Duis at maximus magna. Sed mauris erat, blandit et orci
-              ut, tempor ultrices elit. Vivamus id arcu et ante molestie
-              condimentum quis sit amet arcu.
+             {candidateProfile.summary}
             </p>
 
             <div className="mt fw6">SOCIALS</div>
-            <img src={lock}></img>
+            {/* <img src={lock}></img> */}
+
+            {
+              isLocked? 
+              <img src={lock}></img>:
+              candidateDetail.linkedinProfile?
+              <a href={`${candidateDetail.linkedinProfile}`} target="_blank">
+              <img src={linkedin}></img>
+              </a>:""
+            }
+           
             <button
               className="btn btn-white"
               style={{

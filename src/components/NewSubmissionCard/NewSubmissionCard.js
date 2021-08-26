@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BreifcaseIcon,
   DownArrIcon,
@@ -10,9 +10,40 @@ import {
 import "./NewSubmissionCard.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
-const NewSubmissionCard = ({ setSubmissionDetail }) => {
+const NewSubmissionCard = ({ 
+  setSubmissionDetail,
+  batch,
+  batchDelete,
+  setBatchDelete,
+}) => {
+
+  const [inBatch, setInBatch] = useState(false);
+
+  const checkJobListOrReq = () => {
+    if (batch) {
+      console.log("Batch In")
+      setInBatch(!inBatch);
+
+      // const ind = batchDelete.indexOf(candidate._id);
+      // console.log(ind);
+      // if (ind !== -1) {
+      //   let newBatch = batchDelete.filter((f) => f !== candidate._id);
+      //   setBatchDelete(newBatch);
+      // } else {
+      //   setBatchDelete((b) => [...b, candidate._id]);
+      // }
+    } 
+     else {
+      
+      setSubmissionDetail(true)
+  
+    }
+  };
+
+
+
   return (
-    <div onClick={() => setSubmissionDetail(true)} className='newSub mb5'>
+    <div onClick={checkJobListOrReq} className={`newcad mb5 ${batch && inBatch && "batch-border"}`}>
       <div className='newSub-top'>
         <div className='newSub-top-left'>
           <div className='newSub-top-name'>Priya Agrawal &nbsp;<span style={{fontWeight:"400",fontSize:"1.4rem"}}>

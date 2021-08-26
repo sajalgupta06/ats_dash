@@ -25,7 +25,7 @@ import tagCandidate from "./../../../asserts/icons/tagCandidate.png";
 
 
 
-export default function AllCandidates({setCandidateDetail,setAdvencedSearch}) {
+export default function AllCandidates({setIsCandidateDetail,setCandidateDetail,setAdvencedSearch}) {
 
 
   const [batch, setBatch] = useState(false);
@@ -71,8 +71,8 @@ useEffect(() => {
 
   try {
     const response = await axios({
-      // url: `http://localhost:8000/api/dash/app/users?page=${page}&limit=${6}`,
-      url: `https://job-market-node.codedeployment.tk/api/dash/app/users?page=${page}&limit=${6}`,
+      url: `http://localhost:8000/api/dash/app/users?page=${page}&limit=${6}`,
+      // url: `https://job-market-node.codedeployment.tk/api/dash/app/users?page=${page}&limit=${6}`,
       method: "GET",
       headers:{"Authorization":`Bearer ${token}`},
      
@@ -265,7 +265,9 @@ setBatchDelete([]);
         {candidateList.map(candidate=>{
 
          return <NewCandidate 
-          setCandidateDetail={setCandidateDetail} 
+       
+         setIsCandidateDetail={setIsCandidateDetail}
+         setCandidateDetail={setCandidateDetail}
           setBatchDelete={setBatchDelete}
           batchDelete={batchDelete}
           batch={batch}

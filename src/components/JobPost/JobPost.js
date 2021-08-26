@@ -57,20 +57,18 @@ const JobPost = ({
       <div className='jobpost-heading'>
         <img className='jobpost-user-img' src={Dummy} alt='recruiter pic' />
         <div className='jobpost-user'>
-          <div className='jobpost-user-name'>Olivia & Pope</div>
-          <div className='jobpost-user-role'>Mern stack developer</div>
+          <div className='jobpost-user-name'>{job.clientName}</div>
+          <div className='jobpost-user-role'>{job.title}</div>
         </div>
       </div>
       <div className='jobpost-user-info'>
         <span>#JT-673453</span>
-        <li>05 Positions </li>
-        <li>$14,000 - $25,000</li>
-        <li>Delhi, India (Remote)</li>
+        <li>{job.nofPos} Positions </li>
+        <li>INR {job.salary}</li>
+        <li>{job.preferredLocation}</li>
       </div>
       <div className='jobpost-desc'>
-        A job description or JD is a written narrative that describes the
-        general tasks, or other related duties, and responsibilities of a
-        position. It may specify the functionary to who the position reports. A
+       {job.companyDesc }
       </div>
 
       {/* job post bottom one */}

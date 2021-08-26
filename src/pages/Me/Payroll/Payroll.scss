@@ -1,0 +1,22 @@
+.navOptions{
+    margin-top: 3rem;
+    display: flex;
+    .option{
+        cursor: pointer;
+        display: inline;
+        margin-right: 2rem;
+
+        h3{
+
+            display: inline;
+            
+        }
+        &-active{
+
+            border-bottom: 2px solid blue;
+        }
+       
+    }
+
+    
+}

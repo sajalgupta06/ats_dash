@@ -1,53 +1,109 @@
 import React, { useState } from "react";
-import "./JoinedTable.scss";
+import "../JoinedTable/JoinedTable.scss";
 import whatsapp2 from '../../../asserts/icons/logo-whatsapp2.png'
 import message from '../../../asserts/icons/logo-message.png'
 import gmail from '../../../asserts/icons/logo-gmail.png'
+import PaySlip from "../../PaySlip/PaySlip";
 
 
 
-export default function JoinedTable() {
+
+export default function ReceivedAmountTable() {
 
   const data=[];
   const [checkBox,setCheckBox] = useState(false)
+  const [showSlip,setShowSlip] = useState(false)
 
 
 const dummyData = [{
-  name:"Sajal",
-  contactNo:"9977859801",
-  clientName:"adam Cookie",
-  designation:"Employee",
-  dateofJoining:"12-07-21"
-},
-
-{
-  name:"Sajal",
-  contactNo:"9977859801",
-  clientName:"adam Cookie",
-  designation:"Employee",
-  dateofJoining:"12-07-21"
+  purpose:"Salary",
+  month:"July",
+  receivedOn:"1 Aug,2021 ",
+  status:"Complete",
+  Amount:"40,000"
 },
 
 
 {
-  name:"Sajal",
-  contactNo:"9977859801",
-  clientName:"adam Cookie",
-  designation:"Employee",
-  dateofJoining:"12-07-21"
-},
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
 
 
-{
-  name:"Sajal",
-  contactNo:"9977859801",
-  clientName:"adam Cookie",
-  designation:"Employee",
-  dateofJoining:"12-07-21"
-},
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+
+  
+  {
+    purpose:"Salary",
+    month:"July",
+    receivedOn:"1 Aug,2021 ",
+    status:"Complete",
+    Amount:"40,000"
+  },
+  
+
 
 
 ]
+
+
+
 
   return (
     <div>
@@ -55,22 +111,19 @@ const dummyData = [{
         <table class="table table--shaded">
           <thead class="table__head">
             <tr class="table__row">
-              <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-                <input type="checkbox" onClick={()=>setCheckBox(!checkBox)}  />
-              </td>
+              
 
               <td class="table__cell table__cell--no-wrap">
-                Name
+                Purpose
               </td>
               <td class="table__cell table__cell--no-wrap">
-                Contact No.
+                Month
               </td>
-              <td class="table__cell table__cell--no-wrap">Client Name</td>
-              <td class="table__cell table__cell--no-wrap">Designation</td>
+              <td class="table__cell table__cell--no-wrap">Received On</td>
+              <td class="table__cell table__cell--no-wrap">Status</td>
               <td class="table__cell table__cell--remaino-wrapnder">
-                Date of Joining
+                Amount
               </td>
-              <td class="table__cell table__cell--no-wrap">Action</td>
             </tr>
           </thead>
           
@@ -83,32 +136,30 @@ const dummyData = [{
                 return ( 
                 <>
           <tr className="spacer"></tr>
-            <tr class="table__row" key={index}>
-              <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-                <input type="checkbox"  checked={checkBox} />
+            <tr class="table__row" key={index} onClick={()=>setShowSlip(true)}>
+             
+              <td class="UserTable__name table__cell table__cell--no-wrap">
+                {ele.purpose}
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-                {ele.name}
+                {ele.month}
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-                {ele.contactNo}
+              {ele.receivedOn}
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-              {ele.clientName}
+              {ele.status}
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-              {ele.designation}
+              {ele.Amount}
               </td>
-              <td class="UserTable__name table__cell table__cell--no-wrap">
-              {ele.dateofJoining}
-              </td>
-              <td class="UserTable__name table__cell table__cell--no-wrap">
-                Adam Cooke
-              </td>
+           
             </tr>
             </>
                 )})}
         
+        {showSlip &&(
+<PaySlip setShowSlip={setShowSlip}></PaySlip>        )}
           
           </tbody>
         </table>

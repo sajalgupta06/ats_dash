@@ -10,7 +10,9 @@ import {
 import "./NewCandidate.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
+
 const NewCandidate = ({ 
+  setIsCandidateDetail,
   setCandidateDetail,
   batch,
   batchDelete,
@@ -19,6 +21,8 @@ const NewCandidate = ({
 
 }) => {
   const [inBatch, setInBatch] = useState(false);
+  
+
   
 
   const checkJobListOrReq = () => {
@@ -36,8 +40,8 @@ const NewCandidate = ({
       }
     } 
      else {
-
-      setCandidateDetail(false)
+      setCandidateDetail(candidate)
+      setIsCandidateDetail(true)
   
     }
   };
@@ -53,13 +57,16 @@ const NewCandidate = ({
           <div className='newcad-top-cs'>Client Submitted</div>
         </div>
         <div className='newcad-top-right'>
-          <div className='newcad-top-lock'>
+          <div className='newcad-top-lock' >
             <LockIcon />
             <div>Unlock Profile</div>
           </div>
           <img src={Placeholder} alt='placeholder' />
         </div>
       </div>
+
+
+  
       <div className='newcad-role'>{candidate.headline}</div>
       <div className='newcad-desc'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -87,9 +94,9 @@ const NewCandidate = ({
 
           })}
           
-        </div>
+       
       </div>
-
+</div>
       <div className='job-candidate-ed mb2 ed-ex'>
         <div className='job-candidate-ed-left mr3'>
           <SchoolIcon />
@@ -116,7 +123,7 @@ const NewCandidate = ({
                   name="maritalStatus"
                   className="select-d"
                   id="maritalStatus"
-                  style={{width:"15rem",background:"#fff",border:"1px solid black",borderRadius:"1.3rem",marginRight:"1rem"}}
+                  style={{width:"18rem",background:"#fff",border:"1px solid black",borderRadius:"1.3rem",marginRight:"1rem"}}
                 >
                   {/* <option selected disabled hidden></option> */}
                {candidate.jobs.map(job=>{
@@ -132,7 +139,10 @@ const NewCandidate = ({
         </div>
         <div className='newcad-bottom-right'>
           <TagIcon />
-          <LinkedinIcon />
+          
+            <LockIcon style={{height:"2.5rem",width:"3rem"}}></LockIcon>
+          
+        
         </div>
       </div>
       {/* end of  new candidate bottom */}
