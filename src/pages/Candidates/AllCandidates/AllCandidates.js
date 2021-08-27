@@ -9,7 +9,7 @@ import {
   import axios from "axios";
 
   import NewCandidate from "../../../components/NewCandidate/NewCandidate";
-
+import'./AllCandidates.scss';
   
 import Delete from "./../../../asserts/images/delete.png";
 import Share from "./../../../asserts/images/share.png";
@@ -34,6 +34,7 @@ export default function AllCandidates({setIsCandidateDetail,setCandidateDetail,s
   const [nop, setNop] = useState(0);
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false);
+  const [activePage, setActivePage] = useState("1");
 
 
   const setPageNum = (e) => {};
@@ -321,12 +322,17 @@ setBatchDelete([]);
                   <div className='page-numbs'>3</div>
                 </>
               )}
+              
               {nop >= 4 && (
                 <>
-                  <div className='page-numbs'>1</div>
-                  <div className='page-numbs'>2</div>
-                  <div className='page-numbs'>3</div>
-                  <div className='page-numbs'>4</div>
+               {[...Array(nop)].map((e, i) => {
+                    return <div key={i+1}className={`page-numbs ${page==="1"?"active":""}`} 
+              
+                    onClick={()=>{setPage(i+1);
+                    
+                    }}>
+                      {i+1}</div>;
+                  })}
                 </>
               )}
             </div>

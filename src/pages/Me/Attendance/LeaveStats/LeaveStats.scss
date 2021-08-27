@@ -1,0 +1,15 @@
+.stats{
+    &-top{
+        display: flex;
+        justify-content: start;
+        margin-top: 3rem;
+    }
+    &-box{
+        background: #fff;
+        width: 26rem;
+        padding: 2rem;
+        border-radius: 2.5rem;
+        margin-right:3rem;
+        // font-weight: 00;
+    }
+}

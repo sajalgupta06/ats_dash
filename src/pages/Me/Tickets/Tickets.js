@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import './Tickets.scss'
 import RaiseTicket from "./RaiseTicket/RaiseTicket";
 import ViewOld from "./ViewOld/ViewOld";
+
 
 export default function Tickets() {
   const [navClicked, setNavClicked] = useState("RaiseTicket");

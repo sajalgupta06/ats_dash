@@ -10,7 +10,9 @@ const PaySlip = ({ setShowSlip, setSend }) => {
       <div className="feedbackForm-popup">
     
 
-     < div className="feedbackForm-popup-body"> 
+     < div className="feedbackForm-popup-body"
+      style={{height:"56rem"}}
+     > 
      <div className="form-head">
 
      <h1>Received Amount</h1>

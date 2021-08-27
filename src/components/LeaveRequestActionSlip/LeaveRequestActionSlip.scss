@@ -1,0 +1,18 @@
+.leave{
+    &-top{
+        display: flex;
+        justify-content: start;
+        margin-top: 3rem;
+    }
+    &-box{
+        background: #fff;
+        width: 26rem;
+        height: 15rem;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        margin-right:3rem;
+        box-shadow: 0px 4px 15px grey;
+
+        // font-weight: 00;
+    }
+}

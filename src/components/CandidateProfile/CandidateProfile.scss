@@ -1,145 +1,162 @@
-
-.candidateProfile
-{
-
-    &-container{
-        display: grid;
-        grid-template-rows: 32rem 1fr;
-        height: calc(100vh - 7rem);
-        padding: 1rem;
-        gap: 2rem;
-        border-radius: 2rem;
-        padding: 1rem;
+.candidateProfile {
+  &-container {
+    display: grid;
+    grid-template-rows: 32rem 1fr;
+    height: calc(100vh - 7rem);
+    padding: 1rem;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 1rem;
+  }
+  &-summary {
+    display: grid;
+    grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
+    padding: 1rem;
+    gap: 2rem;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    padding-top: 3rem;
+    margin-top: 3rem;
+    .logo {
+      display: flex;
+      margin-left: 3rem;
+      img {
+        height: 10rem;
+        width: 10rem;
+        border-radius: 1000px;
+      }
+      h2 {
+        margin-top: 2.8rem;
+        margin-left: 2rem;
+      }
     }
-    &-summary{
-        display: grid;
-        grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
-        padding: 1rem;
-        gap: 2rem;
-        border-radius: 2rem;
-        padding: 1rem;
+    .applied {
+      overflow: scroll;
+      height: 23rem;
+
+      .btn {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        background-color: #f2f2f2;
+      }
+    }
+    .applied::-webkit-scrollbar {
+      display: none;
+    }
+
+    .status {
+      .btn {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        background-color: #e3fff3;
+        width: 30rem;
+        height: 4rem;
+        display: inherit;
+        color: #036a20;
+      }
+
+      .candi-batch-action {
+        &-rel {
+          position: relative;
+        }
+
+        &-square {
+          width: 2rem;
+          height: 2rem;
+          position: absolute;
+          background-color: #fff;
+          top: -0.9rem;
+          left: 50%;
+          transform: translatex(-50%) rotate(45deg);
+        }
+
+        position: absolute;
+        top: 3.8rem;
+        left: -1rem;
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: height 0.3s, visibility 0.4s, opacity 0.4s;
+
+        box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.1);
         background-color: #fff;
-        padding-top: 3rem;
-        margin-top: 3rem;
-        .logo{
-            display: flex;
-            margin-left: 3rem;
-            img{
-                height: 10rem;
-                width: 10rem;
-                border-radius: 1000px;
-                
-            }
-            h2{
-                margin-top: 2.8rem;
-                margin-left: 2rem;
-            }
+        padding: 1rem;
+        border-radius: 2rem;
+        list-style: none;
+
+        li {
+          margin: 1rem 0;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: rgb(233, 233, 233);
+            border-radius: 2rem;
+          }
+
+          img {
+            margin-right: 1rem;
+          }
         }
-        .applied{
+      }
+      .candi-batch-visible {
+        visibility: visible;
+        height: 17.7rem;
+        opacity: 1;
+        height: 35rem;
+        width: 25rem;
 
-            overflow: scroll;
-            height: 23rem;
-
-            .btn{
-                margin-bottom: 2rem;
-                margin-top: 2rem;
-                background-color: #F2F2F2
-                ;
-            }
+        li {
+          color: black;
+          display: inherit;
+          span {
+            text-align: center;
+          }
         }
-        .applied::-webkit-scrollbar {
-            display: none;
-        }
-
-        .status{
-
-            .btn{
-                margin-bottom: 2rem;
-                margin-top: 2rem;
-                background-color: #E3FFF3;
-                width:30rem;
-                height: 4rem;
-                display: inherit;
-                color: #036A20;
-            }
-
-            .candi-batch-action {
-                &-rel {
-                  position: relative;
-                }
-              
-                &-square {
-                  width: 2rem;
-                  height: 2rem;
-                  position: absolute;
-                  background-color: #fff;
-                  top: -0.9rem;
-                  left: 50%;
-                  transform: translatex(-50%) rotate(45deg);
-                }
-              
-                position: absolute;
-                top: 3.8rem;
-                left: -1rem;
-                height: 0;
-                opacity: 0;
-                visibility: hidden;
-                transition: height 0.3s, visibility 0.4s, opacity 0.4s;
-              
-                box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.1);
-                background-color: #fff;
-                padding: 1rem;
-                border-radius: 2rem;
-                list-style: none;
-              
-                li {
-                  margin: 1rem 0;
-                  padding: 0.5rem;
-                  display: flex;
-                  align-items: center;
-                  transition: all 0.3s;
-             
-              
-                  &:hover {
-                    background-color: rgb(233, 233, 233);
-                    border-radius: 2rem;
-                  }
-              
-                  img {
-                    margin-right: 1rem;
-                  }
-                }
-              }
-            .candi-batch-visible {
-                visibility: visible;
-                height: 17.7rem;
-                opacity: 1;
-                height: 35rem   ;
-                width: 25rem;
-
-                li{
-                    color: black;
-                    display: inherit;
-                    span{
-
-                        text-align: center;
-                    }
-                    
-                }
-              }
-        }
-
-
-        .comments{
-
-            .btn{
-                margin-bottom: 2rem;
-                margin-top: 2rem;
-                background-color: #F3F3F3
-                ;
-            }
-        }
+      }
     }
+
+    .comments {
+      .btn {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        background-color: #f3f3f3;
+      }
+    }
+  }
+  &-detail {
+      background-color: #fff;
+      padding: 4rem;
+    
+        .docs_attached{
+            display: flex;
+            justify-content: start;
+            .box{
+
+                display: flex;
+                border:2px solid #EBE9E9;
+                height: 5rem;
+                width: 20rem;
+                border-radius: 1.5rem;
+                margin-right: 2rem;
+                background-color: #fff;
+                align-items: center;
+                justify-content: space-between;
+
+                padding: 1rem;
+
+                p{
+                    color: #515151;
+                    font-size: 1.3rem;
+                }
+                img{
+                    height: 2rem;
+                }
+            }
+            
+    }
+  }
 }
-
-

@@ -19,8 +19,13 @@ import google from '../../asserts/icons/google2.png'
 import linkedin from '../../asserts/icons/linkedin.svg'
 import { useHistory } from "react-router-dom";
 
+
+import { Document, Page } from 'react-pdf';
+
+
 const Profile = () => {
   const history = useHistory();
+
 
   const [profileData,setProfileData] =useState({
 
