@@ -3,6 +3,7 @@ import "./Dashboard.scss";
 import design from "../../asserts/icons/dashboardCard.png";
 import person from "../../asserts/icons/person.png";
 import tick from "../../asserts/icons/dashTick.png";
+import  downArrow  from "../../asserts/icons/downArrow.png";
 
 const Dashboard = () => {
   return (
@@ -20,35 +21,43 @@ const Dashboard = () => {
           <div className="dashCard">
             <div className="content">
               <h3>New Requirements Recieved</h3>
+              <h1>185</h1>
+            </div>
+            <img src={design}></img>
+          </div>
+          <div className="dashCard">
+            <div className="content">
+              <h3>Pending Candidate Applications</h3>
+              <h1>05</h1>
+            </div>
+            <img src={design}></img>
+          </div>
+          <div className="dashCard">
+            <div className="content">
+              <h3>Candidates Joined this Month</h3>
               <h1>75</h1>
             </div>
             <img src={design}></img>
           </div>
           <div className="dashCard">
             <div className="content">
-              <h3>New Requirements Recieved</h3>
-              <h1>08</h1>
+              <h3>Candidates Yet to Join This Month</h3>
+              <h1>75</h1>
             </div>
             <img src={design}></img>
           </div>
           <div className="dashCard">
             <div className="content">
-              <h3>New Requirements Recieved</h3>
+              <h3>Candidates Dropped</h3>
+              <h1>75</h1>
+            </div>
+            <img src={design}></img>
+          </div>
+
+          <div className="dashCard">
+            <div className="content">
+              <h3>No. of Proiles tagged</h3>
               <h1>125</h1>
-            </div>
-            <img src={design}></img>
-          </div>
-          <div className="dashCard">
-            <div className="content">
-              <h3>New Requirements Recieved</h3>
-              <h1>75</h1>
-            </div>
-            <img src={design}></img>
-          </div>
-          <div className="dashCard">
-            <div className="content">
-              <h3>New Requirements Recieved</h3>
-              <h1>10</h1>
             </div>
             <img src={design}></img>
           </div>
@@ -72,9 +81,20 @@ const Dashboard = () => {
               <div className="tickLogo">
                 <img src={tick}></img>
               </div>
-              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 12h ago</div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
             </div>
-         
+
+
+            <div className="notificationContent">
+              <div className="tickLogo">
+                <img src={tick}></img>
+              </div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
+            </div>
          
 
 
@@ -83,43 +103,66 @@ const Dashboard = () => {
               <div className="tickLogo">
                 <img src={tick}></img>
               </div>
-              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 12h ago</div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
+            </div>
+         
+
+            <div className="notificationContent">
+              <div className="tickLogo">
+                <img src={tick}></img>
+              </div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
+            </div>
+         
+
+            <div className="notificationContent">
+              <div className="tickLogo">
+                <img src={tick}></img>
+              </div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
             </div>
          
 
 
 
-
             <div className="notificationContent">
               <div className="tickLogo">
                 <img src={tick}></img>
               </div>
-              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 12h ago</div>
-            </div>
-
-
-
-
-
-            <div className="notificationContent">
-              <div className="tickLogo">
-                <img src={tick}></img>
-              </div>
-              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 12h ago</div>
-            </div>
-
-
-
-
-            <div className="notificationContent">
-              <div className="tickLogo">
-                <img src={tick}></img>
-              </div>
-              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 12h ago</div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
             </div>
          
+
+
+            <div className="notificationContent">
+              <div className="tickLogo">
+                <img src={tick}></img>
+              </div>
+              <div className="txt"> Job Posting for Database Programmer is approved <br></br> 
+              <p>
+                12h ago</p></div>
+            </div>
+         
+         
+         
+
+
+
           </div>
+    <div className="viewMore">
+      <div className="circle">
 
+      <img src={downArrow}></img>
+      </div>
+    </div>
 
         </div>
         <div className="dashboard-middle-right">
@@ -507,6 +550,85 @@ const Dashboard = () => {
 
 
 
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
+
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
+
+        <div className="candidateCard">
+          <div className="cardPhoto">
+            <img src={person}></img>
+          </div>
+          <div className="cardContent">
+            <h3>Brionna Heathcoat</h3>
+            <p>UI/UX Designer</p>
+            <h3 style={{color:"#2186F2"}}>90% Match</h3>
+
+          </div>
+        </div>
+     
 
         <div className="candidateCard">
           <div className="cardPhoto">

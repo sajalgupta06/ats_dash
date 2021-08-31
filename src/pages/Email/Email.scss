@@ -5,15 +5,77 @@
     grid-gap: 3rem;
     height: calc(100vh - 25rem);
     margin-bottom: 2rem;
+    zoom: 95%;
   }
 
   &-left {
-    overflow-y: scroll;
-    margin-bottom: 3rem;
+    padding: 1rem;
     .side-heading {
       margin-bottom: 2rem;
     }
 
+    .email-batch-action {
+      &-rel {
+        position: relative;
+      }
+  
+      &-square {
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        background-color: #fff;
+        top: -0.9rem;
+        left: 50%;
+        transform: translatex(-50%) rotate(45deg);
+      }
+    
+      position: absolute;
+      top: 4.8rem;
+      left: -6.7rem;
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: height 0.3s, visibility 0.4s, opacity 0.4s;
+      width: 16rem;
+
+      box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 2rem;
+      list-style: none;
+    
+      li {
+        margin: 1rem 0;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+    
+        &:hover {
+          background-color: rgb(233, 233, 233);
+          border-radius: 2rem;
+        }
+    
+        img {
+          margin-right: 1rem;
+        }
+      }
+    }
+    
+    .email-batch-visible {
+      visibility: visible;
+      height: 6.7rem;
+      width: 16rem;
+      opacity: 1;
+    }
+    
+    &-info-box{
+      overflow-y: scroll;
+      height: 89rem;
+    }
+    &-info-box::-webkit-scrollbar{
+      display: none;
+    }
     &-btns {
       display: flex;
       text-align: center;
@@ -21,13 +83,16 @@
     }
   }
 
+
+
   &-right {
     display: grid;
-    grid-template-rows: 6rem 10rem 1fr 20rem;
-    height: calc(100vh - 7rem);
+    grid-template-rows: 6rem 10rem 0.8fr 2rem;
+    // height: calc(100vh - 7rem);
     background: #fff;
     padding: 1rem;
     border-radius: 2rem;
+    margin-top: 6rem;
 
     &-topbar {
       font-weight: 800;
@@ -76,6 +141,10 @@
           color: #878787;
         }
       }
+    }
+
+    &-middle::-webkit-scrollbar{
+      display: none;
     }
 
     &-bottom {

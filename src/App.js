@@ -19,8 +19,14 @@ import Joined from "./pages/Submission/Joined";
 import Submissions from "./pages/Submission/Submission";
 import Me from "./pages/Me/Me";
 import "./pages/Hero/Hero.scss";
+import { useState } from "react";
+import Reports from "./pages/Reports/Reports";
+
+
 
 function App() {
+
+  const [heading , setHeading] = useState("Dashboard")
   return (
     <div className="App">
       <Switch>
@@ -28,11 +34,11 @@ function App() {
                 <Route exact path="/forgot-password" component={ForgotPassword} />
                 <Route exact path="/reset-password" component={ResetPassword} />
         <div style={{ height: "100%", backgroundColor: "#2186F2" }}>
-          <Sidebar />
+          <Sidebar setHeading={setHeading} />
           <section className="hero-container">
             <div></div>
             <div className="hero-right">
-              <Navbar />
+              <Navbar heading={heading} />
               <div className="view-holder">
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/job-listing" component={JobListing} />
@@ -49,6 +55,7 @@ function App() {
                 <Route exact path="/email" component={Email} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/me" component={Me} />
+                <Route exact path="/reports" component={Reports} />
 
               </div>
             </div>

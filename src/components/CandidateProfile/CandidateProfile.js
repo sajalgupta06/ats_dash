@@ -19,8 +19,6 @@ import linkedin from "../../asserts/icons/linkedin.svg";
 import attach from "../../asserts/icons/attach.png";
 import download from "../../asserts/icons/download.png";
 
-
-
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 
 const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
@@ -270,7 +268,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
               ></img>
             </div>
           </div>
-         
+
           {popupOpen && <ChatScreen setPopupOpen={setPopupOpen}></ChatScreen>}
 
           {meetingPopupOpen && (
@@ -285,6 +283,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
             <div>
               <label htmlFor="candidateID">Candidate ID </label>
 
+            
               <input
                 onChange={handleEventChange}
                 value={candidateProfile.jobID}
@@ -295,6 +294,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
             </div>
             <div>
               <label htmlFor="candidateName">Candidate Name</label>
+             
               <input
                 onChange={handleEventChange}
                 value={candidateProfile.candidateName}
@@ -543,37 +543,39 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
           </button>
 
           <div className="mt fw6">DOCUMANTS ATTACHED</div>
-     
-          {
-            isLocked===true? <img src={lock}></img>
-            :
-        
-          <div className="docs_attached">
-            {candidateProfile.documents &&(
 
-             
-              <div className="box">
-              
+          {isLocked === true ? (
+            <img src={lock}></img>
+          ) : (
+            <div className="docs_attached">
+              {candidateProfile.documents && (
+                <div className="box">
+                  <img src={attach}></img>
 
-
-            <img src={attach} ></img>
-              
-            <p>
-              Resume
-              <br></br>
-              <p style={{fontSize:"1.2rem "}}>
-                5MB
-              </p>
-              </p>
-              <a href={candidateProfile.documents} download>
-            <img src={download}></img>
-            </a>
+                  <p>
+                    Resume
+                    <br></br>
+                    <p style={{ fontSize: "1.2rem " }}>5MB</p>
+                  </p>
+                  <a href={candidateProfile.documents} download>
+                    <img src={download}></img>
+                  </a>
+                </div>
+              )}
+              <button
+                className="btn btn-w btn-active"
+                style={{ borderRadius: "1.5rem" }}
+              >
+                Request For Documents
+              </button>
+              <button
+                className="btn btn-w btn-active"
+                style={{ borderRadius: "1.5rem" }}
+              >
+                Attach Documents
+              </button>
             </div>
-            )}
-            <button className="btn btn-w btn-active" style={{borderRadius:"1.5rem"}}>Request For Documents</button>
-            <button className="btn btn-w btn-active" style={{borderRadius:"1.5rem"}}>Attach Documents</button>
-          </div>
- }
+          )}
           <div className="mt fw6">WORK EXPERIENCE</div>
           <div style={{ display: "grid", gridTemplateColumns: "20rem 1fr" }}>
             <div>

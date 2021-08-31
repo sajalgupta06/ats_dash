@@ -64,11 +64,11 @@ const Auth = (props) => {
 
         <section className="auth-form">
           <div className="input-container">
-            <label>Email</label>
+            <label>User ID</label>
             <input
               type="text"
               value={email}
-              placeholder="Your Email"
+              placeholder="User ID"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}

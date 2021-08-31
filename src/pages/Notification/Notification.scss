@@ -1,12 +1,16 @@
 .notification{
     &-container{
         background-color: #fff;
-        height: 75vh;
+        height: 91vh;
         width: 100%;
         margin-top: 5rem;
         border-radius: 2rem;
         overflow: scroll;
+        zoom: 84%;
 
+    }
+    &-container::-webkit-scrollbar{
+        display: none;
     }
     &-time{
         margin: 3rem;

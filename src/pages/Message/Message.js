@@ -16,7 +16,7 @@ import redo from '../../asserts/icons/redo.png'
 import text from '../../asserts/icons/text.png'
 
 
-import ChatPopup from "../../components/ChatPopup.js/ChatPopup";
+import ChatPopup from "../../components/ChatPopup/ChatPopup";
 
 const Message = () => {
   const handleBatch = () => {

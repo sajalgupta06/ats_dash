@@ -1,12 +1,13 @@
 .dashboard {
   &-container {
     display: grid;
-    grid-template-rows: 19rem 1.3fr 30rem;
-    height: calc(100vh - 7rem);
+    grid-template-rows: 17rem 1.3fr 30rem;
+    height  : calc(100vh - 7rem);
     padding: 1rem;
     gap: 2rem;
     border-radius: 2rem;
     padding: 1rem;
+    zoom: 70%;
 
   }
 
@@ -17,7 +18,7 @@
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      width: 188rem;
+      width: 264rem;
       height: 16rem;
       .dashCard::-webkit-scrollbar { display:none !important }
 
@@ -32,15 +33,18 @@
       color: white;
       box-shadow: 0px 5px 8px grey;
       .content {
-        margin-top: 3rem;
+        margin-top: 4rem;
+        h3{
+          font-size: 2.1rem;
+        }
         h1 {
-          font-size: 6rem;
+          font-size: 4.5rem;
         }
       }
       img {
         position: relative;
-        top: -8rem;
-        left: -7rem;
+        top: -7rem;
+        left: -10rem;
       }
     }
     .dashCard:nth-child(1) {
@@ -61,6 +65,9 @@
     .dashCard:nth-child(6) {
       background-color: #fe8126;
     }
+    .dashCard:nth-child(7) {
+      background-color: #2186f2;
+    }
   
   }
 
@@ -70,7 +77,7 @@
 
   &-middle{
     display: grid;
-    grid-template-columns: 50rem 1fr ;
+    grid-template-columns: 339px 1fr ;
     // height: calc(100vh - 7rem);
     padding: 1rem;
     border-radius: 2rem;
@@ -79,10 +86,10 @@
     gap: 3rem;
     &-left{
       border-radius: 2rem;
-      box-shadow: 0px 4px 15px grey;
+      // box-shadow: 0px 4px 15px grey;
       background: #fff;
       width: 100%;
-      height: 100%;
+      height: 928px;
       .profile{
         display: flex;
         justify-content: center;
@@ -91,12 +98,14 @@
         margin-top: 6rem;
         img{
           border-radius: 1000px;
-          height: 15rem;
+          height: 11rem;
+          font-weight: 500;
         }
       }
       h1{
         text-align: center;
         margin-top: 1.3rem;
+        font-weight: 500;
       }
       p{
         text-align: center;
@@ -111,12 +120,13 @@
         padding-left: 3rem;
         padding-right:2rem;
         overflow: auto;
-        height: 63rem;
+        height: 72rem;
         p{
           text-align: left;
           color: #3D3D3D;
           font-size: 2.3rem;
           margin-bottom: 3rem;
+          font-weight: 600;
 
         }
 
@@ -125,23 +135,48 @@
           justify-content: space-evenly;
           margin-top: 2rem;
           font-size: 1.7rem;
-          margin-bottom: 5rem;
+          margin-bottom: 2rem;
         
 
           .tickLogo{
             img{
               padding: 15px;
-              border: 1px solid #463a3ab2;
-              border-radius: 10px;
+              border: 1px solid #F3EAFF;
+              border-radius: 16px;
               
             }
           }
           .txt{
             margin-left: 2rem;
             color:#616161;
-            font-size: 2rem;
+            font-size: 1.9rem;
+            p{
+              margin-top: 1.5rem;
+              color: #AEAEAE;
+              font-weight: 400;
+            }
             
           }
+        }
+      }
+
+      .viewMore{
+        display: flex;
+        justify-content: center;
+        .circle{
+          height: 5rem;
+          width: 5rem;
+          border-radius: 500rem;
+          box-shadow: 0px 4px 15px grey;
+          padding: 2rem;
+          margin-top: 2rem;
+          background-color: #fff;
+          img{
+            position: relative;
+            top: -0.5rem;
+            height: 2rem;
+          }
+
         }
       }
       .dashNotification::-webkit-scrollbar {
@@ -154,9 +189,9 @@
       display: grid;
       grid-template-rows: 1fr  50rem ;
       // height: calc(100vh - 7rem);
-      padding: 1rem;
+      // padding: 1rem;
       border-radius: 2rem;
-      padding: 1rem;
+     
       gap: 3rem;
 
       &-top{
@@ -232,7 +267,7 @@
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      width: 188rem;
+      width: 400rem;
       height: 16rem;
       .candidateCard{
         height: 100%;

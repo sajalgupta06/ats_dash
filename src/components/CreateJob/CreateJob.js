@@ -173,7 +173,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='createjob-adddoc-batch'>
               {/* first row */}
               <div>
-                <label htmlFor='jobid'>Job ID </label>
+                <label htmlFor='jobid'>Job ID </label> 
 
                 <InformationIcon className='info-icon' />
                 <input
@@ -185,7 +185,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='jobtitle'>Job Title</label>
+                <label htmlFor='jobtitle'>Job Title</label> <InformationIcon className='info-icon' />
 
                 <input
                   name='title'
@@ -196,7 +196,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='company'>Company</label>
+                <label htmlFor='company'>Company</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.company}
@@ -209,7 +209,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
 
               {/* second row */}
               <div>
-                <label htmlFor='status'>Status</label>
+                <label htmlFor='status'>Status</label> <InformationIcon className='info-icon' />
 
                 <select
                   onChange={handleEventChange}
@@ -222,7 +222,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </select>
               </div>
               <div>
-                <label htmlFor='recruiter'>Recruiter</label>
+                <label htmlFor='recruiter'>Recruiter</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.recruiter}
@@ -232,7 +232,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='nof'>Number of Positions</label>
+                <label htmlFor='nof'>Number of Positions</label> <InformationIcon className='info-icon' />
                 <input
                   name='nofPos'
                   value={jobPostDetails.nofPos}
@@ -245,7 +245,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
 
               {/* third row */}
               <div>
-                <label htmlFor='qual'>Minimum Qualification</label>
+                <label htmlFor='qual'>Minimum Qualification</label> <InformationIcon className='info-icon' />
                 <select
                   onChange={handleEventChange}
                   value={jobPostDetails.qualification}
@@ -266,7 +266,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 <Toggle setPreferences={setPreferences} name='qualification' />
               </div>
               <div>
-                <label htmlFor='degree'>Degree</label>
+                <label htmlFor='degree'>Degree</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.degree}
@@ -277,7 +277,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 <Toggle setPreferences={setPreferences} name='degree' />
               </div>
               <div>
-                <label htmlFor='client-name'>Client Name</label>
+                <label htmlFor='client-name'>Client Name</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.clientName}
@@ -293,7 +293,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             </div>
             <div className='createjob-adddoc-batch2'>
               <div>
-                <label htmlFor='skills'>Skills</label>
+                <label htmlFor='skills'>Skills</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.skills}
@@ -303,7 +303,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='mandatorys'>Mandatory Skills</label>
+                <label htmlFor='mandatorys'>Mandatory Skills</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.manSkills}
@@ -319,7 +319,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='createjob-adddoc-batch3'>
               <div className='salary-details'>
                 <div>
-                  <label htmlFor='workExperience1'>Work Experience</label>
+                  <label htmlFor='workExperience1'>Work Experience</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
                     value={jobPostDetails.workExperience1}
@@ -330,7 +330,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </div>
                 <div className='to'>To</div>
                 <div>
-                  <label htmlFor='salaryd2'> &nbsp;</label>
+                  <label htmlFor='salaryd2'> &nbsp;</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
                     value={jobPostDetails.workExperience2}
@@ -341,7 +341,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor='hiringType'>Hiring Type</label>
+                <label htmlFor='hiringType'>Hiring Type</label> <InformationIcon className='info-icon' />
                 {/* <input onChange={handleEventChange} id='location' type='text' /> */}
                 <select
                   onChange={handleEventChange}
@@ -355,7 +355,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </select>
               </div>
               <div>
-                <label htmlFor='targetDate'>Target Date</label>
+                <label htmlFor='targetDate'>Target Date</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.targetDate}
@@ -369,7 +369,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='createjob-adddoc-batch3'>
               <div className='salary-details'>
                 <div>
-                  <label htmlFor='salaryd'>Salary Details</label>
+                  <label htmlFor='salaryd'>Salary Details</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
                     value={jobPostDetails.salary1}
@@ -380,7 +380,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </div>
                 <div className='to'>To</div>
                 <div>
-                  <label htmlFor='salary2'> &nbsp;</label>
+                  <label htmlFor='salary2'> &nbsp;</label> <InformationIcon className='info-icon' />
                   <input
                     name='salary2'
                     onChange={handleEventChange}
@@ -391,7 +391,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor='preferredLocation'>Preferred Location</label>
+                <label htmlFor='preferredLocation'>Preferred Location</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.preferredLocation}
@@ -405,7 +405,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='olocation'>Office Location</label>
+                <label htmlFor='olocation'>Office Location</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.officeLocation}
@@ -421,7 +421,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='createjob-adddoc-batch'>
               {/* first row */}
               <div>
-                <label htmlFor='ind-pre'>Industry Preference</label>
+                <label htmlFor='ind-pre'>Industry Preference</label> <InformationIcon className='info-icon' />
                 {/* <input onChange={handleEventChange} id='ind-pre' type='text' /> */}
                 <select
                   onChange={handleEventChange}
@@ -443,7 +443,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='fun-area'>Functional Area </label>
+                <label htmlFor='fun-area'>Functional Area </label> <InformationIcon className='info-icon' />
                 {/* <input onChange={handleEventChange} id='fun-area' type='text' /> */}
                 <select
                   onChange={handleEventChange}
@@ -458,7 +458,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 <Toggle setPreferences={setPreferences} name='functionalArea' />
               </div>
               <div>
-                <label htmlFor='pre-comp'>Preferred Comapny</label>
+                <label htmlFor='pre-comp'>Preferred Comapny</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.preferredComapny}
@@ -471,7 +471,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
 
               {/* second row */}
               <div>
-                <label htmlFor='nind-pre'>Not Preferred Comapny</label>
+                <label htmlFor='nind-pre'>Not Preferred Comapny</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.nonPreferredCompany}
@@ -481,7 +481,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='pre-in'>Preferred Institute</label>
+                <label htmlFor='pre-in'>Preferred Institute</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.preferredInstitute}
@@ -491,7 +491,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 />
               </div>
               <div>
-                <label htmlFor='npre-in'>Not Preferred Institute</label>
+                <label htmlFor='npre-in'>Not Preferred Institute</label> <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
                   value={jobPostDetails.nonPreferredInstitute}
@@ -514,7 +514,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   id='wthtce'
                   type='radio'
                 />
-                <label htmlFor='wthtce'>Work From Home Till Covid Ends</label>
+                <label htmlFor='wthtce'>Work From Home Till Covid Ends</label> <InformationIcon className='info-icon' />
               </div>
               <div>
                 <input
@@ -524,7 +524,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   id='wthac'
                   type='radio'
                 />
-                <label htmlFor='wthac'>Work From Home after Covid</label>
+                <label htmlFor='wthac'>Work From Home after Covid</label> <InformationIcon className='info-icon' />
               </div>
             </div>
             {/* end of work criteria */}
@@ -533,7 +533,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='desc'>
               <label className='fw6' htmlFor='job-desc'>
                 JOB DESCRIPTION
-              </label>
+              </label> <InformationIcon className='info-icon' />
               <textarea
                 onChange={handleEventChange}
                 value={jobPostDetails.jobDesc}
@@ -548,7 +548,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='desc'>
               <label className='fw6' htmlFor='comp-desc'>
                 COMPANY DESCRIPTION
-              </label>
+              </label> <InformationIcon className='info-icon' />
               <textarea
                 onChange={handleEventChange}
                 value={jobPostDetails.companyDesc}

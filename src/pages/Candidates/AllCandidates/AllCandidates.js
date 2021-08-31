@@ -5,7 +5,7 @@ import {
   
     FilterIcon,
   } from "../../../asserts/icons";
-
+import ReactPaginate from 'react-paginate'
   import axios from "axios";
 
   import NewCandidate from "../../../components/NewCandidate/NewCandidate";
@@ -37,7 +37,11 @@ export default function AllCandidates({setIsCandidateDetail,setCandidateDetail,s
   const [activePage, setActivePage] = useState("1");
 
 
-  const setPageNum = (e) => {};
+
+  function handlePageClick({ selected: selectedPage }) {
+    console.log(selectedPage)
+    setPage(selectedPage+1);
+}
 
 
   const handleBatch = () => {
@@ -65,6 +69,7 @@ useEffect(() => {
 
 useEffect(() => {
 
+  console.log("use")
   const getCandidateListing=async()=>{
 
   
@@ -72,8 +77,8 @@ useEffect(() => {
 
   try {
     const response = await axios({
-      url: `http://localhost:8000/api/dash/app/users?page=${page}&limit=${6}`,
-      // url: `https://job-market-node.codedeployment.tk/api/dash/app/users?page=${page}&limit=${6}`,
+      // url: `http://localhost:8000/api/dash/app/users?page=${page}&limit=${6}`,
+      url: `https://job-market-node.codedeployment.tk/api/dash/app/users?page=${page}&limit=${6}`,
       method: "GET",
       headers:{"Authorization":`Bearer ${token}`},
      
@@ -278,6 +283,28 @@ setBatchDelete([]);
           />
         })}
 
+{candidateList.length>0 &&(
+
+  
+  <ReactPaginate
+  previousLabel={"← Previous"}
+  nextLabel={"Next →"}
+  pageCount={nop}
+  onPageChange={handlePageClick}
+  containerClassName={"pagination"}
+  // nextLinkClassName={"pagination-next"}
+  // previousLinkClassName={"pagination-prev"}
+  disabledClassName={"page-numbs"}
+  activeClassName={"page-numbs active"}
+  />
+  
+  
+  
+  )
+}
+
+      
+{/* 
 <div className='pagination'>
             {page < nop && (
               <div onClick={() => setPage(page + 1)} className='pagination-next'>
@@ -362,8 +389,10 @@ setBatchDelete([]);
                 <div>Previous</div>
               </div>
             )}
-          </div>
-          
+          </div> */}
+
+
+      
        
      
             </>

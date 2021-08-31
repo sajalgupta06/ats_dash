@@ -5,11 +5,16 @@ import PlaceHolder from "./../../asserts/images/placeholder.jpg";
 import { SearchIcon } from "../../asserts/icons";
 import icon from "../../asserts/icons/questionMark.png";
 import close from "../../asserts/icons/close.png";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import AssistantChat from "../AssistantChat/AssistantChat";
 import assistant from "./../../asserts/icons/assistant.png";
 
-const Navbar = () => {
+const Navbar = ({heading}) => {
+
+  const location = useLocation()
+  // const [active,setActive] = useState (location.pathname.substring(1))
+  console.log(heading)
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleBatch = () => {
@@ -19,9 +24,15 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <div className="navbar-inside">
-        <div className="navbar-info"></div>
+        <div className="navbar-info">
+    {heading}
+
+
+
+
+        </div>
         <div className="navbar-search-box">
-          <input type="text" placeholder="Search something here" />
+          <input type="text" placeholder="Search Candidate" />
           <SearchIcon />
         </div>
 

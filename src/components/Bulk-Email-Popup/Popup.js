@@ -29,7 +29,7 @@ const Popup = ({
             alt="close icon"
           />
         </div>
-        (
+        
       
         
           <>

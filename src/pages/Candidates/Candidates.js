@@ -346,8 +346,9 @@ const Candidates = () => {
           {activeTab === "ActiveCandidates" && (
             <>
               <ActiveCandidates
-                setIsCandidateDetail={setIsCandidateDetail}
-                setAdvencedSearch={setAdvencedSearch}
+               setIsCandidateDetail={setIsCandidateDetail}
+               setAdvencedSearch={setAdvencedSearch}
+               setCandidateDetail={setCandidateDetail}
                
               ></ActiveCandidates>
             </>
@@ -356,8 +357,9 @@ const Candidates = () => {
           {activeTab === "InactiveCandidates" && (
             <>
               <InactiveCandidates
-                setCandidateDetail={setCandidateDetail}
-                setAdvencedSearch={setAdvencedSearch}
+            setIsCandidateDetail={setIsCandidateDetail}
+            setAdvencedSearch={setAdvencedSearch}
+            setCandidateDetail={setCandidateDetail}
               ></InactiveCandidates>
             </>
           )}

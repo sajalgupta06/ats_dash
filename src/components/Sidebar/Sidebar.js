@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 import "./Sidebar.scss";
 
-const Sidebar = ({ setView }) => {
+const Sidebar = ({ setHeading }) => {
 
   const location = useLocation();
 const [active,setActive] = useState (location.pathname.substring(1)
 )
+
+const action=()=>{
+  setHeading("Job Listing")
+  setActive("job-listing")
+  console.log("job Listing from sidebar ")
+}
 
 const history = useHistory()
   return (
@@ -118,7 +125,8 @@ const history = useHistory()
 
               <Link to="/dashboard">
       <li className={active==="dashboard"?"activeTab":""} 
-      onClick={()=>setActive("dashboard")} >
+      onClick={()=>{setActive("dashboard");
+      setHeading("Dasboard")}} >
       <svg
             // width='22'
             // height='22'
@@ -139,7 +147,10 @@ const history = useHistory()
               <Link to="/job-listing">
       <li 
       className={active==="job-listing"?"activeTab":""} 
-      onClick={()=>setActive("job-listing")}>
+      onClick={ ()=>{setActive("job-listing");
+      setHeading("Job Listing")}}
+    >
+     
       <svg
             // width='24'
             // height='30'
@@ -159,7 +170,9 @@ const history = useHistory()
 
               <Link to="/me">
       <li  className={active==="me"?"activeTab":""} 
-      onClick={()=>setActive("me")}>
+      onClick={()=>{setActive("me");
+      setHeading("Me")
+      }}>
       <svg
             width='26'
             height='30'
@@ -180,7 +193,8 @@ const history = useHistory()
               <Link to="/requirements">
       <li  
       className={active==="requirements"?"activeTab":""} 
-      onClick={()=>setActive("requirements")}
+      onClick={()=>{setActive("requirements");
+      setHeading("Requirements")}}
       >
       <svg
             width='24'
@@ -202,7 +216,8 @@ const history = useHistory()
               <Link to="/candidates">
       <li
       className={active==="candidates"?"activeTab":""} 
-      onClick={()=>setActive("candidates")}
+      onClick={()=>{setActive("candidates");
+      setHeading("Candidates")}}
       >
       <svg
             width='26'
@@ -224,7 +239,8 @@ const history = useHistory()
               <Link to="/submissions">
       <li
             className={active==="submissions"?"activeTab":""} 
-            onClick={()=>setActive("submissions")}
+            onClick={()=>{setActive("submissions");
+            setHeading("Submissions")}}
       >
       <svg
             width='30'
@@ -245,7 +261,8 @@ const history = useHistory()
               <Link to="/notifications">
       <li
            className={active==="notifications"?"activeTab":""} 
-           onClick={()=>setActive("notifications")}
+           onClick={()=>{setActive("notifications");
+           setHeading("Notifications")}}
       >
       <svg
             width='28'
@@ -267,7 +284,8 @@ const history = useHistory()
               <Link to="/message">
       <li
        className={active==="message"?"activeTab":""} 
-       onClick={()=>setActive("message")}
+       onClick={()=>{setActive("message");
+       setHeading("Message")}}
       >
       
 
@@ -291,7 +309,8 @@ const history = useHistory()
               <Link to="/email">
       <li
              className={active==="email"?"activeTab":""} 
-             onClick={()=>setActive("email")}
+             onClick={()=>{setActive("email");
+             setHeading("Email")}}
       >
           <svg
             width='30'
@@ -305,6 +324,28 @@ const history = useHistory()
               />
           </svg>
           <span>Email</span>
+        </li>
+              </Link>
+
+
+              <Link to="/reports">
+      <li
+             className={active==="reports"?"activeTab":""} 
+             onClick={()=>{setActive("reports");
+             setHeading("Reports")}}
+      >
+          <svg
+            width='30'
+            height='24'
+            viewBox='0 0 30 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path
+              d='M27 0H3C1.35 0 0.015 1.35 0.015 3L0 21C0 22.65 1.35 24 3 24H27C28.65 24 30 22.65 30 21V3C30 1.35 28.65 0 27 0ZM27 6L15 13.5L3 6V3L15 10.5L27 3V6Z'
+              fill='white'
+              />
+          </svg>
+          <span>Reports</span>
         </li>
               </Link>
 

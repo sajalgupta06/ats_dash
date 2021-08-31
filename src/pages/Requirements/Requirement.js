@@ -97,7 +97,7 @@ const Requirement = () => {
       {/* requiremetnts job list */}
 
       {/* start of job listings */}
-      {reqView === "r1" && (
+      {/* {reqView === "r1" && (
         <div className='job-listings-jobs'>
           <JobPost requirement={true} setReqView={setReqView} />
           <JobPost requirement={true} />
@@ -111,7 +111,7 @@ const Requirement = () => {
           <JobPost requirement={true} />
           <JobPost requirement={true} />
         </div>
-      )}
+      )} */}
 
       {/* end of job listings */}
 

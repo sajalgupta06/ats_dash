@@ -9,6 +9,8 @@ import Share from "./../../asserts/images/share.png";
 import Cancel from "./../../asserts/images/cancel.png";
 import axios from "axios";
 
+import ReactPaginate from 'react-paginate'
+
 
 const JobListing = () => {
   const [jobListView, setJobListView] = useState(1);
@@ -23,7 +25,10 @@ const JobListing = () => {
 
   const [active,setActive] = useState("AllJobs")
 
-  const setPageNum = (e) => {};
+  function handlePageClick({ selected: selectedPage }) {
+    console.log(selectedPage)
+    setPage(selectedPage+1);
+}
 
   const deleteManyJobList = async () => {
     try {
@@ -308,86 +313,26 @@ const JobListing = () => {
           {/* end of job listings */}
   
           {/* start of pagination */}
-          <div className='pagination'>
-            {page < nop && (
-              <div onClick={() => setPage(page + 1)} className='pagination-next'>
-                <div>Next</div>
-                <svg
-                  width='24'
-                  height='25'
-                  viewBox='0 0 24 25'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M12 18.5L6 12.5L12 6.5'
-                    stroke='#2186F2'
-                    strokeWidth='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                  <path
-                    d='M19 18.5L13 12.5L19 6.5'
-                    stroke='#2186F2'
-                    strokeWidth='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                </svg>
-              </div>
-            )}
-            <div className='pagination-numbs'>
-              {nop === 1 && <div className='page-numbs'>1</div>}
-              {nop === 2 && (
-                <>
-                  <div onClick={setPageNum} className='page-numbs'>
-                    1
-                  </div>
-                  <div className='page-numbs'>2</div>
-                </>
-              )}
-              {nop === 3 && (
-                <>
-                  <div className='page-numbs'>1</div>
-                  <div className='page-numbs'>2</div>
-                  <div className='page-numbs'>3</div>
-                </>
-              )}
-              {nop >= 4 && (
-                <>
-                  <div className='page-numbs'>1</div>
-                  <div className='page-numbs'>2</div>
-                  <div className='page-numbs'>3</div>
-                  <div className='page-numbs'>4</div>
-                </>
-              )}
-            </div>
-            {page > 1 && (
-              <div onClick={() => setPage(page - 1)} className='pagination-prev'>
-                <svg
-                  width='24'
-                  height='25'
-                  viewBox='0 0 24 25'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M12 18.5L6 12.5L12 6.5'
-                    stroke='#2186F2'
-                    strokeWidth='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                  <path
-                    d='M19 18.5L13 12.5L19 6.5'
-                    stroke='#2186F2'
-                    strokeWidth='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                </svg>
-                <div>Previous</div>
-              </div>
-            )}
-          </div>
+        
+          {jobListings &&(
+
+  
+<ReactPaginate
+previousLabel={"← Previous"}
+nextLabel={"Next →"}
+pageCount={nop}
+onPageChange={handlePageClick}
+containerClassName={"pagination"}
+// nextLinkClassName={"pagination-next"}
+// previousLinkClassName={"pagination-prev"}
+disabledClassName={"page-numbs"}
+activeClassName={"page-numbs active"}
+/>
+
+
+
+)
+}
           {/* end  of pagination */}
         </div>
       
