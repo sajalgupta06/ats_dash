@@ -2,7 +2,7 @@ import React from "react";
 import JobCandidatePost from "../JobCandidatePost/JobCandidatePost";
 import "./JobCandidate.scss";
 
-const JobCandidate = ({ nmt, type }) => {
+const JobCandidate = ({ nmt, type ,job}) => {
   return (
     <div className='cad-container'>
       {/* cad heading */}
@@ -39,13 +39,12 @@ const JobCandidate = ({ nmt, type }) => {
 
       {/* start of  cad boxes */}
       <div className='job-cad-container'>
-        <JobCandidatePost />
-        <JobCandidatePost />
-        <JobCandidatePost />
-        <JobCandidatePost />
-        <JobCandidatePost />
-        <JobCandidatePost />
-        <JobCandidatePost />
+        {job.applicants.map(applicant=>{
+          if(applicant.length>0)
+          return <JobCandidatePost job={job} applicant={applicant} />
+        })}
+      
+     
       </div>
       {/* end of  cad boxes */}
     </div>

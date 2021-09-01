@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
+import { MyContext } from "../../App";
 import "./Sidebar.scss";
 
 const Sidebar = ({ setHeading }) => {
@@ -8,6 +8,7 @@ const Sidebar = ({ setHeading }) => {
   const location = useLocation();
 const [active,setActive] = useState (location.pathname.substring(1)
 )
+const heading = useContext(MyContext)
 
 const action=()=>{
   setHeading("Job Listing")
@@ -126,7 +127,10 @@ const history = useHistory()
               <Link to="/dashboard">
       <li className={active==="dashboard"?"activeTab":""} 
       onClick={()=>{setActive("dashboard");
-      setHeading("Dasboard")}} >
+      setHeading("Dasboard");
+      heading.changeHeading({type:"CHANGE_HEADING",payload:"Dashboard"})
+      
+      }} >
       <svg
             // width='22'
             // height='22'
@@ -148,7 +152,10 @@ const history = useHistory()
       <li 
       className={active==="job-listing"?"activeTab":""} 
       onClick={ ()=>{setActive("job-listing");
-      setHeading("Job Listing")}}
+      setHeading("Job Listing");
+      heading.changeHeading({type:"CHANGE_HEADING",payload:"Job Listing"})
+
+    }}
     >
      
       <svg
@@ -171,7 +178,9 @@ const history = useHistory()
               <Link to="/me">
       <li  className={active==="me"?"activeTab":""} 
       onClick={()=>{setActive("me");
-      setHeading("Me")
+      setHeading("Me");
+      heading.changeHeading({type:"CHANGE_HEADING",payload:"Me"})
+
       }}>
       <svg
             width='26'
@@ -194,7 +203,9 @@ const history = useHistory()
       <li  
       className={active==="requirements"?"activeTab":""} 
       onClick={()=>{setActive("requirements");
-      setHeading("Requirements")}}
+      setHeading("Requirements");
+      heading.changeHeading({type:"CHANGE_HEADING",payload:"Requirements"})
+    }}
       >
       <svg
             width='24'
@@ -217,7 +228,9 @@ const history = useHistory()
       <li
       className={active==="candidates"?"activeTab":""} 
       onClick={()=>{setActive("candidates");
-      setHeading("Candidates")}}
+      setHeading("Candidates");
+      heading.changeHeading({type:"CHANGE_HEADING",payload:"Candidates"})
+    }}
       >
       <svg
             width='26'
@@ -240,7 +253,9 @@ const history = useHistory()
       <li
             className={active==="submissions"?"activeTab":""} 
             onClick={()=>{setActive("submissions");
-            setHeading("Submissions")}}
+            setHeading("Submissions");
+            heading.changeHeading({type:"CHANGE_HEADING",payload:"Submissions"})
+          }}
       >
       <svg
             width='30'
@@ -262,7 +277,9 @@ const history = useHistory()
       <li
            className={active==="notifications"?"activeTab":""} 
            onClick={()=>{setActive("notifications");
-           setHeading("Notifications")}}
+           setHeading("Notifications");
+           heading.changeHeading({type:"CHANGE_HEADING",payload:"Notifications"})
+          }}
       >
       <svg
             width='28'
@@ -285,7 +302,9 @@ const history = useHistory()
       <li
        className={active==="message"?"activeTab":""} 
        onClick={()=>{setActive("message");
-       setHeading("Message")}}
+       setHeading("Message");
+       heading.changeHeading({type:"CHANGE_HEADING",payload:"Message"})
+      }}
       >
       
 
@@ -310,7 +329,9 @@ const history = useHistory()
       <li
              className={active==="email"?"activeTab":""} 
              onClick={()=>{setActive("email");
-             setHeading("Email")}}
+             setHeading("Email");
+             heading.changeHeading({type:"CHANGE_HEADING",payload:"Email"})
+            }}
       >
           <svg
             width='30'
@@ -332,7 +353,10 @@ const history = useHistory()
       <li
              className={active==="reports"?"activeTab":""} 
              onClick={()=>{setActive("reports");
-             setHeading("Reports")}}
+             setHeading("Reports");
+             heading.changeHeading({type:"CHANGE_HEADING",payload:"Reports"})
+
+            }}
       >
           <svg
             width='30'

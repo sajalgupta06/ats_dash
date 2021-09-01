@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CreateJob from "../../components/CreateJob/CreateJob";
 import JobPost from "../../components/JobPost/JobPost";
 import "./JobListing.scss";
@@ -10,15 +10,22 @@ import Cancel from "./../../asserts/images/cancel.png";
 import axios from "axios";
 
 import ReactPaginate from 'react-paginate'
+import { MyContext } from "../../App";
 
 
 const JobListing = () => {
+  const heading = useContext(MyContext)
+  const token = localStorage.getItem("token");
+
+  
+
   const [jobListView, setJobListView] = useState(1);
   const [jobListings, setJobListings] = useState([]);
   const [page, setPage] = useState(1);
   const [nop, setNop] = useState(0);
   const [batch, setBatch] = useState(false);
   const [batchDelete, setBatchDelete] = useState([]);
+  const [batchApprove, setBatchApprove] = useState([]);
   const [reload, setReload] = useState(false);
   const [job, setJob] = useState({});
 
@@ -36,6 +43,8 @@ const JobListing = () => {
         url: `https://job-market-node.codedeployment.tk/api/dash/jobs/deleteMany`,
         method: "DELETE",
         data: { ids: batchDelete },
+        headers:{"Authorization":`Bearer ${token}`},
+
       });
 
       if (response.data.status === "success") {
@@ -49,7 +58,31 @@ const JobListing = () => {
     }
   };
 
-  console.log(batchDelete);
+
+  const approveManyJobList = async () => {
+    try {
+      const response = await axios({
+        // url: `https://job-market-node.codedeployment.tk/api/dash/jobs/deleteMany`,
+        url: `http://localhost:8000/api/dash/job/acceptMany`,
+        method: "POST",
+        headers:{"Authorization":`Bearer ${token}`},
+
+        data:  batchDelete ,
+      });
+
+      if (response.data.status === "success") {
+        alert("select jobs approved successfully");
+        setReload(!reload);
+      }
+
+      console.log(response);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
+
+ 
 
   const handleBatch = () => {
     const dropdown = document.querySelector(".job-batch-action");
@@ -72,13 +105,16 @@ const JobListing = () => {
   useEffect(() => {
     
     const getJobListings = async () => {
+      const token = localStorage.getItem("token");
+
       try {
 
-       const url= active==="InactiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=In Active`: active==="ActiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=Active`:active==="AllJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:""
+      //  const url= active==="InactiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=In Active`: active==="ActiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=Active`:active==="AllJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:""
 
-      //  const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=In Active`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=Active`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
-   
-        
+      const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
+      
+      // const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=In Active`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=Active`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
+ 
         const response = await axios({
           // url: `http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`,
           
@@ -86,6 +122,7 @@ const JobListing = () => {
           url:url,
 
           method: "GET",
+          headers:{"Authorization":`Bearer ${token}`},
         });
         console.log(response)
 
@@ -101,7 +138,9 @@ const JobListing = () => {
         console.log(err.response);
       }
     };
+    
     setBatchDelete([]);
+
     if (page >= 1) {
       getJobListings();
     }
@@ -131,7 +170,7 @@ const JobListing = () => {
                 <>
                   <ul className='job-batch-action'>
                     <div className='job-batch-action-square'>&nbsp;</div>
-                    <li>
+                    <li onClick={approveManyJobList}>
                       <img src={Correct} alt='Correct icon' />
                       <span>Appove</span>
                     </li>
@@ -301,7 +340,9 @@ const JobListing = () => {
               <JobPost
                 setJob={setJob}
                 setBatchDelete={setBatchDelete}
+                setBatchApprove={setBatchApprove}
                 batchDelete={batchDelete}
+                batchApprove={batchApprove}
                 batch={batch}
                 job={job}
                 key={job._id}

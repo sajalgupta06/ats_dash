@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.scss";
 
 import PlaceHolder from "./../../asserts/images/placeholder.jpg";
@@ -8,13 +8,14 @@ import close from "../../asserts/icons/close.png";
 import { Link,useLocation } from "react-router-dom";
 import AssistantChat from "../AssistantChat/AssistantChat";
 import assistant from "./../../asserts/icons/assistant.png";
+import { MyContext } from "../../App";
 
-const Navbar = ({heading}) => {
+const Navbar = () => {
 
-  const location = useLocation()
-  // const [active,setActive] = useState (location.pathname.substring(1))
-  console.log(heading)
+ const title = useContext(MyContext)
+ const heading = title.heading.heading
 
+console.log(title.heading)
   const [isOpen, setIsOpen] = useState(false);
 
   const handleBatch = () => {
@@ -40,7 +41,8 @@ const Navbar = ({heading}) => {
             <div className="credits">Credits: 485/500</div>
             <img className="user-img" src={PlaceHolder} alt="" />
           <Link to="/profile">
-            <div style={{cursor:"pointer"}}>
+            <div style={{cursor:"pointer"}} onClick={()=>title.changeHeading({type:"CHANGE_HEADING",payload:"Profile"})
+}>
               <div className="user-name">Oda Dink</div>
               <div className="user-type">Recruiter</div>
             </div>

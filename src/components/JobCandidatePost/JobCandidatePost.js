@@ -2,35 +2,35 @@ import React from "react";
 import { BreifcaseIcon, SchoolIcon } from "../../asserts/icons";
 import "./JobCandidatePost.scss";
 
-const JobCandidatePost = () => {
+const JobCandidatePost = ({job,applicant}) => {
+  const data = applicant[0]
   return (
     <div className='job-candidate-box'>
       <div className='job-candidate-name'>Priya Anand</div>
       <div className='job-candidate-role'>
-        Automation Testing Analyst <span>Can Join in 3 Weeks</span>
+         {data.headline}<span>Can Join in 3 Weeks</span>
       </div>
       <div className='job-candidate-user-info'>
-        <span>#JC-00150</span>
+        <span>{job.jobID}</span>
         <li>Soylent Corp</li>
         <li>INR 3,60,000</li>
-        <li>Gurugram</li>
+        <li></li>
         <li>3.8 Years</li>
       </div>
       <div className='job-candidate-skills'>
-        <div>Java</div>
-        <div>Automated Testing</div>
-        <div>Regression Testing</div>
-        <div>Python</div>
-        <div>Maven</div>
+      {data.skills.map(skill=>{
+        return<div>{skill}</div>
+      })}
+     
       </div>
       <div className='job-candidate-ed'>
         <div className='job-candidate-ed-left'>
           <SchoolIcon />
-          <div>University Of Melbourne (BCs)</div>
+          <div>{data.education}</div>
         </div>
         <div className='job-candidate-ed-right'>
           <BreifcaseIcon />
-          <div>Worked as a Senior Analyst</div>
+          <div>Worked as a {data.currentDesignation}</div>
         </div>
       </div>
 

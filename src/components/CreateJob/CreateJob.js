@@ -30,17 +30,17 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
     status: "",
     recruiter: "",
     nofPos: "",
-    qualification: "",
+    minQualification: "",
     degree: "",
     clientName: "",
     skills: [],
     manSkills: [],
-    workExperience1: "",
-    workExperience2: "",
+    workExperienceFrom: "",
+    workExperienceTo: "",
     hiringType: "",
     targetDate: "",
-    salary1: "",
-    salary2: "",
+    salaryFrom: "",
+    salaryTo: "",
     preferredLocation: "",
     officeLocation: "",
     industryPreference: "",
@@ -60,8 +60,25 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
   // console.log(jobPostDetails);
 
   useEffect(() => {
+    console.log(job)
     if (job) {
-      setjobPostDetails(job);
+      // setjobPostDetails({
+      //   jobID:job.jobID,
+      //   title:job.title,
+      //   company:job.company,
+      //   nofPos:job.nofPos,
+      //   minQualification:job.minminQualification,
+      //   degree:job.degree,
+      //   clientName:job.clientName,
+      //   workExperienceFrom:job.workExperienceFrom,
+      //   workExperienceTo:job.workExperienceTo,
+      //   hiringType:job.hiringType,
+
+
+
+
+      // });
+      setjobPostDetails(job)
     }
   }, [job]);
 
@@ -69,14 +86,14 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
     try {
       let newobj = {
         ...jobPostDetails,
-        salary: jobPostDetails.salary1 + jobPostDetails.salary2,
+        salary: jobPostDetails.salaryFrom + jobPostDetails.salaryTo,
         workExperience:
-          jobPostDetails.workExperience1 + jobPostDetails.workExperience2,
+          jobPostDetails.workExperienceFrom + jobPostDetails.workExperienceTo,
       };
-      delete newobj.workExperience1;
-      delete newobj.workExperience2;
-      delete newobj.salary1;
-      delete newobj.salary2;
+      delete newobj.workExperienceFrom;
+      delete newobj.workExperienceTo;
+      delete newobj.salaryFrom;
+      delete newobj.salaryTo;
       newobj = { ...newobj, preferences };
       // console.log(newobj);
       // console.log(preferences);
@@ -209,14 +226,14 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
 
               {/* second row */}
               <div>
-                <label htmlFor='status'>Status</label> <InformationIcon className='info-icon' />
+                <label htmlFor='active'>Status</label> <InformationIcon className='info-icon' />
 
                 <select
                   onChange={handleEventChange}
                   className='select-d'
-                  name='status'
-                  id='status'>
-                  <option selected disabled hidden></option>
+                  name='active'
+                  id='active'>
+                  <option disabled hidden></option>
                   <option value='Active'>Active</option>
                   <option value='In Active'>In Active</option>
                 </select>
@@ -248,9 +265,9 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 <label htmlFor='qual'>Minimum Qualification</label> <InformationIcon className='info-icon' />
                 <select
                   onChange={handleEventChange}
-                  value={jobPostDetails.qualification}
+                  value={jobPostDetails.minQualification}
                   className='select-d'
-                  name='qualification'
+                  name='minQualification'
                   id='qual'>
                   <option selected disabled hidden></option>
                   <option value='Phd'>Phd</option>
@@ -263,7 +280,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                     Other than mentioned
                   </option>
                 </select>
-                <Toggle setPreferences={setPreferences} name='qualification' />
+                <Toggle setPreferences={setPreferences} name='minQualification' />
               </div>
               <div>
                 <label htmlFor='degree'>Degree</label> <InformationIcon className='info-icon' />
@@ -319,12 +336,12 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             <div className='createjob-adddoc-batch3'>
               <div className='salary-details'>
                 <div>
-                  <label htmlFor='workExperience1'>Work Experience</label> <InformationIcon className='info-icon' />
+                  <label htmlFor='workExperienceFrom'>Work Experience</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
-                    value={jobPostDetails.workExperience1}
-                    name='workExperience1'
-                    id='workExperience1'
+                    value={jobPostDetails.workExperienceFrom}
+                    name='workExperienceFrom'
+                    id='workExperienceFrom'
                     type='text'
                   />
                 </div>
@@ -333,8 +350,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   <label htmlFor='salaryd2'> &nbsp;</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
-                    value={jobPostDetails.workExperience2}
-                    name='workExperience2'
+                    value={jobPostDetails.workExperienceTo}
+                    name='workExperienceTo'
                     id='salaryd2'
                     type='text'
                   />
@@ -372,20 +389,20 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   <label htmlFor='salaryd'>Salary Details</label> <InformationIcon className='info-icon' />
                   <input
                     onChange={handleEventChange}
-                    value={jobPostDetails.salary1}
-                    name='salary1'
+                    value={jobPostDetails.salaryFrom}
+                    name='salaryFrom'
                     id='salaryd'
                     type='text'
                   />
                 </div>
                 <div className='to'>To</div>
                 <div>
-                  <label htmlFor='salary2'> &nbsp;</label> <InformationIcon className='info-icon' />
+                  <label htmlFor='salaryTo'> &nbsp;</label> <InformationIcon className='info-icon' />
                   <input
-                    name='salary2'
+                    name='salaryTo'
                     onChange={handleEventChange}
-                    value={jobPostDetails.salary2}
-                    id='salary2'
+                    value={jobPostDetails.salaryTo}
+                    id='salaryTo'
                     type='text'
                   />
                 </div>
@@ -660,7 +677,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
             )}
           </>
         ) : (
-          <JobCandidate type='Candidates' nmt={true} />
+
+          <JobCandidate job={job} type='Candidates' nmt={true} />
         )}
       </div>
       {/* end of start of add doc  */}

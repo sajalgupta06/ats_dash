@@ -1,3 +1,4 @@
+import { createContext, useReducer, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -19,16 +20,27 @@ import Joined from "./pages/Submission/Joined";
 import Submissions from "./pages/Submission/Submission";
 import Me from "./pages/Me/Me";
 import "./pages/Hero/Hero.scss";
-import { useState } from "react";
 import Reports from "./pages/Reports/Reports";
 
+import reducer from "./reducer/reducer";
 
 
-function App() {
+export const MyContext = createContext()
 
+const iState = {
+  heading:""
+}
+
+
+export function App() {
+  
+  const [data,dispatch] = useReducer(reducer,iState)
+  
   const [heading , setHeading] = useState("Dashboard")
   return (
+    <MyContext.Provider value={{heading:data,changeHeading:dispatch}}>
     <div className="App">
+
       <Switch>
         <Route exact path="/" component={Auth} />
                 <Route exact path="/forgot-password" component={ForgotPassword} />
@@ -40,7 +52,7 @@ function App() {
             <div className="hero-right">
               <Navbar heading={heading} />
               <div className="view-holder">
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard" render={()=><Dashboard/>} />
                 <Route exact path="/job-listing" component={JobListing} />
                 <Route exact path="/requirements" component={Requirement} />
                 <Route exact path="/candidates" component={Candidates} />
@@ -63,7 +75,10 @@ function App() {
         </div>
       </Switch>
     </div>
+    </MyContext.Provider>
   );
 }
 
-export default App;
+
+
+

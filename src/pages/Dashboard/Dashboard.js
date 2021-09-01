@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Dashboard.scss";
 import design from "../../asserts/icons/dashboardCard.png";
 import person from "../../asserts/icons/person.png";
 import tick from "../../asserts/icons/dashTick.png";
 import  downArrow  from "../../asserts/icons/downArrow.png";
+import { MyContext } from "../../App";
 
 const Dashboard = () => {
+
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-top">
