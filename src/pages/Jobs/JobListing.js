@@ -62,8 +62,8 @@ const JobListing = () => {
   const approveManyJobList = async () => {
     try {
       const response = await axios({
-        // url: `https://job-market-node.codedeployment.tk/api/dash/jobs/deleteMany`,
-        url: `http://localhost:8000/api/dash/job/acceptMany`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/job/acceptMany`,
+        // url: `http://localhost:8000/api/dash/job/acceptMany`,
         method: "POST",
         headers:{"Authorization":`Bearer ${token}`},
 
@@ -109,9 +109,9 @@ const JobListing = () => {
 
       try {
 
-      //  const url= active==="InactiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=In Active`: active==="ActiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}&status=Active`:active==="AllJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:""
+       const url= active==="InactiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`: active==="ActiveJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:active==="AllJobs"?`https://job-market-node.codedeployment.tk/api/dash/jobs?page=${page}&limit=${6}`:""
 
-      const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
+      // const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
       
       // const url= active==="InactiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=In Active`:active==="ActiveJobs"?`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}&status=Active`:`http://localhost:8000/api/dash/jobs?page=${page}&limit=${6}`
  
