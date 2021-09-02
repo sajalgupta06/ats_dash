@@ -270,6 +270,7 @@ setBatchDelete([]);
   
         {candidateList.map(candidate=>{
 
+
          return <NewCandidate 
        
          setIsCandidateDetail={setIsCandidateDetail}

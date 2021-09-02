@@ -14,7 +14,7 @@ import { MyContext } from "../../App";
 
 
 const JobListing = () => {
-  const heading = useContext(MyContext)
+
   const token = localStorage.getItem("token");
 
   
@@ -386,7 +386,7 @@ activeClassName={"page-numbs active"}
     return <CreateJob setJobListView={setJobListView} />;
   } else if (jobListView === 3) {
     return (
-      <CreateJob
+      <CreateJob  
         job={job}
         setJobListView={setJobListView}
         candidate={true}

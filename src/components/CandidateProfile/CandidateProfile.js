@@ -20,6 +20,7 @@ import attach from "../../asserts/icons/attach.png";
 import download from "../../asserts/icons/download.png";
 
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import axios from "axios";
 
 const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
   const [preferences, setPreferences] = useState({});
@@ -59,6 +60,28 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     education: [],
     skills: [],
   });
+
+  const [obj, setObj] = useState("");
+
+  const stageUser = async (id) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await axios({
+        // url: `http://localhost:8000/api/dash/app/user/${id}`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/app/user/${id}`,
+        method: "PUT",
+        data: obj,
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data.status === "success") {
+        console.log("Success Update");
+      }
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
 
   useEffect(() => {
     setCandidateProfile({
@@ -147,31 +170,73 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
                   <ul className="candi-batch-action">
                     <div className="candi-batch-action-square">&nbsp;</div>
 
-                    <li>
-                      <span>Client - Awaiting Screening</span>
+                    <li
+                      onClick={() => {
+                        setObj("underReview1");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Awaiting Screening</span>
                     </li>
-                    <li>
-                      <span>Client - Interview Scheduled</span>
+                    <li
+                      onClick={() => {
+                        setObj("underReview2");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Interview Scheduled</span>
                     </li>
-                    <li>
-                      <span>Client - Interview Feedback</span>
+                    <li
+                      onClick={() => {
+                        setObj("underReview3");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Interview Feedback</span>
                     </li>
-                    <li>
-                      <span>Client - Shortlisted</span>
+                    <li
+                      onClick={() => {
+                        setObj("underReview4");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Shortlisted</span>
                     </li>
-                    <li>
-                      <span>Client - Onboarding</span>
+                    <li
+                      onClick={() => {
+                        setObj("underReview5");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Onboarding</span>
                     </li>
-                    <li>
-                      <span>Client - Washed Away</span>
+                    <li
+                      onClick={() => {
+                        setObj("dropped");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Washed Away</span>
                     </li>
-                    <li>
-                      <span>Client - Disqualified</span>
+                    <li
+                      onClick={() => {
+                        setObj("rejected");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
+                      <span>Internal - Disqualified</span>
                     </li>
-                    <li>
-                      <span>Client - On Hold</span>
+                    <li
+                      
+                    >
+                      <span>Internal - On Hold</span>
                     </li>
-                    <li>
+                    <li
+                      onClick={() => {
+                        setObj("joined");
+                        stageUser(candidateDetail._id);
+                      }}
+                    >
                       <span>Joined</span>
                     </li>
                   </ul>
@@ -283,7 +348,6 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
             <div>
               <label htmlFor="candidateID">Candidate ID </label>
 
-            
               <input
                 onChange={handleEventChange}
                 value={candidateProfile.jobID}
@@ -294,7 +358,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
             </div>
             <div>
               <label htmlFor="candidateName">Candidate Name</label>
-             
+
               <input
                 onChange={handleEventChange}
                 value={candidateProfile.candidateName}

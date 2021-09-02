@@ -59,28 +59,28 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
   // console.log(preferences);
   // console.log(jobPostDetails);
 
-  useEffect(() => {
-    console.log(job)
-    if (job) {
-      // setjobPostDetails({
-      //   jobID:job.jobID,
-      //   title:job.title,
-      //   company:job.company,
-      //   nofPos:job.nofPos,
-      //   minQualification:job.minminQualification,
-      //   degree:job.degree,
-      //   clientName:job.clientName,
-      //   workExperienceFrom:job.workExperienceFrom,
-      //   workExperienceTo:job.workExperienceTo,
-      //   hiringType:job.hiringType,
+    useEffect(() => {
+      console.log(job)
+      if (job) {
+        // setjobPostDetails({
+        //   jobID:job.jobID,
+        //   title:job.title,
+        //   company:job.company,
+        //   nofPos:job.nofPos,
+        //   minQualification:job.minminQualification,
+        //   degree:job.degree,
+        //   clientName:job.clientName,
+        //   workExperienceFrom:job.workExperienceFrom,
+        //   workExperienceTo:job.workExperienceTo,
+        //   hiringType:job.hiringType,
 
 
 
 
-      // });
-      setjobPostDetails(job)
-    }
-  }, [job]);
+        // });
+        setjobPostDetails(job)
+      }
+    }, [job]);
 
   const addNewJob = async () => {
     try {

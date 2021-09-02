@@ -38,9 +38,11 @@ const Auth = (props) => {
       localStorage.getItem("user");
       // localStorage.getItem("user1");
       if (token) {
-        history.push("/overview");
+        history.push("/dashboard");
+      }else{
+
+        history.push("/");
       }
-      history.push("/overview");
     } catch (err) {
      setError(err.response.data.message)
     // setError(err. )

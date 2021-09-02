@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./CreateRequirement.scss";
 import { InformationIcon } from "../../asserts/icons/index";
 import Toggle from "../Toggle/Toggle";
-import axios from "axios";
 
-const CreateRequirement = ({setReqView}) => {
+const ShowRequirement = ({setRequirement,requirement}) => {
+  const [preferences, setPreferences] = useState({});
 
   const [jobRequirementDetails, setjobRequirementDetails] = useState({
     jobId: "",
@@ -43,36 +43,15 @@ const CreateRequirement = ({setReqView}) => {
   
   });
 
- const create=async()=>{
+ 
+  useEffect(() => {
+  console.log(requirement)
+    if (requirement) {
 
-    const token = localStorage.getItem("token");
-
-     try {
-        // const url= 'http://localhost:8000/api/dash/requirements';
-        const url= 'https://job-market-node.codedeployment.tk/api/dash/requirements';
-
-        const response = await axios({
-            
-  
-            url:url,
-            data:jobRequirementDetails,
-            method: "POST",
-            headers:{"Authorization":`Bearer ${token}`},
-          });
-          console.log(response)
-  
-          if (response.data.status === "success") {
-            
-            setjobRequirementDetails("")
-          }
-  
-          console.log(response.data);
-         
-     } catch (error) {
-         
-     }
- }
-
+      setjobRequirementDetails(requirement)
+      setRequirement(requirement)
+    }
+  }, [requirement]);
 
   // handleEventChange
   const handleEventChange = (evt) => {
@@ -83,10 +62,6 @@ const CreateRequirement = ({setReqView}) => {
   };
 
   return (
-      <>
-       <div onClick={() => setReqView("r1")} className='createjob-back' >
-        &larr;
-      </div>
     <div className='createjob-adddoc'>
       <div className='mt fw6'>General</div>
       <div className='createjob-adddoc-batch'>
@@ -448,25 +423,25 @@ const CreateRequirement = ({setReqView}) => {
 
       {/* work criteria */}
       <div className='fw6 mt'>Work Criteria</div>
-  
+      {requirement.workCriteria===true?
+      <>
 
        <div>
        <input
          onChange={handleEventChange}
-         value={false}
+         value={"Work From Home Till Covid Ends"}
          name='workCriteria'
          id='wthtce'
          type='radio'
+        checked
        />
        <label htmlFor='wthtce'>Work From Home Till Covid Ends</label>
      </div>
-     
-     
      <div className='radio-box'>
         <div>
           <input
             onChange={handleEventChange}
-            value={true}
+            value={"Work From Home after Covid"}
             name='workCriteria'
             id='wthac'
             type='radio'
@@ -475,9 +450,37 @@ const CreateRequirement = ({setReqView}) => {
         </div>
       </div>
      
-   
+     </>
     
+      :
+      <>
+
+<div>
+       <input
+         onChange={handleEventChange}
+         value={"Work From Home Till Covid Ends"}
+         name='workCriteria'
+         id='wthtce'
+         type='radio'
+       />
+       <label htmlFor='wthtce'>Work From Home Till Covid Ends</label>
+     </div>
+      <div className='radio-box'>
+      <div>
+        <input
+          onChange={handleEventChange}
+          value={"Work From Home after Covid"}
+          name='workCriteria'
+          id='wthac'
+          type='radio'
+          checked
+        />
+        <label htmlFor='wthac'>Work From Home after Covid</label>
+      </div>
+    </div>
    
+   </>}
+      
       {/* end of work criteria */}
 
       {/* start of description */}
@@ -508,23 +511,9 @@ const CreateRequirement = ({setReqView}) => {
           type='text'
         />
       </div>
-
-      <div className='createjob-bottom-right' style={{display:"flex",justifyContent:"flex-end"}}>
-                <div className='btn btn-cancel'>Cancel</div>
-                
-                  
-                  <div
-                    onClick={create}
-                    className='btn btn-questionare'>
-                        Create Requirement
-                  </div>
-                
-              </div>
-          
       {/* end of description */}
     </div>
- </>
   );
 };
 
-export default CreateRequirement;
+export default ShowRequirement;
