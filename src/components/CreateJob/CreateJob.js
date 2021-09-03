@@ -614,6 +614,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   </div>
                 )}
               </div>
+          
             </div>
             {viewQuestion && (
               <div className='job-questions'>

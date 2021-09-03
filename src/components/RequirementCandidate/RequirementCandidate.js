@@ -69,7 +69,7 @@ const RequirementCandidate = ({
       <div className='jobpost-user-info'>
         <span>{requirement.jobId} </span>
         <li> Positions </li>
-        <li> Rs {requirement.clientCtcFrom}-Rs {requirement.clientCtcTo} </li>
+        <li> Rs {requirement.clientCtcFrom}-{requirement.clientCtcTo} </li>
         <li>{requirement.workExperienceFrom}-{requirement.workExperienceTo } Years</li>
       </div>
       <div className='jobpost-desc'>

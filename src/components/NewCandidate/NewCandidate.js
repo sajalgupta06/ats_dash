@@ -11,7 +11,7 @@ import "./NewCandidate.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
 
-const NewCandidate = ({ 
+const   NewCandidate = ({ 
   setIsCandidateDetail,
   setCandidateDetail,
   batch,
@@ -57,10 +57,12 @@ const NewCandidate = ({
           <div className='newcad-top-cs'>Client Submitted</div>
         </div>
         <div className='newcad-top-right'>
+        {candidate.locked && 
           <div className='newcad-top-lock' >
             <LockIcon />
             <div>Unlock Profile</div>
           </div>
+          }
           <img src={Placeholder} alt='placeholder' />
         </div>
       </div>
@@ -116,6 +118,9 @@ const NewCandidate = ({
             <div>Senior Analyst</div>
               </div> */}
               {/* <DownArrIcon /> */}
+
+
+
             <div>
                 <select
                   // onChange={handleEventChange}
@@ -129,6 +134,10 @@ const NewCandidate = ({
                {candidate.jobs.map(job=>{
                  return <option value="Single">{job.title}</option>
                })}
+
+          {candidate.requirements.map(req=>{
+                 return <option value="Single">{req.title}</option>
+               })}
                
                 </select>
               </div>
@@ -139,8 +148,10 @@ const NewCandidate = ({
         </div>
         <div className='newcad-bottom-right'>
           <TagIcon />
-          
+          {candidate.locked &&(
+
             <LockIcon style={{height:"2.5rem",width:"3rem"}}></LockIcon>
+          )}
           
         
         </div>

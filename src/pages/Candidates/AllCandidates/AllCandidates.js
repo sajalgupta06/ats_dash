@@ -20,6 +20,7 @@ import publish from "./../../../asserts/icons/publish.png";
 import addToFolder from "./../../../asserts/icons/addToFolder.png";
 import addToPipeline from "./../../../asserts/icons/addToPipeline.png";
 import tagCandidate from "./../../../asserts/icons/tagCandidate.png";
+import TagPopup from '../../../components/TagPopup/TagPopup';
 
 
 
@@ -36,7 +37,7 @@ export default function AllCandidates({setIsCandidateDetail,setCandidateDetail,s
   const [reload, setReload] = useState(false);
   const [activePage, setActivePage] = useState("1");
 
-
+const [tagPopup,setTagPopup] = useState(false)
 
   function handlePageClick({ selected: selectedPage }) {
     console.log(selectedPage)
@@ -60,6 +61,13 @@ export default function AllCandidates({setIsCandidateDetail,setCandidateDetail,s
     batchArrow.classList.toggle("job-sort-batch-rotate");
   };
 
+
+  const tagCandidatefunc=()=>{
+    if(batchDelete.length>0){
+
+      setTagPopup(true)
+    }
+  }
 useEffect(() => {
 
   // setCandidateList(candidateList)
@@ -89,6 +97,7 @@ useEffect(() => {
       console.log(nof);
       setNop(nof);
       setCandidateList(response.data.users)
+      setBatchDelete([])
     }
 
   }
@@ -137,15 +146,8 @@ setBatchDelete([]);
                       </li>
                    
                      
-
-                      <li>
-                        <img src={addToPipeline} alt="Delete icon" />
-                        <span>Add to Pipeline</span>
-                      </li>
-
-                     
                     
-                      <li>
+                      <li onClick={tagCandidatefunc}>
                         <img src={tagCandidate} alt="Delete icon" />
                         <span>Tag Candidate</span>
                       </li>
@@ -158,6 +160,9 @@ setBatchDelete([]);
                     </ul>
                   </>
                 </span>
+                {tagPopup && (
+                  <TagPopup batchTag={batchDelete} candidateList={candidateList} setTagPopup={setTagPopup}/>
+                )}
               
                 <DownArrIcon className="candi-batch-arrow" />
               </button>

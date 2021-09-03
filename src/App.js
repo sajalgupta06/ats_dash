@@ -1,5 +1,5 @@
-import { createContext, useReducer, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { Route, Switch,useHistory } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
@@ -23,22 +23,65 @@ import "./pages/Hero/Hero.scss";
 import Reports from "./pages/Reports/Reports";
 
 import reducer from "./reducer/reducer";
+import axios from "axios";
 
 
 export const MyContext = createContext()
 
 const iState = {
-  heading:""
+  heading:"Dashboard",
+  credits:"",
+  
 }
 
 
+
+
 export function App() {
+
+ const history = useHistory()
+ const credits = useContext(MyContext)
+    const token = localStorage.getItem("token")
+    if(!token){
+      history.push('/')
+      
+      
+    }
+    try {
+      const response = axios({
+        // url: `http://localhost:8000/api/dash/user`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/user`,
+        method: "GET",
+  
+        headers: { Authorization: `Bearer ${token}` },
+      }).then(data=>{
+        if(data){
+
+          console.log(data.data.data);
+          if (data.data.status === "success") {
+            console.log("Successfullt LoggedIn");
+            localStorage.setItem("credits",data.data.data.credits)
+        }
+      }
+      });
+  
+      
+    
+   
+    } catch (error) {
+      console.log(error)
+    }
+
+   
+    
+  
   
   const [data,dispatch] = useReducer(reducer,iState)
   
   const [heading , setHeading] = useState("Dashboard")
+    
   return (
-    <MyContext.Provider value={{heading:data,changeHeading:dispatch}}>
+    <MyContext.Provider value={{heading:data,credits:data,changeHeading:dispatch,setCredits:dispatch}}>
     <div className="App">
 
       <Switch>

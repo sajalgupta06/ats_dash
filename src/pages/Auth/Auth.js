@@ -1,16 +1,17 @@
 import "./Auth.scss";
 import Hero from "./../../asserts/images/hero.jpg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
+import { MyContext } from "../../App";
 
 const Auth = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState("");
   
-
+const data = useContext(MyContext)
 
   const history = useHistory();
 
@@ -19,7 +20,7 @@ const Auth = (props) => {
     try {
       const response = await axios({
         // url: "http://localhost:8000/api/dash/login",
-        url: "https://job-market-node.codedeployment.tk/api/dash//login",
+        url: "https://job-market-node.codedeployment.tk/api/dash/login",
         method: "POST",
         data: {
           email,
@@ -38,7 +39,10 @@ const Auth = (props) => {
       localStorage.getItem("user");
       // localStorage.getItem("user1");
       if (token) {
+
         history.push("/dashboard");
+        // localStorage.setItem("credits",JSON.parse(user.credits))
+        data.setCredits({type:"SET_CREDITS",payload:user.credits})
       }else{
 
         history.push("/");

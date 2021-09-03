@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.scss";
 
 import PlaceHolder from "./../../asserts/images/placeholder.jpg";
@@ -12,16 +12,23 @@ import { MyContext } from "../../App";
 
 const Navbar = () => {
 
- const title = useContext(MyContext)
- const heading = title.heading.heading
+ const data = useContext(MyContext)
+ const heading = data.heading.heading
 
-console.log(title.heading)
+//  var credits = data.credits.credits
+ var credits = localStorage.getItem("credits")
+
+
+console.log(data.heading)
   const [isOpen, setIsOpen] = useState(false);
 
   const handleBatch = () => {
     const dropdown = document.querySelector(".nav-batch-action");
     dropdown.classList.toggle("nav-batch-visible");
   };
+
+
+
   return (
     <div className="navbar-container">
       <div className="navbar-inside">
@@ -38,10 +45,10 @@ console.log(title.heading)
         </div>
 
         <div className="navbar-user">
-            <div className="credits">Credits: 485/500</div>
+            <div className="credits">Credits: {`${credits}/500`}</div>
             <img className="user-img" src={PlaceHolder} alt="" />
           <Link to="/profile">
-            <div style={{cursor:"pointer"}} onClick={()=>title.changeHeading({type:"CHANGE_HEADING",payload:"Profile"})
+            <div style={{cursor:"pointer"}} onClick={()=>data.changeHeading({type:"CHANGE_HEADING",payload:"Profile"})
 }>
               <div className="user-name">Oda Dink</div>
               <div className="user-type">Recruiter</div>

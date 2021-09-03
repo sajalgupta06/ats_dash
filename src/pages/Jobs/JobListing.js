@@ -40,15 +40,17 @@ const JobListing = () => {
   const deleteManyJobList = async () => {
     try {
       const response = await axios({
-        url: `https://job-market-node.codedeployment.tk/api/dash/jobs/deleteMany`,
+        // url: `https://job-market-node.codedeployment.tk/api/dash/job/deleteMany`,
+         url: `http://localhost:8000/api/dash/job/deleteMany`,
         method: "DELETE",
-        data: { ids: batchDelete },
+        data:  batchDelete  ,
         headers:{"Authorization":`Bearer ${token}`},
 
       });
 
       if (response.data.status === "success") {
         alert("select jobs deleted successfully");
+       
         setReload(!reload);
       }
 
@@ -62,8 +64,8 @@ const JobListing = () => {
   const approveManyJobList = async () => {
     try {
       const response = await axios({
-        url: `https://job-market-node.codedeployment.tk/api/dash/job/acceptMany`,
-        // url: `http://localhost:8000/api/dash/job/acceptMany`,
+        // url: `https://job-market-node.codedeployment.tk/api/dash/job/acceptMany`,
+        url: `http://localhost:8000/api/dash/job/acceptMany`,
         method: "POST",
         headers:{"Authorization":`Bearer ${token}`},
 
@@ -71,7 +73,8 @@ const JobListing = () => {
       });
 
       if (response.data.status === "success") {
-        alert("select jobs approved successfully");
+        alert("selected jobs approved successfully");
+        
         setReload(!reload);
       }
 
@@ -81,6 +84,31 @@ const JobListing = () => {
     }
   };
 
+
+  const dissApproveManyJobList = async () => {
+    try {
+      const response = await axios({
+        // url: `https://job-market-node.codedeployment.tk/api/dash/job/rejectMany`,
+        url: `http://localhost:8000/api/dash/job/rejectMany`,
+
+
+        method: "POST",
+        headers:{"Authorization":`Bearer ${token}`},
+
+        data:  batchDelete ,
+      });
+
+      if (response.data.status === "success") {
+        alert("selected jobs dissapproved successfully");
+       
+        setReload(!reload);
+      }
+
+      console.log(response);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
 
  
 
@@ -174,7 +202,7 @@ const JobListing = () => {
                       <img src={Correct} alt='Correct icon' />
                       <span>Appove</span>
                     </li>
-                    <li>
+                    <li onClick={dissApproveManyJobList}>
                       <img src={Cancel} alt='Cancel icon' />
                       <span>Dissapprove</span>
                     </li>

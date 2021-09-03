@@ -57,7 +57,7 @@
         text-align: center;
       }
 
-      .candi-batch-action {
+      .candi-batch-action{
         &-rel {
           position: relative;
         }
@@ -111,6 +111,7 @@
         opacity: 1;
         height: 35rem;
         width: 25rem;
+        z-index: 1;
 
         li {
           color: black;

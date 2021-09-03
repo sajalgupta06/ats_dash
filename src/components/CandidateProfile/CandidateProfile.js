@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CandidateProfile.scss";
 import person from "../../asserts/icons/person.png";
 import { InformationIcon } from "./../../asserts/icons/index";
@@ -21,8 +21,12 @@ import download from "../../asserts/icons/download.png";
 
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import axios from "axios";
+import { MyContext } from "../../App";
 
 const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
+  const token = localStorage.getItem("token");
+  const data = useContext(MyContext)
+
   const [preferences, setPreferences] = useState({});
   const [isLocked, setIsLocked] = useState(true);
 
@@ -31,7 +35,11 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+
+
   }
+
+  const [temp,setTemp ] = useState(candidateDetail)
 
   const [candidateProfile, setCandidateProfile] = useState({
     candidateID: "",
@@ -59,19 +67,42 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     workExperience2: [],
     education: [],
     skills: [],
+    locked:""
   });
 
   const [obj, setObj] = useState("");
 
-  const stageUser = async (id) => {
-    const token = localStorage.getItem("token");
+  const stageUser = async (reqId,userId) => {
 
     try {
+      console.log(userId)
+
+      console.log(candidateDetail)
+
+      for(let i=0 ; i<candidateDetail.requirements.length;i++)
+      {
+        for(let j=0 ; j<candidateDetail.requirements[i].applicants.length;j++){
+          console.log(candidateDetail.requirements[i].applicants[j].id===userId)
+          if(candidateDetail.requirements[i].applicants[j].id===userId){
+            candidateDetail.requirements[i].applicants[j].stage=obj
+  
+            console.log(candidateDetail.requirements[i].applicants[j]['stage'])
+         
+            break;
+          } 
+        }
+      }
+      const data = candidateDetail.requirements.map(req=>{
+        if(req._id===reqId)
+        return req;
+      })
+      console.log(data, candidateDetail)
+
       const response = await axios({
-        // url: `http://localhost:8000/api/dash/app/user/${id}`,
-        url: `https://job-market-node.codedeployment.tk/api/dash/app/user/${id}`,
+        // url: `http://localhost:8000/api/dash/requirements/${reqId}`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/requirements/${reqId}}`,
         method: "PUT",
-        data: obj,
+        data: {update:obj,applicantId:userId},
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data.status === "success") {
@@ -83,11 +114,41 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     }
   };
 
+const unlockProfile=async()=>{
+  try {
+        const response = await axios({
+        // url: `http://localhost:8000/api/dash/app/user/${candidateDetail._id}`,
+        url: `https://job-market-node.codedeployment.tk/api/dash/app/user/${candidateDetail._id}`,
+        method: "PUT",
+        data: {locked:false},
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.data.status === "success") {
+        // data.setCredits({type:"SET_CREDITS",payload:data.credits.credits-10})
+        localStorage.setItem("credits",localStorage.getItem("credits")-10)
+
+        console.log("Successfullt unlocked");
+      }
+      console.log(response.data);
+      setCandidateProfile({...candidateProfile,locked:false})
+   
+  } catch (err) {
+    console.log(err.response);
+  }
+}
+
+useEffect(() => {
+  console.log(candidateProfile)
+}, [candidateProfile])
+
   useEffect(() => {
     setCandidateProfile({
-      candidateName: candidateDetail.name,
+        candidateName: candidateDetail.name,
       currentDesignation: candidateDetail.currentDesignation,
+      
       highestEducationQual: candidateDetail.highestEducation,
+
       workExperience: `${
         candidateDetail.experience
           ? `${candidateDetail.experience.split(" ")[1]} Years ${
@@ -115,10 +176,14 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
       prefferedLocation: candidateDetail.prefferedLocation,
       summary: candidateDetail.professionalSummary,
       documents: candidateDetail.resume,
+      locked:candidateDetail.locked
+
+
     });
   }, []);
 
   console.log(candidateDetail);
+
 
   const [popupOpen, setPopupOpen] = useState(false);
   const [meetingPopupOpen, setMeetingPopupOpen] = useState(false);
@@ -130,8 +195,8 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     });
   };
 
-  const handleBatch = () => {
-    const dropdown = document.querySelector(".candi-batch-action");
+  const handleBatch = (key) => {
+    const dropdown = document.querySelector(`.candi-batch-action`);
     const batchArrow = document.querySelector(".batch-arrow");
 
     dropdown.classList.toggle("candi-batch-visible");
@@ -152,6 +217,15 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
           </div>
           <div className="applied">
             Applied For
+
+
+            {candidateDetail.requirements.map((req) => {
+              return (
+                <>
+                  <buttom className="btn btn-white">{req.title}</buttom>
+                </>
+              );
+            })}
             {candidateDetail.jobs.map((job) => {
               return (
                 <>
@@ -163,17 +237,24 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
           </div>
           <div className="status">
             Status
-            <button onClick={handleBatch} className="btn btn-white">
-              <span className="candi-batch-action-rel">
-                <span>Batch Actions</span>
+            {candidateDetail.requirements.map((req) => {
+              return (
                 <>
-                  <ul className="candi-batch-action">
+                  {/* <buttom className="btn btn-white">{job.title}</buttom> */}
+
+                  {req.applicants.map((applicant,key)=>{
+                    if(applicant.id===candidateDetail._id){
+                      return <button onClick={()=>handleBatch(key)} key={key } className={`btn btn-white`}>
+              <span className={`candi-batch-action-rel`}>
+                <span>{applicant.stage===""?"Batch Action":applicant.stage}</span>
+                <>
+                  <ul className={`candi-batch-action`}>
                     <div className="candi-batch-action-square">&nbsp;</div>
 
                     <li
                       onClick={() => {
                         setObj("underReview1");
-                        stageUser(candidateDetail._id);
+                        stageUser(req._id,candidateDetail._id);
                       }}
                     >
                       <span>Internal - Awaiting Screening</span>
@@ -245,6 +326,16 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
 
               <DownArrIcon className="batch-arrow" />
             </button>
+         
+                    }
+                  })}
+                
+                </>
+              );
+            })}
+
+            
+            
           </div>
           <div className="comments">
             Comments
@@ -302,16 +393,18 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
                 ></img>
                 Chat
               </button>
-
+             {candidateProfile.locked &&
               <button
                 className="btn btn-w"
                 style={{ border: "1px solid black" }}
-                onClick={() => setIsLocked(false)}
+                onClick={unlockProfile}
               >
                 <LockIcon style={{ marginRight: "1rem" }}></LockIcon>
-                Unlock Profile
-              </button>
+               Unlock Profile
+              
 
+              </button>
+                    }
               <img
                 src={cloud}
                 style={{
@@ -582,7 +675,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
           <div className="mt fw6">SOCIALS</div>
           {/* <img src={lock}></img> */}
 
-          {isLocked ? (
+          { candidateProfile.locked ===true? (
             <img src={lock}></img>
           ) : candidateDetail.linkedinProfile ? (
             <a href={`${candidateDetail.linkedinProfile}`} target="_blank">
@@ -608,7 +701,7 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
 
           <div className="mt fw6">DOCUMANTS ATTACHED</div>
 
-          {isLocked === true ? (
+          {candidateProfile.locked === true ? (
             <img src={lock}></img>
           ) : (
             <div className="docs_attached">
