@@ -16,7 +16,10 @@ const Navbar = () => {
  const heading = data.heading.heading
 
  var credits = data.credits.credits
- 
+ if(!credits){
+   credits = localStorage.getItem("credits")
+ }
+
 
 console.log(data.heading)
   const [isOpen, setIsOpen] = useState(false);
