@@ -85,7 +85,7 @@ const JobPost = ({
         </div>
       </div>
       <div className='jobpost-user-info'>
-        <span>{job.jobID}</span>
+        <span>{job.jobId}</span>
         <li>{job.nofPos} Positions </li>
         <li> Rs.{job.salaryFrom}- Rs.{job.salaryTo}</li>
         <li>{job.preferredLocation}</li>

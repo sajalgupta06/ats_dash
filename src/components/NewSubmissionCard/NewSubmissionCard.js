@@ -15,6 +15,8 @@ const NewSubmissionCard = ({
   batch,
   batchDelete,
   setBatchDelete,
+  candidateDetail,
+  job,
 }) => {
 
   const [inBatch, setInBatch] = useState(false);
@@ -35,7 +37,7 @@ const NewSubmissionCard = ({
     } 
      else {
       
-      setSubmissionDetail(true)
+      // setSubmissionDetail(true)
   
     }
   };
@@ -43,10 +45,13 @@ const NewSubmissionCard = ({
 
 
   return (
-    <div onClick={checkJobListOrReq} className={`newcad mb5 ${batch && inBatch && "batch-border"}`}>
+    <div onClick={checkJobListOrReq} className={`newcan mb5 ${batch && inBatch && "batch-border"}`}>
       <div className='newSub-top'>
+          {console.log(candidateDetail)}
         <div className='newSub-top-left'>
-          <div className='newSub-top-name'>Priya Agrawal &nbsp;<span style={{fontWeight:"400",fontSize:"1.4rem"}}>
+          <div className='newSub-top-name'> {candidateDetail.locked?
+            `${candidateDetail.name.split(' ')[0][0]} ${candidateDetail.name.split(' ')[1][0]}`
+            : candidateDetail.name}&nbsp;&nbsp;&nbsp;<span style={{fontWeight:"400",fontSize:"1.4rem"}}>
           #APL-003  </span> </div>
         
         </div>
@@ -55,7 +60,7 @@ const NewSubmissionCard = ({
           <img src={Placeholder} alt='placeholder' />
         </div>
       </div>
-      <div className='newSub-role'>Automation Testing Analyst &nbsp; &nbsp;</div>
+      <div className='newSub-role'>{candidateDetail.headline} &nbsp; &nbsp;</div>
        <div className='newSub-top-active'>Can join in 3 weeks</div>
        <div className='newSub-role'>&nbsp;&nbsp;- MindTree</div>
      
@@ -68,22 +73,20 @@ const NewSubmissionCard = ({
           <li>3.8Years</li>
         </div>
         <div className='job-candidate-skills'>
-          <div>Java</div>
-          <div>Automated Testing</div>
-          <div>Regression Testing</div>
-          <div>Python</div>
-          <div>Maven</div>
+        {candidateDetail.skills.map(skill=>{
+        return<div>{skill}</div>
+      })}
         </div>
       </div>
 
       <div className='job-candidate-ed mb2 ed-ex'>
         <div className='job-candidate-ed-left mr3'>
           <SchoolIcon />
-          <div>University Of Melbourne (BCs)</div>
+          <div>{candidateDetail.education}</div>
         </div>
         <div className='job-candidate-ed-right'>
           <BreifcaseIcon />
-          <div>Worked as a Senior Analyst</div>
+          <div>Worked as a {candidateDetail.currentDesignation}</div>
         </div>
       </div>
 
@@ -92,18 +95,24 @@ const NewSubmissionCard = ({
         <div className='newSub-bottom-left'>
           <div className='mr1'>Applying for: </div>
           <div className='newSub-bottom-lock'>
-            <div>Senior Analyst</div>
+            
+            <div>{job.title}</div>
           
           </div>
           <div className='mr1'>Status </div>
           <div className='newSub-bottom-lock'>
             <div>Client Submitted</div>
-            <DownArrIcon />
+           
           </div>
         </div>
         <div className='newSub-bottom-right'>
-     
+          {candidateDetail.linkedinProfile && 
+
+            <a href={`${candidateDetail.linkedinProfile}`}  target="_blank">
+
           <LinkedinIcon />
+     </a>
+    }
         </div>
       </div>
       {/* end of  new candidate bottom */}

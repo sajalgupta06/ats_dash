@@ -3,26 +3,50 @@ import JobCandidatePost from "../JobCandidatePost/JobCandidatePost";
 import "./JobCandidate.scss";
 
 const JobCandidate = ({ nmt, type, job }) => {
+  let totlCan = job.applicants.length;
+  let totlUr = 0;
+  let totlSub = 0;
+  let totlJoi = 0;
+  let totlRej = 0;
+  let totlDro = 0;
+  let options = [
+    "underReview",
+    "underReview1",
+    "underReview2",
+    "underReview3",
+    "underReview4",
+    "underReview5",
+    "underReview6",
+  ];
+
+  job.applicants.map((applicant) => {
+    if (applicant.stage === "submitted") {
+      totlSub++;
+    } else if (applicant.stage === "joined") {
+      totlJoi++;
+    } else if (applicant.stage === "dropped") {
+      totlDro++;
+    } else if (applicant.stage === "rejected") {
+      totlRej++;
+    } else if (options.includes(applicant.stage)) {
+      totlUr++;
+    }
+  });
+
   return (
     <div className="cad-container">
       {/* cad heading */}
       <div className={`cad-heading ${!nmt && "mt"}`}>
-        <div className="cad-count">{type}: 
-        
-        {/* { 
-        job.applicants.stage==="underReview" ?
-        
-        job.applicants.length: job.applicants.stage==="submitted" ?
-        
-        job.applicants.length: job.applicants.stage==="joined" ?
-        
-        job.applicants.length:"0"} */}
-
-{type==="Candidates" && job.applicants.length}
-{/* {type==="Under Review Applicants" &&  &&job.applicants.length}
-{type==="Candidates" && job.applicants.length} */}
-
-        
+        <div className="cad-count">
+          {type==="ReqCandidates"?"Candidates":type}
+          :{type==="ReqCandidates" && totlCan}
+          {type === "Total Submitted" && totlSub}
+          {type === "Under Review Applicants" && totlUr}
+          {type === " Total Submitted" && totlSub}
+          {type === "Candidates" && totlCan}
+          {type === "Total Onboarded" && totlJoi}
+          {type === "Rejected" && totlRej}
+          {type === "Dropped" && totlDro}
         </div>
         <div className="cad-search-box">
           <input type="text" placeholder="Search something here" />
@@ -64,58 +88,84 @@ const JobCandidate = ({ nmt, type, job }) => {
         </div>
       )}
 
-
-
-{type === "Under Review Applicants" && (
+      {type === "ReqCandidates" && (
         <div className="job-cad-container">
-       
           {job.applicants.map((applicant) => {
-       
-            if (applicant.length > 0 &&applicant[0].stage==="underReview1"||"underReview2"||"underReview3"||"underReview4"||"underReview5")
-              return <JobCandidatePost job={job} applicant={applicant} />;
+            console.log("hello");
+            if (applicant.candidates.length > 0)
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
           })}
         </div>
       )}
 
-
-
-{type === "Total Submitted" && (
+      {type === "Under Review Applicants" && (
         <div className="job-cad-container">
+          {console.log("review")}
+
           {job.applicants.map((applicant) => {
-            if (applicant.length > 0 && applicant[0].stage==="submitted")
-              return <JobCandidatePost job={job} applicant={applicant} />;
+            if (
+              applicant.candidates.length > 0 &&
+              options.includes(applicant.stage)
+            )
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
           })}
         </div>
       )}
 
-
-
-{type === "Total Onboarded" && (
+      {type === "Total Submitted" && (
         <div className="job-cad-container">
           {job.applicants.map((applicant) => {
-            if (applicant.length > 0 && applicant[0].stage==="joined")
-              return <JobCandidatePost job={job} applicant={applicant} />;
+            if (
+              applicant.candidates.length > 0 &&
+              applicant.stage === "submitted"
+            )
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
           })}
         </div>
       )}
 
-{type === "Rejected" && (
+      {type === "Total Onboarded" && (
         <div className="job-cad-container">
           {job.applicants.map((applicant) => {
-            if (applicant.length > 0 && applicant[0].stage==="rejected")
-              return <JobCandidatePost job={job} applicant={applicant} />;
+            if (applicant.candidates.length > 0 && applicant.stage === "joined")
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
           })}
         </div>
       )}
 
-
-
-
-{type === "Dropped" && (
+      {type === "Rejected" && (
         <div className="job-cad-container">
           {job.applicants.map((applicant) => {
-            if (applicant.length > 0 && applicant[0].stage==="dropped")
-              return <JobCandidatePost job={job} applicant={applicant} />;
+            console.log("HI");
+            if (
+              applicant.candidates.length > 0 &&
+              applicant.stage === "rejected"
+            )
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
+          })}
+        </div>
+      )}
+
+      {type === "Dropped" && (
+        <div className="job-cad-container">
+          {job.applicants.map((applicant) => {
+            if (
+              applicant.candidates.length > 0 &&
+              applicant.stage === "dropped"
+            )
+              return (
+                <JobCandidatePost job={job} applicant={applicant.candidates} />
+              );
           })}
         </div>
       )}

@@ -2,20 +2,21 @@ import React from "react";
 import { BreifcaseIcon, SchoolIcon } from "../../asserts/icons";
 import "./JobCandidatePost.scss";
 
-const JobCandidatePost = ({job,applicant}) => {
+const   JobCandidatePost = ({job,applicant}) => {
   const data = applicant[0]
+  console.log(data)
   return (
     <div className='job-candidate-box'>
-      <div className='job-candidate-name'>Priya Anand</div>
+      <div className='job-candidate-name'>{data.name}</div>
       <div className='job-candidate-role'>
          {data.headline}<span>Can Join in 3 Weeks</span>
       </div>
       <div className='job-candidate-user-info'>
-        <span>{job.jobID}</span>
-        <li>Soylent Corp</li>
-        <li>INR 3,60,000</li>
+        <span>{job.jobId}</span>
+        <li>{data.workExperience[0].companyName  }</li>
+        <li>INR {data.salary}</li>
         <li></li>
-        <li>3.8 Years</li>
+        <li>{data.experience} Years</li>
       </div>
       <div className='job-candidate-skills'>
       {data.skills.map(skill=>{

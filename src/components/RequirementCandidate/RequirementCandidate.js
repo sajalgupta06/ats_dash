@@ -12,6 +12,37 @@ const RequirementCandidate = ({
   setRequirement,
 
 }) => {
+
+  let totlCan=requirement.applicants.length;
+  let totlUr=0;
+  let totlSub=0;
+  let totlJoi=0;
+  let totlRej=0;
+  let totlDro=0;
+  let options = ["underReview","underReview1","underReview2","underReview3","underReview4","underReview5"]
+
+
+  requirement.applicants.map(applicant=>{
+    if(applicant.stage==="submitted"){
+      totlSub++;
+    }
+    else if(applicant.stage==="joined"){
+      totlJoi++;
+    }
+    else if(applicant.stage==="dropped"){
+      totlDro++;
+    }
+    else if(applicant.stage==="rejected"){
+      totlRej++;
+    }else if(options.includes(applicant.stage)){
+      totlUr++;
+    }
+  })
+
+
+
+
+
   const [inBatch, setInBatch] = useState(false);
 
   const checkJobListOrReq = () => {
@@ -73,7 +104,7 @@ const RequirementCandidate = ({
         <li>{requirement.workExperienceFrom}-{requirement.workExperienceTo } Years</li>
       </div>
       <div className='jobpost-desc'>
-     {requirement.jonDesc}
+     {requirement.jobDesc}
       </div>
 
       {/* job post bottom one */}
@@ -84,14 +115,14 @@ const RequirementCandidate = ({
       
         <div className='requirement-btns'>
           <div className='requirement-btns-one'>
-            <div className='btn btn-purple'>160 Matching</div>
-            <div className='btn btn-sapire'>150 Under Review</div>
-            <div className='btn btn-yellow'>20 Client Submitted</div>
-            <div className='btn btn-cool'>0 Joined</div>
+            <div className='btn btn-purple'>0 Matching</div>
+            <div className='btn btn-sapire'>{totlUr} Under Review</div>
+            <div className='btn btn-yellow'>{totlSub} Client Submitted</div>
+            <div className='btn btn-cool'>{totlJoi} Joined</div>
           </div>
           <div className='requirement-btns-two'>
-            <div className='btn btn-rose'>20 Rejected</div>
-            <div className='btn btn-rose'>3 dropped</div>
+            <div className='btn btn-rose'>{totlRej} Rejected</div>
+            <div className='btn btn-rose'>{totlDro} dropped</div>
           </div>
         </div>
       

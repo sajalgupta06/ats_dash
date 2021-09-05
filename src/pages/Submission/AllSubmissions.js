@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Submission.scss";
 import {
   CheckboxIcon,
@@ -19,6 +19,8 @@ import publish from "./../../asserts/icons/publish.png";
 import addToFolder from "./../../asserts/icons/addToFolder.png";
 import addToPipeline from "./../../asserts/icons/addToPipeline.png";
 import tagCandidate from "./../../asserts/icons/tagCandidate.png";
+import axios from "axios";
+import { URL } from "../../config";
 
 
 const AllSubmissions = () => {
@@ -44,9 +46,37 @@ const AllSubmissions = () => {
     batchArrow.classList.toggle("batch-rotate");
   };
 
-  if (candidateDetail) {
-    return <CandidateProfile setCandidateDetail={setCandidateDetail} />;
-  } else {
+  useEffect(() => {
+  console.log(submissionDetail)
+  }, [submissionDetail])
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    const getSubmissions=async()=>{
+      try {
+        const response = await axios({
+       
+          url: `${URL}/api/dash/requirements?page=${page}&limit=${6}`,
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.data.status === "success") {
+          console.log("Success Update");
+          setSubmissionDetail(response.data.requirement)
+        }
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  
+ getSubmissions()
+
+  }, [])
+
+
+
     return (
 
      <>
@@ -136,34 +166,29 @@ const AllSubmissions = () => {
             </div>
           </div>
         
-       
-      
-      
+         
        <div className='job-listings-jobs'>
-          <NewSubmissionCard 
-           setSubmissionDetail={setSubmissionDetail}
+
+         
+         { submissionDetail && submissionDetail.map(req=>{
+
+          return req.applicants.map(applicant=>{
+            if(applicant.stage==="submitted"){
+              return < NewSubmissionCard
+           setCandidateDetail={setCandidateDetail}
+           candidateDetail={applicant.candidates[0]}
            setBatchDelete={setBatchDelete}
            batchDelete={batchDelete}
            batch={batch}
+           job={req}
            />
-           <NewSubmissionCard 
-           setSubmissionDetail={setSubmissionDetail}
-           setBatchDelete={setBatchDelete}
-           batchDelete={batchDelete}
-           batch={batch}
-           />
-              <NewSubmissionCard 
-           setSubmissionDetail={setSubmissionDetail}
-           setBatchDelete={setBatchDelete}
-           batchDelete={batchDelete}
-           batch={batch}
-           />
-              <NewSubmissionCard 
-           setSubmissionDetail={setSubmissionDetail}
-           setBatchDelete={setBatchDelete}
-           batchDelete={batchDelete}
-           batch={batch}
-           />
+            }
+          })
+
+         })}
+          
+        
+  
         
     
         </div>
@@ -171,7 +196,7 @@ const AllSubmissions = () => {
       
      
     );
-  }
+  
 };
 
 export default AllSubmissions;

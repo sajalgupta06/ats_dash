@@ -24,6 +24,10 @@ import Reports from "./pages/Reports/Reports";
 
 import reducer from "./reducer/reducer";
 import axios from "axios";
+import { URL } from "./config";
+
+
+
 
 
 export const MyContext = createContext()
@@ -40,42 +44,14 @@ const iState = {
 export function App() {
 
  const history = useHistory()
- const credits = useContext(MyContext)
+
     const token = localStorage.getItem("token")
     if(!token){
       history.push('/')
-      
-      
-    }
-    try {
-      const response = axios({
-        // url: `http://localhost:8000/api/dash/user`,
-        url: `https://job-market-node.codedeployment.tk/api/dash/user`,
-        method: "GET",
-  
-        headers: { Authorization: `Bearer ${token}` },
-      }).then(data=>{
-        if(data){
-
-          console.log(data.data.data);
-          if (data.data.status === "success") {
-            console.log("Successfullt LoggedIn");
-            localStorage.setItem("credits",data.data.data.credits)
-        }
-      }
-      });
-  
-      
-    
-   
-    } catch (error) {
-      console.log(error)
-    }
+    }  
 
    
     
-  
-  
   const [data,dispatch] = useReducer(reducer,iState)
   
   const [heading , setHeading] = useState("Dashboard")
@@ -83,7 +59,6 @@ export function App() {
   return (
     <MyContext.Provider value={{heading:data,credits:data,changeHeading:dispatch,setCredits:dispatch}}>
     <div className="App">
-
       <Switch>
         <Route exact path="/" component={Auth} />
                 <Route exact path="/forgot-password" component={ForgotPassword} />

@@ -15,9 +15,8 @@ const Navbar = () => {
  const data = useContext(MyContext)
  const heading = data.heading.heading
 
-//  var credits = data.credits.credits
- var credits = localStorage.getItem("credits")
-
+ var credits = data.credits.credits
+ 
 
 console.log(data.heading)
   const [isOpen, setIsOpen] = useState(false);

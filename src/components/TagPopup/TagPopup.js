@@ -45,11 +45,17 @@ const TagPopup = ({
                        <td> Candidate Name</td>
                        <td> Status</td>
                     </tr>
-                    <tr>
-                        <td>Priya Anand</td>
-                        <td><button className="btn btn-w btn-active">Client Submitted</button></td>
-                        
+                {candidateList.map(can=>{
+                    batchTag.map(tag=>{
+                        if(tag===can._id){
+<tr>
+                        <td>{can.name}</td>
+                        <td><button className="btn btn-w btn-active"></button></td>   
                     </tr>
+                    
+                        }
+                    })
+                })}
                     
                     </table>
 

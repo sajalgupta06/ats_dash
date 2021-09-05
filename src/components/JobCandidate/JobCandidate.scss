@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 3rem;
   }
 
   &-count {
@@ -14,6 +15,8 @@
     cursor: pointer;
     margin-right: 3rem;
     // width: 30%;
+    flex-grow: 1;
+    text-align: center;
   }
 
   &-search-box {
@@ -22,7 +25,7 @@
     justify-content: center;
     align-items: center;
     background: var(--search-bar);
-    min-width: 85%;
+    min-width: 83%;
     padding: 0.8rem 1.5rem;
 
     border-radius: 2rem;

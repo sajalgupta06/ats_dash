@@ -24,7 +24,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
   const [jobSuccess, setJobSuccess] = useState(false);
 
   const [jobPostDetails, setjobPostDetails] = useState({
-    jobID: "",
+    jobId: "",
     title: "",
     company: "",
     status: "",
@@ -146,9 +146,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
   return (
     <div className='createjob'>
       {/* back btn */}
-      <div onClick={() => setJobListView(1)} className='createjob-back'>
-        &larr;
-      </div>
+    
 
       {/* end of back btn */}
 
@@ -195,8 +193,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 <InformationIcon className='info-icon' />
                 <input
                   onChange={handleEventChange}
-                  value={jobPostDetails.jobID}
-                  name='jobID'
+                  value={jobPostDetails.jobId}
+                  name='jobId'
                   id='jobid'
                   type='text'
                 />

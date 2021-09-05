@@ -22,22 +22,21 @@ import download from "../../asserts/icons/download.png";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import axios from "axios";
 import { MyContext } from "../../App";
+import { URL } from "../../config";
 
 const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
+
   const token = localStorage.getItem("token");
   const data = useContext(MyContext)
-
-  const [preferences, setPreferences] = useState({});
-  const [isLocked, setIsLocked] = useState(true);
-
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
 
-
   }
+
+  const [buttonName,setButtonName] = useState("")
 
   const [temp,setTemp ] = useState(candidateDetail)
 
@@ -47,13 +46,13 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     currentDesignation: "",
     currentCompany: "",
     currentCtc: "",
-    ExpectedCtc: "",
+    expectedCtc: "",
     dateOfBirth: "",
     workExperience: "",
     maritalStatus: "",
     highestEducationQual: "",
     institute: "",
-    readyToRelocate: [],
+    readyToRelocate: "",
     phone: [],
     email: "",
     noticePeriod: "",
@@ -67,46 +66,54 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
     workExperience2: [],
     education: [],
     skills: [],
-    locked:""
+    locked:"",
+    requirements:[]
   });
 
   const [obj, setObj] = useState("");
 
-  const stageUser = async (reqId,userId) => {
+  const stageUser = async (reqId,userId,text) => {
 
     try {
-      console.log(userId)
-
-      console.log(candidateDetail)
-
-      for(let i=0 ; i<candidateDetail.requirements.length;i++)
-      {
-        for(let j=0 ; j<candidateDetail.requirements[i].applicants.length;j++){
-          console.log(candidateDetail.requirements[i].applicants[j].id===userId)
-          if(candidateDetail.requirements[i].applicants[j].id===userId){
-            candidateDetail.requirements[i].applicants[j].stage=obj
-  
-            console.log(candidateDetail.requirements[i].applicants[j]['stage'])
-         
-            break;
-          } 
-        }
-      }
-      const data = candidateDetail.requirements.map(req=>{
-        if(req._id===reqId)
-        return req;
-      })
-      console.log(data, candidateDetail)
+     
 
       const response = await axios({
-        // url: `http://localhost:8000/api/dash/requirements/${reqId}`,
-        url: `https://job-market-node.codedeployment.tk/api/dash/requirements/${reqId}}`,
+     
+        url: `${URL}/api/dash/requirements/stage/${reqId}`,
         method: "PUT",
-        data: {update:obj,applicantId:userId},
+        data: {update:text,applicantId:userId},
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data.status === "success") {
         console.log("Success Update");
+        // setCandidateProfile({...candidateProfile,})
+        if(text==="underReview1"){
+          setButtonName("Awaiting Screening")
+        }
+        else if(text==="underReview2"){
+          setButtonName("Interview Scheduled")
+        }
+        else if(text==="underReview3"){
+          setButtonName("Interview Feedback")
+        }
+        else if(text==="underReview4"){
+          setButtonName("Shortlisted")
+        }
+        else if(text==="underReview5"){
+          setButtonName("Onboarding")
+        }
+        else if(text==="underReview6"){
+          setButtonName("On Hold")
+        }
+        else if(text==="dropped"){
+          setButtonName("Washed Away")
+        }
+        else if(text==="submitted"){
+          setButtonName("Joined")
+        }
+        else if(text==="rejected"){
+          setButtonName("Disqualified")
+        }
       }
       console.log(response.data);
     } catch (err) {
@@ -115,32 +122,36 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
   };
 
 const unlockProfile=async()=>{
-  try {
-        const response = await axios({
-        // url: `http://localhost:8000/api/dash/app/user/${candidateDetail._id}`,
-        url: `https://job-market-node.codedeployment.tk/api/dash/app/user/${candidateDetail._id}`,
-        method: "PUT",
-        data: {locked:false},
-        headers: { Authorization: `Bearer ${token}` },
-      });
 
-      if (response.data.status === "success") {
-        // data.setCredits({type:"SET_CREDITS",payload:data.credits.credits-10})
-        localStorage.setItem("credits",localStorage.getItem("credits")-10)
+  localStorage.setItem("credits",candidateDetail.credits-10)
+  data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
 
-        console.log("Successfullt unlocked");
-      }
-      console.log(response.data);
-      setCandidateProfile({...candidateProfile,locked:false})
+  // try {
+  //       const response = await axios({
+  //       url: `${URL}/api/dash/app/user/${candidateDetail._id}`,
+  //       method: "PUT",
+  //       data: {locked:false},
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+
+  //     if (response.data.status === "success") {
+  //       localStorage.setItem("credits",candidateDetail.credits-10)
+  //       data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
+
+  //       console.log("Successfullt unlocked");
+  //     }
+  //     console.log(response.data);
+  //     setCandidateProfile({...candidateProfile,locked:false})
    
-  } catch (err) {
-    console.log(err.response);
-  }
+  // } catch (err) {
+  //   console.log(err.response);
+  // }
 }
 
 useEffect(() => {
   console.log(candidateProfile)
-}, [candidateProfile])
+  console.log(buttonName)
+}, [candidateProfile,buttonName])
 
   useEffect(() => {
     setCandidateProfile({
@@ -176,13 +187,60 @@ useEffect(() => {
       prefferedLocation: candidateDetail.prefferedLocation,
       summary: candidateDetail.professionalSummary,
       documents: candidateDetail.resume,
-      locked:candidateDetail.locked
+      locked:candidateDetail.locked,
+      requirements:candidateDetail.requirements,
+      currentCtc:candidateDetail.currentCtc,
+      expectedCtc:candidateDetail.expectedCtc,
+      readyToRelocate:candidateDetail.readyToRelocate,
+      currentLocation:candidateDetail.currentLocation,
+      currentCompany:candidateDetail.currentCompany,
+      maritalStatus:candidateDetail.maritalStatus,
+      source:candidateDetail.source,
+      institute:candidateDetail.education,
+      candidateID:candidateDetail._id
+
 
 
     });
+
+    candidateDetail.requirements.map(req=>{
+      req.applicants.map(applicant=>{
+        if(applicant.id===candidateDetail._id){
+          if(applicant.stage==="underReview1"){
+            setButtonName("Awaiting Screening")
+          }
+          else if(applicant.stage==="underReview2"){
+            setButtonName("Interview Scheduled")
+          }
+          else if(applicant.stage==="underReview3"){
+            setButtonName("Interview Feedback")
+          }
+          else if(applicant.stage==="underReview4"){
+            setButtonName("Shortlisted")
+          }
+          else if(applicant.stage==="underReview5"){
+            setButtonName("Onboarding")
+          }
+          else if(applicant.stage==="underReview6"){
+            setButtonName("On Hold")
+          }
+          else if(applicant.stage==="dropped"){
+            setButtonName("Washed Away")
+          }
+          else if(applicant.stage==="submitted"){
+            setButtonName("Joined")
+          }
+          else if(applicant.stage==="rejected"){
+            setButtonName("Disqualified")
+          }
+       
+        }
+      })
+    })
+  
   }, []);
 
-  console.log(candidateDetail);
+ 
 
 
   const [popupOpen, setPopupOpen] = useState(false);
@@ -233,11 +291,10 @@ useEffect(() => {
                 </>
               );
             })}
-            <buttom className="btn btn-white">Senior Analysits</buttom>
           </div>
           <div className="status">
             Status
-            {candidateDetail.requirements.map((req) => {
+            {candidateProfile.requirements.map((req) => {
               return (
                 <>
                   {/* <buttom className="btn btn-white">{job.title}</buttom> */}
@@ -246,7 +303,8 @@ useEffect(() => {
                     if(applicant.id===candidateDetail._id){
                       return <button onClick={()=>handleBatch(key)} key={key } className={`btn btn-white`}>
               <span className={`candi-batch-action-rel`}>
-                <span>{applicant.stage===""?"Batch Action":applicant.stage}</span>
+                
+                <span>{buttonName===""?"Batch Action":buttonName}</span>
                 <>
                   <ul className={`candi-batch-action`}>
                     <div className="candi-batch-action-square">&nbsp;</div>
@@ -254,68 +312,71 @@ useEffect(() => {
                     <li
                       onClick={() => {
                         setObj("underReview1");
-                        stageUser(req._id,candidateDetail._id);
+                        stageUser(req._id,key,"underReview1");
                       }}
                     >
                       <span>Internal - Awaiting Screening</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("underReview2");
-                        stageUser(candidateDetail._id);
+                      
+                        stageUser(req._id,key,"underReview2");
                       }}
                     >
                       <span>Internal - Interview Scheduled</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("underReview3");
-                        stageUser(candidateDetail._id);
+                      
+                        stageUser(req._id,key,"underReview3");
                       }}
                     >
                       <span>Internal - Interview Feedback</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("underReview4");
-                        stageUser(candidateDetail._id);
+                        
+                        stageUser(req._id,key,"underReview4");
                       }}
                     >
                       <span>Internal - Shortlisted</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("underReview5");
-                        stageUser(candidateDetail._id);
+                       
+                        stageUser(req._id,key,"underReview5");
                       }}
                     >
                       <span>Internal - Onboarding</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("dropped");
-                        stageUser(candidateDetail._id);
+                       
+                        stageUser(req._id,key,"dropped");
                       }}
                     >
                       <span>Internal - Washed Away</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("rejected");
-                        stageUser(candidateDetail._id);
+                        
+                        stageUser(req._id,key,"rejected");
                       }}
                     >
                       <span>Internal - Disqualified</span>
                     </li>
                     <li
-                      
+                      onClick={() => {
+                       
+                        stageUser(req._id,key,"underReview6");
+                      }}
                     >
                       <span>Internal - On Hold</span>
                     </li>
                     <li
                       onClick={() => {
-                        setObj("joined");
-                        stageUser(candidateDetail._id);
+                   
+                        stageUser(req._id,key,"submitted");
                       }}
                     >
                       <span>Joined</span>
@@ -443,7 +504,7 @@ useEffect(() => {
 
               <input
                 onChange={handleEventChange}
-                value={candidateProfile.jobID}
+                value={candidateProfile.candidateID}
                 name="candidateID"
                 id="candidateid"
                 type="text"

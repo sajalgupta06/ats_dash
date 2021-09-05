@@ -9,8 +9,7 @@ import {
 } from "../../asserts/icons";
 import "./NewCandidate.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
-
-
+import Moment from "react-moment";
 const   NewCandidate = ({ 
   setIsCandidateDetail,
   setCandidateDetail,
@@ -48,13 +47,26 @@ const   NewCandidate = ({
 
 
   return (
-    <div onClick={checkJobListOrReq} className={`newcad mb5 ${batch && inBatch && "batch-border"}`}>
+    <div  className={`newcan mb5 ${batch && inBatch && "batch-border"}`}>
+      <div className="newcad" onClick={checkJobListOrReq}>
+
       <div className='newcad-top'>
         
         <div className='newcad-top-left'>
-          <div className='newcad-top-name'>P A</div>
+          <div className='newcad-top-name'>
+          {candidate.locked?
+            `${candidate.name.split(' ')[0][0]} ${candidate.name.split(' ')[1][0]}`
+            : candidate.name}
+            </div>
           <div className='newcad-top-active'>Active</div>
-          <div className='newcad-top-cs'>Client Submitted</div>
+          {candidate.requirements.map(req=>{
+              return req.applicants.map(applicant=>{
+                if(applicant.id===candidate._id && applicant.stage==="submitted"){
+
+                  return <div className='newcad-top-cs'>Client Submitted</div>
+                }
+              })
+          })}
         </div>
         <div className='newcad-top-right'>
         {candidate.locked && 
@@ -66,8 +78,6 @@ const   NewCandidate = ({
           <img src={Placeholder} alt='placeholder' />
         </div>
       </div>
-
-
   
       <div className='newcad-role'>{candidate.headline}</div>
       <div className='newcad-desc'>
@@ -77,7 +87,7 @@ const   NewCandidate = ({
       <div className='newcad-infski'>
         <div className='jobpost-user-info'>
           <span>#JT-673453</span>
-          <li>{candidate.jobs.length} Positions </li>
+          <li>{candidate.jobs.length+ candidate.requirements.length} Positions </li>
           <li>$14,000 - $25,000</li>
           <li>{candidate.prefferedLocation}</li>
         </div>
@@ -109,22 +119,15 @@ const   NewCandidate = ({
           <div>Worked as a {candidate.currentDesignation}</div>
         </div>
       </div>
-
+</div>
       {/* new candidate bottom */}
-      <div className='newcad-bottom'>
-        <div className='newcad-bottom-left'>
+      <div className='newcan-bottom'>
+        <div className='newcan-bottom-left'>
           <div className='mr1'>Applied for: </div>
-          {/* <div className='newcad-bottom-lock'>
-            <div>Senior Analyst</div>
-              </div> */}
-              {/* <DownArrIcon /> */}
-
-
-
+     
             <div>
                 <select
-                  // onChange={handleEventChange}
-                  // value={candidateProfile.maritalStatus}
+                 
                   name="maritalStatus"
                   className="select-d"
                   id="maritalStatus"
@@ -141,12 +144,11 @@ const   NewCandidate = ({
                
                 </select>
               </div>
-          <div className='newcad-bottom-txt'>
-            Last active on 14th July 2021, 11 am • Last Modified on 5th March
-            2021
+          <div className='newcan-bottom-txt'  onClick={checkJobListOrReq}>
+            Last active on  <Moment date={candidate.lastLogin}></Moment>
           </div>
         </div>
-        <div className='newcad-bottom-right'>
+        <div className='newcan-bottom-right'  onClick={checkJobListOrReq}>
           <TagIcon />
           {candidate.locked &&(
 
