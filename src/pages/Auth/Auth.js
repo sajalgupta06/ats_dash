@@ -8,7 +8,7 @@ import { MyContext } from "../../App";
 import { URL } from "../../config";
 
 const Auth = (props) => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState("");
   
@@ -23,7 +23,7 @@ const data = useContext(MyContext)
         url: `${URL}/api/dash/login`,
         method: "POST",
         data: {
-          email,
+          userName ,
           password,
         },
       });
@@ -65,7 +65,7 @@ const data = useContext(MyContext)
         <img className="hero-img" src={Hero} alt="hero" />
       </div>
       <div className="right">
-        <h1 className="primary-heading">Jobs Market.AI</h1>
+        <h1 className="primary-heading">Jobs Territory</h1>
 
         {/* login component */}
 
@@ -74,10 +74,10 @@ const data = useContext(MyContext)
             <label>User ID</label>
             <input
               type="text"
-              value={email}
+              value={userName}
               placeholder="User ID"
               onChange={(e) => {
-                setEmail(e.target.value);
+                setUserName(e.target.value);
               }}
             />
           </div>

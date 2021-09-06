@@ -19,7 +19,7 @@ const action=()=>{
 const history = useHistory()
   return (
     <nav className='hero-left'>
-      <div className='heading-primary'>Jobs Market.AI</div>
+      <div className='heading-primary'>Jobs Territory</div>
       <ul>
         {/* <li onClick={() => setView("dashboard")}>
           <svg
