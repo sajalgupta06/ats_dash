@@ -7,7 +7,7 @@ import axios from "axios";
 const CreateRequirement = ({setReqView}) => {
 
   const [jobRequirementDetails, setjobRequirementDetails] = useState({
-    jobId: "",
+    jobId: `#JT-${Math.floor(Math.random()*90000) + 10000}`,
     clientJobId: "",
     title: "",
     customer: "",
@@ -101,6 +101,7 @@ const CreateRequirement = ({setReqView}) => {
             name='jobId'
             id='jobId'
             type='text'
+            readOnly
           />
         </div>
         <div>

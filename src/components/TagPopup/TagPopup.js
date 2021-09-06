@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "./TagPopup.scss";
 
 import Cross from "./../../asserts/icons/close.svg";
@@ -19,8 +19,11 @@ const TagPopup = ({
   batchTag ,
   candidateList
   }) => {
-      console.log(batchTag)
-      console.log(candidateList)
+
+    
+ const [popup2 ,setPopup2] = useState(false) 
+
+if(popup2===false){
   return (
     <div className="email-popup-container">
       <div className="email-popup">
@@ -46,11 +49,13 @@ const TagPopup = ({
                        <td> Status</td>
                     </tr>
                 {candidateList.map(can=>{
-                    batchTag.map(tag=>{
+               
+                   return batchTag.map(tag=>{
+                     
                         if(tag===can._id){
-<tr>
+                          return <tr>
                         <td>{can.name}</td>
-                        <td><button className="btn btn-w btn-active"></button></td>   
+                        <td><button className="btn btn-w btn-active">Client Submitted</button></td>   
                     </tr>
                     
                         }
@@ -74,7 +79,7 @@ const TagPopup = ({
 
                   <div style={{ minWidth: "0rem", display: "inline-block" }}>
                     <button className="btn btn-w btn-inactive reply"
-                    onClick={()=>{setSend(true);setTagPopup(false)} }>
+                    onClick={()=>setPopup2(true) }>
                       Next
                     </button>
                   </div>
@@ -85,7 +90,58 @@ const TagPopup = ({
         
       </div>
     </div>
-  );
+  )
+}
+
+if(popup2===true){
+  return (
+    <div className="email-popup-container">
+      <div className="email-popup">
+        <div className="email-popup-top">
+          <div className="email-popup-title">Tag Candidate</div>
+          <img
+            onClick={() => {
+                setTagPopup(false);
+            }}
+            src={Cross}
+            alt="close icon"
+          />
+        </div>
+        
+      
+        
+          <>
+
+            <div className="tag-popup-body">
+               
+                    </div>
+            <div className="tag-popup-bottom">
+                <div>
+                  <div style={{ minWidth: "0rem", display: "inline-block" }}>
+                    <div
+                      className="btn btn-w btn-cancel btn-active"
+                      style={{ minWidth: "0rem", display: "inline-block" }}
+                      onClick={()=>setTagPopup(false)}
+                    >
+                      Cancel
+                    </div>
+                  </div>
+
+                  <div style={{ minWidth: "0rem", display: "inline-block" }}>
+                    <button className="btn btn-w btn-inactive reply"
+                    onClick={()=>setPopup2(true) }>
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+         
+          </>
+        
+      </div>
+    </div>
+  )
+}
 };
 
 export default TagPopup;

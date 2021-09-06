@@ -10,8 +10,9 @@ import Toggle from "../Toggle/Toggle";
 
 // icons
 import { PlusIcon, InformationIcon } from "./../../asserts/icons/index";
+import { URL } from "../../config";
 
-const CreateJob = ({ candidate, setJobListView, job }) => {
+const CreateJob = ({ candidate, setJobListView, setCreateJobView,jobListView,job ,createJobView}) => {
   const [viewCandidate, setViewCandidate] = useState(false);
   const [generated, setGenerated] = useState(false);
   const [viewQuestion, setViewQuestion] = useState(false);
@@ -49,60 +50,51 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
     nonPreferredCompany: "",
     preferredInstitute: "",
     nonPreferredInstitute: "",
-    workCriteria: "",
+    workCriteria: false,
     jobDesc: "",
     companyDesc: "",
     jobQuestions: [],
   });
 
-  // console.log(jobPostDetails);
-  // console.log(preferences);
-  // console.log(jobPostDetails);
 
     useEffect(() => {
       console.log(job)
-      if (job) {
-        // setjobPostDetails({
-        //   jobID:job.jobID,
-        //   title:job.title,
-        //   company:job.company,
-        //   nofPos:job.nofPos,
-        //   minQualification:job.minminQualification,
-        //   degree:job.degree,
-        //   clientName:job.clientName,
-        //   workExperienceFrom:job.workExperienceFrom,
-        //   workExperienceTo:job.workExperienceTo,
-        //   hiringType:job.hiringType,
 
+      if(jobListView===2){
+        setjobPostDetails({...jobPostDetails,jobId:`#JC-${Math.floor(Math.random()*90000) + 10000}`})
 
-
-
-        // });
-        setjobPostDetails(job)
+        setCreateJobView(true)
       }
+      if(jobListView===3){
+        if (job) {
+          setjobPostDetails(job)
+        }
+      }
+     
     }, [job]);
 
   const addNewJob = async () => {
     try {
-      let newobj = {
-        ...jobPostDetails,
-        salary: jobPostDetails.salaryFrom + jobPostDetails.salaryTo,
-        workExperience:
-          jobPostDetails.workExperienceFrom + jobPostDetails.workExperienceTo,
-      };
-      delete newobj.workExperienceFrom;
-      delete newobj.workExperienceTo;
-      delete newobj.salaryFrom;
-      delete newobj.salaryTo;
-      newobj = { ...newobj, preferences };
-      // console.log(newobj);
-      // console.log(preferences);
+      // let newobj = {
+      //   ...jobPostDetails,
+      //   salary: jobPostDetails.salaryFrom + jobPostDetails.salaryTo,
+      //   workExperience:
+      //     jobPostDetails.workExperienceFrom + jobPostDetails.workExperienceTo,
+      // };
+      // delete newobj.workExperienceFrom;
+      // delete newobj.workExperienceTo;
+      // delete newobj.salaryFrom;
+      // delete newobj.salaryTo;
+      // newobj = { ...newobj, preferences };
 
+      const token = localStorage.getItem("token")
       const response = await axios({
-        // url: "http://localhost:8000/api/dash/jobs",
-        url: "https://job-market-node.codedeployment.tk/api/dash/jobs",
+              // url: "http://localhost:8000/api/dash/jobs",
+        url: `${URL}/api/dash/jobs`,
         method: "POST",
-        data: newobj,
+        data: jobPostDetails,
+        headers:{"Authorization":`Bearer ${token}`},
+
       });
       if (response.data.status === "success") {
         setJobSuccess(true);
@@ -121,7 +113,6 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
     });
   };
 
-  // handleGenerateQuestionare
   const handleGenerateQuestionare = () => {
     setGenerated(true);
     let questions = [
@@ -145,12 +136,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
 
   return (
     <div className='createjob'>
-      {/* back btn */}
     
-
-      {/* end of back btn */}
-
-      {/* add doc btns */}
       {!candidate && (
         <div className='createjob-doc'>
           <div className='createjob-doc-add'>
@@ -197,6 +183,7 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   name='jobId'
                   id='jobid'
                   type='text'
+                  readOnly
                 />
               </div>
               <div>
@@ -232,8 +219,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   name='active'
                   id='active'>
                   <option disabled hidden></option>
-                  <option value='Active'>Active</option>
-                  <option value='In Active'>In Active</option>
+                  <option value='1' onClick={()=>setjobPostDetails({...jobPostDetails,active:1})}>Active</option>
+                  <option value='0' onClick={()=>setjobPostDetails({...jobPostDetails,active:0})}>In Active</option>
                 </select>
               </div>
               <div>
@@ -267,14 +254,23 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   className='select-d'
                   name='minQualification'
                   id='qual'>
-                  <option selected disabled hidden></option>
-                  <option value='Phd'>Phd</option>
-                  <option value='Masters'>Masters</option>
-                  <option value='Diploma'>Diploma</option>
-                  <option value='10+2 Pass'>10+2 Pass</option>
-                  <option value='Masters'>10th Pass</option>
-                  <option value='Below 10th'>Below 10th</option>
-                  <option value='Other than mentioned'>
+                  <option selected>Choose One</option>
+                  <option value='Phd' >Phd</option>
+
+                  <option value='Masters' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"Masters"})}>Masters</option>
+
+                  <option value='Graduate' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"Graduate"})}>Graduate</option>
+
+                  <option value='Diploma' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"Diploma"})}>Diploma</option>
+
+                  <option value='10+2 Pass' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"10+2 Pass"})}>10+2 Pass</option>
+
+                
+                  <option value='10th Pass' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"10th Pass"})}>10th Pass</option>
+
+                  <option value='Below 10th' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:'Below 10th'})}>Below 10th</option>
+
+                  <option value='Other than mentioned' onClick={()=>setjobPostDetails({...jobPostDetails,minQualification:"Other than mentioned"})}>
                     Other than mentioned
                   </option>
                 </select>
@@ -357,16 +353,27 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
               </div>
               <div>
                 <label htmlFor='hiringType'>Hiring Type</label> <InformationIcon className='info-icon' />
-                {/* <input onChange={handleEventChange} id='location' type='text' /> */}
                 <select
                   onChange={handleEventChange}
                   value={jobPostDetails.hiringType}
                   name='hiringType'
                   className='select-d'
-                  id='hiringType'>
+                  id='hiringType'
+                    style={{background:"#fff"}}
+                  >
                   <option selected disabled hidden></option>
-                  <option value='Full Time'>Full Time</option>
-                  <option value='Part Time'>Part Time</option>
+
+                  <option value='Full Time'  onClick={()=>setjobPostDetails({...jobPostDetails,hiringType:"Full Time"})} >Full Time</option>
+
+                  <option value='Contract'  onClick={()=>setjobPostDetails({...jobPostDetails,hiringType:"Contract"})}>Contract</option>
+               
+
+                  <option value='Intern'  onClick={()=>setjobPostDetails({...jobPostDetails,hiringType:"Intern"})}>Intern</option>
+               
+
+                  <option value='Freelancer'  onClick={()=>setjobPostDetails({...jobPostDetails,hiringType:"Freelancer"})}>Freelancer</option>
+               
+               
                 </select>
               </div>
               <div>
@@ -421,13 +428,29 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
               </div>
               <div>
                 <label htmlFor='olocation'>Office Location</label> <InformationIcon className='info-icon' />
-                <input
+              
+                      <select
                   onChange={handleEventChange}
                   value={jobPostDetails.officeLocation}
                   name='officeLocation'
                   id='olocation'
-                  type='text'
-                />
+                  className='select-d'
+                    style={{background:"#fff"}}
+                  >
+                  <option selected disabled hidden></option>
+
+                  <option value='Delhi'  onClick={()=>setjobPostDetails({...jobPostDetails,officeLocation:"Delhi"})} >Delhi</option>
+
+                  <option value='Mumbai'  onClick={()=>setjobPostDetails({...jobPostDetails,officeLocation:"Mumbai"})}>Mumbai</option>
+               
+                  <option value='Chennai'  onClick={()=>setjobPostDetails({...jobPostDetails,officeLocation:"Chennai"})}>Chennai</option>
+                
+               
+                </select>
+
+
+
+
                 <Toggle setPreferences={setPreferences} name='officeLocation' />
               </div>
             </div>
@@ -467,8 +490,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   name='functionalArea'
                   id='fun-area'>
                   <option selected disabled hidden></option>
-                  <option value='Full Time'>Full Time</option>
-                  <option value='Part Time'>Part Time</option>
+                  <option value='Full Time' onClick={()=>setjobPostDetails({...jobPostDetails,functionalArea:"Full Time"})}>Full Time</option>
+                  <option value='Part Time' onClick={()=>setjobPostDetails({...jobPostDetails,functionalArea:"Part Time"})}>Part Time</option>
                 </select>
                 <Toggle setPreferences={setPreferences} name='functionalArea' />
               </div>
@@ -528,6 +551,8 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   name='workCriteria'
                   id='wthtce'
                   type='radio'
+                  onChange={()=>setjobPostDetails({...jobPostDetails,workCriteria:false})}
+                  checked={jobPostDetails.workCriteria===false}
                 />
                 <label htmlFor='wthtce'>Work From Home Till Covid Ends</label> <InformationIcon className='info-icon' />
               </div>
@@ -538,6 +563,9 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                   name='workCriteria'
                   id='wthac'
                   type='radio'
+                  onChange={()=>setjobPostDetails({...jobPostDetails,workCriteria:false})}
+                  checked={jobPostDetails.workCriteria===true}
+
                 />
                 <label htmlFor='wthac'>Work From Home after Covid</label> <InformationIcon className='info-icon' />
               </div>
@@ -573,7 +601,10 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
               />
             </div>
             {/* end of description */}
-            <div className='createjob-bottom'>
+          {console.log(createJobView)}
+            {createJobView && (
+            <>
+                 <div className='createjob-bottom'>
               <div className='createjob-bottom-left'>
                 {generated && <div>Generating Questionnaire.....</div>}
                 {questionsGenerated && (
@@ -674,6 +705,9 @@ const CreateJob = ({ candidate, setJobListView, job }) => {
                 </div>
               </div>
             )}
+              </>
+            )}
+        
           </>
         ) : (
 

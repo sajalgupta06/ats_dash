@@ -62,7 +62,7 @@ const NewSubmissionCard = ({
       </div>
       <div className='newSub-role'>{candidateDetail.headline} &nbsp; &nbsp;</div>
        <div className='newSub-top-active'>Can join in 3 weeks</div>
-       <div className='newSub-role'>&nbsp;&nbsp;- MindTree</div>
+       <div className='newSub-role'>&nbsp;&nbsp;- {job.title}</div>
      
       <div className='newSub-infski'>
         <div className='jobpost-user-info'>

@@ -1,4 +1,4 @@
-let ENV = "production";
+let ENV = "development";
 
 let URL;
 

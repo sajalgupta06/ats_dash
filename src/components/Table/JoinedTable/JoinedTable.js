@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./JoinedTable.scss";
-import whatsapp2 from '../../../asserts/icons/logo-whatsapp2.png'
+import whatsapp2 from '../../../asserts/icons/whatsapp2.png'
 import message from '../../../asserts/icons/logo-message.png'
 import gmail from '../../../asserts/icons/logo-gmail.png'
 
@@ -9,7 +9,27 @@ import gmail from '../../../asserts/icons/logo-gmail.png'
 export default function JoinedTable() {
 
   const data=[];
+
   const [checkBox,setCheckBox] = useState(false)
+  const [listData,setListData] = useState([])
+
+useEffect(() => {
+ console.log(listData)
+}, [listData])
+
+
+const handleAdd=(data)=>{
+
+setListData([...listData,data])
+
+}
+
+const handleRemove=(data)=>{
+let temp=listData.filter(list=>{
+  return list.name!==data.name
+})
+setListData(temp)
+}
 
 
 const dummyData = [{
@@ -21,7 +41,7 @@ const dummyData = [{
 },
 
 {
-  name:"Sajal",
+  name:"Saloni",
   contactNo:"9977859801",
   clientName:"adam Cookie",
   designation:"Employee",
@@ -30,7 +50,7 @@ const dummyData = [{
 
 
 {
-  name:"Sajal",
+  name:"anant",
   contactNo:"9977859801",
   clientName:"adam Cookie",
   designation:"Employee",
@@ -39,7 +59,7 @@ const dummyData = [{
 
 
 {
-  name:"Sajal",
+  name:"mitttal",
   contactNo:"9977859801",
   clientName:"adam Cookie",
   designation:"Employee",
@@ -83,9 +103,10 @@ const dummyData = [{
                 return ( 
                 <>
           <tr className="spacer"></tr>
-            <tr class="table__row" key={index}>
+            <tr class="table__row" key={index} >
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-                <input type="checkbox"  checked={checkBox} />
+                <input type="checkbox"   onChange={(e)=>e.target.checked===true?handleAdd(ele):handleRemove(ele)} />
+               
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
                 {ele.name}
@@ -103,7 +124,14 @@ const dummyData = [{
               {ele.dateofJoining}
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-                Adam Cooke
+               <div style={{display: "flex",
+    justifyContent: "center",
+    alignItems: "center"}}>
+                 <img src={whatsapp2} style={{position: "relative",
+    top: "0.5rem"}}></img>
+                 <img src={message} style={{marginRight:"1.5rem"}}></img>
+                 <img src={gmail}></img>
+               </div>
               </td>
             </tr>
             </>

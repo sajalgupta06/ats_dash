@@ -28,6 +28,7 @@ const Requirement = () => {
   const [batchDelete, setBatchDelete] = useState([]);
   const [reload, setReload] = useState(false);
   const [requirement, setRequirement] = useState({});
+  const [search,setSearch] = useState("")
 
   const [active, setActive] = useState("AllJobs");
 
@@ -166,6 +167,35 @@ const Requirement = () => {
     }
   }, [page, reload, active]);
 
+
+const searchResults=async()=>{
+  console.log(search)
+
+  try {
+    let url =`${URL}/api/dash/requirements/filter`
+      
+
+    const response = await axios({
+      url: url,
+      method: "POST",
+      data:{filter:search},
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log(response);
+
+    if (response.data.status === "success") {
+      const nof = Math.ceil(response.data.totalCount / 6);
+      console.log(nof);
+      setNop(nof);
+      setReqListings(response.data.requirement);
+    }
+
+    console.log(response.data);
+  } catch (err) {
+    console.log(err.response);
+  }
+}
+
   return (
     <div className="requirements">
       {reqView === "r1" && (
@@ -230,7 +260,7 @@ const Requirement = () => {
               <DownArrIcon className="batch-arrow" />
             </button>
             <div className="listings-bar-search">
-              <input type="text" placeholder="Search Job Title, Job ID, Tags" />
+              <input type="text" placeholder="Search Job Title, Job ID, Tags" value={search} onChange={(e)=>setSearch(e.target.value)} onKeyPress={(e)=>e.key==="Enter"?searchResults():""} />
             </div>
           </div>
           <div className="listings-bar-right">

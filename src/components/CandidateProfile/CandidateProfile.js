@@ -123,29 +123,29 @@ const CandidateProfile = ({ setIsCandidateDetail, candidateDetail }) => {
 
 const unlockProfile=async()=>{
 
-  localStorage.setItem("credits",candidateDetail.credits-10)
-  data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
+  // localStorage.setItem("credits",candidateDetail.credits-10)
+  // data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
 
-  // try {
-  //       const response = await axios({
-  //       url: `${URL}/api/dash/app/user/${candidateDetail._id}`,
-  //       method: "PUT",
-  //       data: {locked:false},
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
+  try {
+        const response = await axios({
+        url: `${URL}/api/dash/app/user/${candidateDetail._id}`,
+        method: "PUT",
+        data: {locked:false},
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-  //     if (response.data.status === "success") {
-  //       localStorage.setItem("credits",candidateDetail.credits-10)
-  //       data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
+      if (response.data.status === "success") {
+        localStorage.setItem("credits",candidateDetail.credits-10)
+        data.setCredits({type:"SET_CREDITS",payload:candidateDetail.credits-10})
 
-  //       console.log("Successfullt unlocked");
-  //     }
-  //     console.log(response.data);
-  //     setCandidateProfile({...candidateProfile,locked:false})
+        console.log("Successfullt unlocked");
+      }
+      console.log(response.data);
+      setCandidateProfile({...candidateProfile,locked:false})
    
-  // } catch (err) {
-  //   console.log(err.response);
-  // }
+  } catch (err) {
+    console.log(err.response);
+  }
 }
 
 useEffect(() => {

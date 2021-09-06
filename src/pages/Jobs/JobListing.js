@@ -34,7 +34,8 @@ const JobListing = () => {
   const [batchApprove, setBatchApprove] = useState([]);
   const [reload, setReload] = useState(false);
   const [job, setJob] = useState({});
-
+  const [createJobView, setCreateJobView] = useState(false);
+  const [search,setSearch] = useState("")
 
   const [active,setActive] = useState("AllJobs")
 
@@ -116,7 +117,33 @@ const JobListing = () => {
     }
   };
 
- 
+  const searchResults=async()=>{
+    console.log(search)
+    try {
+
+      let url =`${URL}/api/dash/job/filter`
+
+      const response = await axios({
+        url: url, 
+        method: "POST",
+        data:{filter:search},
+        headers:{"Authorization":`Bearer ${token}`},
+      });
+      console.log(response)
+
+      if (response.data.status === "success") {
+        const nof = Math.ceil(response.data.totalCount / 6);
+        console.log(nof);
+        setNop(nof);
+        setJobListings(response.data.jobs);
+      }
+
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.response);
+    }
+
+  }
 
   const handleBatch = () => {
     const dropdown = document.querySelector(".job-batch-action");
@@ -230,7 +257,10 @@ const JobListing = () => {
             </button>
            
             <div className='listings-bar-search'>
-              <input type='text' placeholder='Search Job Title, Job ID, Tags' />
+              <input type='text' placeholder='Search Job Title, Job ID, Tags'
+               value={search} onChange={(e)=>setSearch(e.target.value)} onKeyPress={(e)=>e.key==="Enter"?searchResults():""}
+              
+              />
             </div>
           </div>
           <div className='listings-bar-right'>
@@ -412,9 +442,12 @@ activeClassName={"page-numbs active"}
     );
   } else if (jobListView === 2) {
     return<> 
-    
-    
-    <CreateJob setJobListView={setJobListView} />;</>
+     <div onClick={() => setJobListView(1)} className='createjob-back'>
+        &larr;
+
+      </div>
+    <CreateJob setJobListView={setJobListView} setCreateJobView={setCreateJobView}  jobListView={jobListView} createJobView={createJobView}/>;</>
+
   } else if (jobListView === 3) {
 
     const handleBatch = () => {
@@ -495,7 +528,7 @@ activeClassName={"page-numbs active"}
             </div>
           </div>
           <div className='listings-bar-right'>
-            <div onClick={() => setJobListView(2)} className='plus'>
+            <div onClick={() => { setCreateJobView(true);setJobListView(2);}} className='plus'>
               <svg
                 width='24'
                 height='24'
@@ -623,6 +656,7 @@ activeClassName={"page-numbs active"}
         setJobListView={setJobListView}
         candidate={true}
         jobListView={jobListView}
+        createJobView={createJobView}
       />
       </>
     );

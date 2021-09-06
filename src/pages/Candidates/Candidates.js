@@ -18,7 +18,6 @@ import ReactPaginate from 'react-paginate'
 import AdvancedSearch from "./AdvancedSearch/AdvancedSearch";
 import axios from "axios";
 import { URL } from "../../config";
-import Datasort from 'react-data-sort'
 
 
 
@@ -34,9 +33,11 @@ const Candidates = () => {
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false);
   const [tagPopup,setTagPopup] = useState(false)
-
+  const [search,setSearch] = useState("")
   const [sort,setSort]=useState("all")
   const [sortType,setSortType]=useState("asc")
+
+
 
   const [filter, setFilter] = useState({
     experienceFrom:"",
@@ -48,7 +49,9 @@ const Candidates = () => {
     include:"",
     exclude:"",
     match:"",
-    date:""
+    date:"",
+    search:"",
+    
   })
 
 
@@ -230,6 +233,13 @@ setBatchDelete([]);
     }
 }, [page, reload,activeTab,sortType,isCandidateDetail])
 
+
+
+const searchResults=async()=>{
+  console.log(search)
+
+ 
+}
 
 
   if (isCandidateDetail) 
@@ -477,51 +487,51 @@ setBatchDelete([]);
               </div>
               <div className="filter-dropdown6">
                 <div className="check-form">
-                  <input id="c-in-o" type="checkbox" />
+                  <input id="c-in-o" type="checkbox" checked={filter.date==="all"} onClick={()=>setFilter({...filter,date:"all"})}/>
                   <label htmlFor="c-in-o">All</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-oo" type="checkbox" />
+                  <input id="r-in-oo" type="checkbox"  checked={filter.date==="1"} onClick={()=>setFilter({...filter,date:"1"})}/>
                   <label htmlFor="r-in-oo">1 Day</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox"  checked={filter.date==="3"} onClick={()=>setFilter({...filter,date:"3"})}/>
                   <label htmlFor="r-in-o">3 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox"  checked={filter.date==="7"} onClick={()=>setFilter({...filter,date:"7"})}/>
                   <label htmlFor="r-in-o">7 Days</label>
                 </div>
-                <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                <div className="check-form" >
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="15"} onClick={()=>setFilter({...filter,date:"15"})} />
                   <label htmlFor="r-in-o">15 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="30"} onClick={()=>setFilter({...filter,date:"30"})} />
                   <label htmlFor="r-in-o">30 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox"  checked={filter.date==="60"} onClick={()=>setFilter({...filter,date:"60"})}/>
                   <label htmlFor="r-in-o">2 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="90"} onClick={()=>setFilter({...filter,date:"90"})} />
                   <label htmlFor="r-in-o">3 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="180"} onClick={()=>setFilter({...filter,date:"180"})}/>
                   <label htmlFor="r-in-o">6 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="270"} onClick={()=>setFilter({...filter,date:"270"})} />
                   <label htmlFor="r-in-o">9 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="365"} onClick={()=>setFilter({...filter,date:"365"})} />
                   <label htmlFor="r-in-o">1 Year</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" />
+                  <input id="r-in-o" type="checkbox" checked={filter.date==="1000"} onClick={()=>setFilter({...filter,date:"1000"})} />
                   <label htmlFor="r-in-o">More Than 1 Year </label>
                 </div>
               </div>
@@ -637,7 +647,9 @@ setBatchDelete([]);
               <div className="listings-bar-search">
                 <input
                   type="text"
-                  placeholder="Search Job Title, Job ID, Tags"
+                  placeholder="Search Candidate Title, Candidate ID, Tags"
+                  value={filter.search} onChange={(e)=>setFilter({...filter,search:e.target.value})} onKeyPress={(e)=>e.key==="Enter"?handleFilter():""}
+
                 />
               </div>
               <button

@@ -115,7 +115,7 @@ const RequirementCandidate = ({
       
         <div className='requirement-btns'>
           <div className='requirement-btns-one'>
-            <div className='btn btn-purple'>0 Matching</div>
+            <div className='btn btn-purple'>{totlCan} Matching</div>
             <div className='btn btn-sapire'>{totlUr} Under Review</div>
             <div className='btn btn-yellow'>{totlSub} Client Submitted</div>
             <div className='btn btn-cool'>{totlJoi} Joined</div>
