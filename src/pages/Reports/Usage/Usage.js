@@ -1,9 +1,11 @@
 import React from 'react'
+import UseReport from './UseReport'
 
-export default function Usage() {
+function Usage() {
     return (
         <div>
-            Usage
+           <UseReport/>
         </div>
     )
 }
+export default Usage

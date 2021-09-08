@@ -1,0 +1,170 @@
+.Report_Quick{
+    position: absolute;
+width: 129px;
+height: 30px;
+left:41px;
+top: 123px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+color: #000000;
+
+
+}
+
+.Report_Custom{
+    position: absolute;
+width: 200px;
+height: 30px;
+left: 195px;
+top: 123px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+
+text-align: center;
+
+color: #000000;
+}
+.Report_Automail{
+    position: absolute;
+width: 200px;
+height: 30px;
+left: 395px;
+top: 123px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height */
+
+text-align: center;
+
+color: #000000;
+}
+.Report_files{
+    position: absolute;
+    width: 71px;
+    height: 24px;
+    left : 49px;
+    top: 9px;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    
+    
+    color: #2186F2;
+    
+
+}
+.Report_Icondow{
+    position : absolute;
+    color : #2186F2;
+    left: 5.97%;
+    right: 74.81%;
+    top: 19.48%;
+    padding-left : 6px;
+
+background: #FFFFFF;
+border: 1px solid #EBE9E9;
+box-sizing: border-box;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.06);
+border-radius: 79px;
+
+
+}
+.Excel_contain{
+    position: absolute;
+    width: 145px;
+    height: 49px;
+    justify-self: end;
+    
+    align-items: center;
+    left : 76%;
+    top: 123px;
+    
+    background: #FFFFFF;
+    border: 1px solid #EBE9E9;
+    box-sizing: border-box;
+    border-radius: 46px;
+    
+}
+.Report_Filter{
+    position: absolute;
+    width: 145px;
+    height: 49px;
+    left: calc(45% - 145px/2 + 840.5px);
+    top: 123px;
+    
+    background: #FFFFFF;
+    border: 1px solid #EBE9E9;
+    box-sizing: border-box;
+    border-radius: 46px;
+}
+
+.Report_line{
+    position: absolute;
+width: 190px;
+height: 0px;
+left: 15px;
+top: 167px;
+background-color: #2186F2;
+border: 3px solid #2186F2;
+}
+.container{
+    margin-top : 83px;
+}
+.table__cell {
+    max-width: 160px;
+}
+.btn-group{
+  
+        margin-right: 0;
+        border-radius: 0;
+    
+}
+.listings-bar-right-filter{
+   
+    position: static;
+width: 145px;
+height: 49px;
+position: absolute;
+width: 145px;
+height: 49px;
+left : 88%;
+top: 263px;
+
+background: #FFFFFF;
+border: 1px solid #EBE9E9;
+box-sizing: border-box;
+border-radius: 46px;
+top: 123px;
+color: #2186F2;
+background: #FFFFFF;
+border: 1px solid #EBE9E9;
+box-sizing: border-box;
+border-radius: 46px;
+}
+.job-sort-batch-action-rel{
+    color: #2186F2;
+    font-size: 16px;
+}
+.job-sort-batch-visible{
+    width : 15rem;
+    height : 15rem;
+    color : black;
+}
