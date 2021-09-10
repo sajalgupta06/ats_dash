@@ -7,6 +7,10 @@ import "./CreateJob.scss";
 import JobCandidate from "../JobCandidate/JobCandidate";
 import SharePopUp from "../SharePopUp/SharePopUp";
 import Toggle from "../Toggle/Toggle";
+// import fs  from'fs'
+// import pdf from'pdf-parse'
+
+
 
 // icons
 import { PlusIcon, InformationIcon } from "./../../asserts/icons/index";
@@ -24,6 +28,7 @@ const CreateJob = ({ candidate, setJobListView, setCreateJobView,jobListView,job
   const [preferences, setPreferences] = useState({});
   const [jobSuccess, setJobSuccess] = useState(false);
 
+  
   const [jobPostDetails, setjobPostDetails] = useState({
     jobId: "",
     title: "",
@@ -55,6 +60,9 @@ const CreateJob = ({ candidate, setJobListView, setCreateJobView,jobListView,job
     companyDesc: "",
     jobQuestions: [],
   });
+
+
+
 
 
     useEffect(() => {
@@ -141,7 +149,8 @@ const CreateJob = ({ candidate, setJobListView, setCreateJobView,jobListView,job
         <div className='createjob-doc'>
           <div className='createjob-doc-add'>
             <PlusIcon />
-            <span>Add Doc</span>
+            <label htmlFor="pdfUpload">Add Doc</label>
+            <input hidden  type='file' id="pdfUpload" label='Upload' accept='.pdf' ></input>
           </div>
           <div>Active Job</div>
         </div>

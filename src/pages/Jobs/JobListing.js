@@ -168,7 +168,7 @@ const JobListing = () => {
     const getJobListings = async () => {
       const token = localStorage.getItem("token");
 
-      try {
+      try { 
 
         let url = active==="AllJobs"?`${URL}/api/dash/jobs?page=${page}&limit=${6}`:active==="ActiveJobs"?`${URL}/api/dash/jobs?page=${page}&limit=${6}&active=1`:active==="InactiveJobs"?`${URL}/api/dash/jobs?page=${page}&limit=${6}&active=0`:""
  

@@ -2,13 +2,13 @@ import React from "react";
 import "./MessageBox.scss";
 import Placeholder from "./../../asserts/images/placeholder.jpg";
 
-const MessageBox = () => {
+const MessageBox = ({candidate,setCurrentUser }) => {
   return (
-    <div className='message-box'>
+    <div className='message-box' onClick={()=>{setCurrentUser(candidate)}}>
       <div className='message-box-top'>
-        <img src={Placeholder} alt='placeholder ' />
+        <img src={candidate.profilePicture}  />
         <div className='message-box-nt'>
-          <div className='message-box-name'>Rachel Poppins</div>
+          <div className='message-box-name'>{candidate.name}</div>
           <div className='message-box-time'>5 minutes ago</div>
         </div>
       </div>

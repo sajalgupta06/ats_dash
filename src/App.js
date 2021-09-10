@@ -46,11 +46,14 @@ export function App() {
  const history = useHistory()
 
     const token = localStorage.getItem("token")
-    if(!token){
-      history.push('/')
-    }  
+  //   if(!token){
+  //     console.log(history.location.pathname)
+  //     if(history.location.pathname!=="/forgot-password" && history.location.pathname!=="/reset-password/:id*" ){
+  //       history.push('/')
+  //   }  
+  
 
-   
+  // }
     
   const [data,dispatch] = useReducer(reducer,iState)
   
@@ -62,7 +65,7 @@ export function App() {
       <Switch>
         <Route exact path="/" component={Auth} />
                 <Route exact path="/forgot-password" component={ForgotPassword} />
-                <Route exact path="/reset-password" component={ResetPassword} />
+                <Route exact path="/reset-password/:id" component={ResetPassword} />
         <div style={{ height: "100%", backgroundColor: "#2186F2" }}>
           <Sidebar setHeading={setHeading} />
           <section className="hero-container">

@@ -3,6 +3,7 @@ import Hero from "./../../asserts/images/hero.jpg";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import {  URL, ENV } from "../../config";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
@@ -13,13 +14,25 @@ const ForgotPassword = (props) => {
 
   // handelForgotPassword
   const handelForgotPassword = async () => {
+
     try {
+      
+      let reseturl;
+      if(ENV==="development"){
+        reseturl = 'http://localhost:3000'
+      }
+      else if(ENV==="production"){
+        reseturl = 'https://ats-dash.vercel.app/'
+      }
+   
+
       const response = await axios({
-        // url: "http://localhost:8000/api/dash/forgotPassword",
-        url: "https://job-market-node.codedeployment.tk/api/dash/forgotPassword",
+       
+        url: `${URL}/api/dash/forgotPassword`,
         method: "POST",
         data: {
           email,
+          reseturl
         },
       });
       console.log(response.data.data);

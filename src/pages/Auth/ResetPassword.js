@@ -3,6 +3,7 @@ import Hero from "./../../asserts/images/hero.jpg";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { URL } from "../../config";
 
 const ResetPassword = (props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -10,10 +11,36 @@ const ResetPassword = (props) => {
 
   const history = useHistory();
 
-const resetPassword=()=>{
+  console.log(props.match.params.id)
+
+const resetPassword=async()=>{
     if(password!=confirmPassword)return
+
+    try {
+
+      let url =`${URL}/api/dash/resetPassword/${props.match.params.id}`
+
+      const response = await axios({
+        url: url, 
+        method: "POST",
+        data:{password},
+      });
+      console.log(response)
+
+      if (response.data.status === "success") {
+        
+        console.log("Password Reset")
+        history.push('/')
+      }
+
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.response);
+    }
+
+
+
    
-    console.log("Password Reset")
 
 }
 
@@ -23,7 +50,7 @@ const resetPassword=()=>{
         <img className='hero-img' src={Hero} alt='hero' />
       </div>
       <div className='right'>
-        <h1 className='primary-heading'>Jobs Market.AI</h1>
+        <h1 className='primary-heading'>Jobs Territory</h1>
 
      
 

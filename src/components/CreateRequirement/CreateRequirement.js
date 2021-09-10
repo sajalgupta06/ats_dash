@@ -3,6 +3,7 @@ import "./CreateRequirement.scss";
 import { InformationIcon } from "../../asserts/icons/index";
 import Toggle from "../Toggle/Toggle";
 import axios from "axios";
+import { URL } from "../../config";
 
 const CreateRequirement = ({setReqView}) => {
 
@@ -48,8 +49,7 @@ const CreateRequirement = ({setReqView}) => {
     const token = localStorage.getItem("token");
 
      try {
-        // const url= 'http://localhost:8000/api/dash/requirements';
-        const url= 'https://job-market-node.codedeployment.tk/api/dash/requirements';
+        const url= `${URL}/api/dash/requirements`;
 
         const response = await axios({
             

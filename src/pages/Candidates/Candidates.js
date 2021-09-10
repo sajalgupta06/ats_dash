@@ -1,10 +1,6 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Candidates.scss";
-import {
-  DownArrIcon,
-  Filter2Icon,
-  FilterIcon,
-} from "../../asserts/icons";
+import { DownArrIcon, Filter2Icon, FilterIcon } from "../../asserts/icons";
 import NewCandidate from "../../components/NewCandidate/NewCandidate";
 import CandidateProfile from "../../components/CandidateProfile/CandidateProfile";
 import Delete from "./../../asserts/images/delete.png";
@@ -13,13 +9,11 @@ import updateField from "./../../asserts/icons/updateField.png";
 import publish from "./../../asserts/icons/publish.png";
 import addToFolder from "./../../asserts/icons/addToFolder.png";
 import tagCandidate from "./../../asserts/icons/tagCandidate.png";
-import TagPopup from '../../components/TagPopup/TagPopup';
-import ReactPaginate from 'react-paginate'
+import TagPopup from "../../components/TagPopup/TagPopup";
+import ReactPaginate from "react-paginate";
 import AdvancedSearch from "./AdvancedSearch/AdvancedSearch";
 import axios from "axios";
 import { URL } from "../../config";
-
-
 
 const Candidates = () => {
   const [isCandidateDetail, setIsCandidateDetail] = useState(false);
@@ -32,29 +26,32 @@ const Candidates = () => {
   const [nop, setNop] = useState(0);
   const [page, setPage] = useState(1);
   const [reload, setReload] = useState(false);
-  const [tagPopup,setTagPopup] = useState(false)
-  const [search,setSearch] = useState("")
-  const [sort,setSort]=useState("all")
-  const [sortType,setSortType]=useState("asc")
-
-
+  const [tagPopup, setTagPopup] = useState(false);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("all");
+  const [sortType, setSortType] = useState("asc");
 
   const [filter, setFilter] = useState({
-    experienceFrom:"",
-    experienceTo:"",
-    workPreference:"",
-    currentLocation:"",
-    prefferedLocation:"",
-    skils:"",
-    include:"",
-    exclude:"",
-    match:"",
-    date:"",
-    search:"",
-    
-  })
-
-
+    experienceFrom: "",
+    experienceTo: "",
+    workPreference: "",
+    currentLocation: "",
+    prefferedLocation: "",
+    skils: "",
+    include: "",
+    exclude: "",
+    match: "",
+    date: "",
+    search: "",
+    companyInclude:"",
+    companyExclude:"",
+    studyInclude:"",
+    studyExclude:"",
+    activity:"",
+    ctcFrom:"",
+    ctcTo:"",
+    notice:"",
+  });
 
   const handleDropdown = (cs) => {
     const dropdown = document.querySelector(`.${cs}`);
@@ -62,9 +59,9 @@ const Candidates = () => {
   };
 
   function handlePageClick({ selected: selectedPage }) {
-    console.log(selectedPage)
-    setPage(selectedPage+1);
-}
+    console.log(selectedPage);
+    setPage(selectedPage + 1);
+  }
 
   const handleBatch = () => {
     const dropdown = document.querySelector(".candi-batch-action");
@@ -82,178 +79,145 @@ const Candidates = () => {
     batchArrow.classList.toggle("job-sort-batch-rotate");
   };
 
+  const handleFilter = () => {
+    console.log(filter);
 
-const handleFilter=()=>{
-console.log(filter)
+    const getCandidateListing = async () => {
+      const token = localStorage.getItem("token");
 
-  const getCandidateListing=async()=>{
+      try {
+        const response = await axios({
+          url: `${URL}/api/dash/app/users-filter?page=${1}&limit=${6}`,
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          data: filter,
+        });
 
-  
-    const token = localStorage.getItem("token");
-  
-    try {
-      const response = await axios({
-       
-        url: `${URL}/api/dash/app/users-filter?page=${1}&limit=${6}`,
-        method: "POST",
-        headers:{"Authorization":`Bearer ${token}`},
-        data:filter
-       
-      });
-    
-      if (response.data.status === "success") {
-
-        console.log(response)
-        const nof = Math.ceil(response.data.totalCount / 6);
-        console.log(nof);
-        setNop(nof);
-        setCandidateList(response.data.users)
-        setBatchDelete([])
+        if (response.data.status === "success") {
+          console.log(response);
+          const nof = Math.ceil(response.data.totalCount / 6);
+          console.log(nof);
+          setNop(nof);
+          setCandidateList(response.data.users);
+          setBatchDelete([]);
+        }
+      } catch (err) {
+        console.log(err);
       }
-  
+    };
+
+    getCandidateListing();
+  };
+
+  const tagCandidatefunc = () => {
+    if (batchDelete.length > 0) {
+      setTagPopup(true);
     }
-  
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
 
-  getCandidateListing()
-
-}
-
-const tagCandidatefunc=()=>{
-  if(batchDelete.length>0){
-
-    setTagPopup(true)
-  }
-}
-
-
-const compareObjects = (object1,object2,key,type)=>{
-  const obj1 = parseInt(object1[key])
-  const obj2 = parseInt(object2[key])
-if(type==="desc")
-{
-  if (obj1 < obj2) {
-    return 1
-  }
-  if (obj1 > obj2) {
-    return -1
-  }
-  return 0
-}
-if(type==="asc")
-{
-  if (obj1 < obj2) {
-    return -1
-  }
-  if (obj1 > obj2) {
-    return 1
-  }
-  return 0
-}
-}
-
-useEffect(() => {
-
-  // setCandidateList(candidateList)
-  console.log(candidateList)
-
-}, [candidateList])
-
-
-
-
-const sorting=(type)=>{
-
-  //   setSortState( candidateList.sort((user1,user2)=>{
-  //   return compareObjects(user1,user2,"experience",type)
-  // })
-  //   )
-  // console.log(candidateList)
-
-}
-
-
-
-useEffect(() => {
-
-  const getCandidateListing=async()=>{
-
-  
-  const token = localStorage.getItem("token");
-
-  try {
-    let url;
-    if(activeTab==="ActiveCandidates"){
-      url=`${URL}/api/dash/app/users?page=${page}&limit=${6}&active=true${sort==="all"?"":`&sort=${sort}`}`
-    }
-    if(activeTab==="InactiveCandidates"){
-      url=`${URL}/api/dash/app/users?page=${page}&limit=${6}&active=false${sort==="all"?"":`sort=${sort}`}`
-    }
-    else{
-      url=`${URL}/api/dash/app/users?page=${page}&limit=${6}${sort==="all"?"":`&sort=${sort}`}`
-
-    }
-
-
-    const response = await axios({
-     
-      url: url,
-      method: "GET",
-      headers:{"Authorization":`Bearer ${token}`},
-     
-    });
-    console.log(response)
-    if (response.data.status === "success") {
-      const nof = Math.ceil(response.data.totalCount / 6);
-      console.log(nof);
-      setNop(nof);
-      if(sortType==="desc")
-      {
-        
-        response.data.users.reverse()
+  const compareObjects = (object1, object2, key, type) => {
+    const obj1 = parseInt(object1[key]);
+    const obj2 = parseInt(object2[key]);
+    if (type === "desc") {
+      if (obj1 < obj2) {
+        return 1;
       }
-      setCandidateList(response.data.users)
-      setBatchDelete([])
-
+      if (obj1 > obj2) {
+        return -1;
+      }
+      return 0;
     }
+    if (type === "asc") {
+      if (obj1 < obj2) {
+        return -1;
+      }
+      if (obj1 > obj2) {
+        return 1;
+      }
+      return 0;
+    }
+  };
 
-  }
+  useEffect(() => {
+    // setCandidateList(candidateList)
+    console.log(candidateList);
+  }, [candidateList]);
 
-  catch (err) {
-    console.log(err)
-  }
-}
+  const sorting = (type) => {
+    //   setSortState( candidateList.sort((user1,user2)=>{
+    //   return compareObjects(user1,user2,"experience",type)
+    // })
+    //   )
+    // console.log(candidateList)
+  };
 
-setBatchDelete([]);
+  useEffect(() => {
+    const getCandidateListing = async () => {
+      const token = localStorage.getItem("token");
+
+      try {
+        let url;
+        if (activeTab === "ActiveCandidates") {
+          url = `${URL}/api/dash/app/users?page=${page}&limit=${6}&active=true${
+            sort === "all" ? "" : `&sort=${sort}`
+          }`;
+        }
+        if (activeTab === "InactiveCandidates") {
+          url = `${URL}/api/dash/app/users?page=${page}&limit=${6}&active=false${
+            sort === "all" ? "" : `sort=${sort}`
+          }`;
+        } else {
+          url = `${URL}/api/dash/app/users?page=${page}&limit=${6}${
+            sort === "all" ? "" : `&sort=${sort}`
+          }`;
+        }
+
+        const response = await axios({
+          url: url,
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(response);
+        if (response.data.status === "success") {
+          const nof = Math.ceil(response.data.totalCount / 6);
+          console.log(nof);
+          setNop(nof);
+          if (sortType === "desc") {
+            response.data.users.reverse();
+          }
+          setCandidateList(response.data.users);
+          setBatchDelete([]);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    setBatchDelete([]);
     if (page >= 1) {
       getCandidateListing();
     }
-}, [page, reload,activeTab,sortType,isCandidateDetail])
+  }, [page, reload, activeTab, sortType, isCandidateDetail]);
 
+  const searchResults = async () => {
+    console.log(search);
+  };
 
-
-const searchResults=async()=>{
-  console.log(search)
-
- 
-}
-
-
-  if (isCandidateDetail) 
-  {
+  if (isCandidateDetail) {
     console.log("hello");
-    return <CandidateProfile candidateDetail={candidateDetail} setIsCandidateDetail={setIsCandidateDetail} />;
+    return (
+      <CandidateProfile
+        candidateDetail={candidateDetail}
+        setIsCandidateDetail={setIsCandidateDetail}
+      />
+    );
   }
 
   if (advancedSearch) {
-    console.log("hello");
-    return <AdvancedSearch  setAdvencedSearch={setAdvencedSearch}></AdvancedSearch>
-  }
-
-  else {
+    return (
+      <AdvancedSearch setAdvencedSearch={setAdvencedSearch}></AdvancedSearch>
+    );
+  } else {
     return (
       <div className="candidates-container">
         {/* candidates-left */}
@@ -280,7 +244,6 @@ const searchResults=async()=>{
                     style={{ marginTop: "0" }}
                     className="form-label"
                     htmlFor="from"
-                   
                   >
                     From
                   </label>
@@ -291,7 +254,9 @@ const searchResults=async()=>{
                       id="from"
                       type="number"
                       value={filter.experienceFrom}
-                      onChange={(e)=>setFilter({...filter,experienceFrom:e.target.value})}
+                      onChange={(e) =>
+                        setFilter({ ...filter, experienceFrom: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -310,9 +275,9 @@ const searchResults=async()=>{
                     id="too"
                     type="number"
                     value={filter.experienceTo}
-
-                    onChange={(e)=>setFilter({...filter,experienceTo:e.target.value})}
-
+                    onChange={(e) =>
+                      setFilter({ ...filter, experienceTo: e.target.value })
+                    }
                   />
                 </div>
               </div>
@@ -324,36 +289,44 @@ const searchResults=async()=>{
               <div
                 onClick={() => handleDropdown("filter-dropdown2")}
                 className="candidates-left-filter-box-heading"
-            
               >
                 <div> - Location</div>
                 <DownArrIcon />
               </div>
               <div className="filter-dropdown2">
                 <div className="check-form">
-                  <input id="c-in-o" type="checkbox"
-                      checked={filter.workPreference==="in-Office"}
-
-                      onChange={(e)=>setFilter({...filter,workPreference:"in-Office"})}
-
+                  <input
+                    id="c-in-o"
+                    type="checkbox"
+                    checked={filter.workPreference === "in-Office"}
+                    onChange={(e) =>
+                      setFilter({ ...filter, workPreference: "in-Office" })
+                    }
                   />
                   <label htmlFor="c-in-o">
                     In-Office (Remote During Covid-19)
                   </label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-oo" type="checkbox"
-                   checked={filter.workPreference==="both"}
-
-                   onChange={(e)=>setFilter({...filter,workPreference:"both"})} />
+                  <input
+                    id="r-in-oo"
+                    type="checkbox"
+                    checked={filter.workPreference === "both"}
+                    onChange={(e) =>
+                      setFilter({ ...filter, workPreference: "both" })
+                    }
+                  />
                   <label htmlFor="r-in-oo">Remote Or In-Office</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" 
-
-                   checked={filter.workPreference==="remote"}
-
-                      onChange={(e)=>setFilter({...filter,workPreference:"remote"})}/>
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.workPreference === "remote"}
+                    onChange={(e) =>
+                      setFilter({ ...filter, workPreference: "remote" })
+                    }
+                  />
                   <label htmlFor="r-in-o">Remote Only</label>
                 </div>
                 <label className="form-label" htmlFor="from">
@@ -366,7 +339,9 @@ const searchResults=async()=>{
                   id="from"
                   type="text"
                   value={filter.currentLocation}
-                  onChange={(e)=>setFilter({...filter,currentLocation:e.target.value})}
+                  onChange={(e) =>
+                    setFilter({ ...filter, currentLocation: e.target.value })
+                  }
                 />
                 <label className="form-label" htmlFor="too">
                   Location desired by Candidate
@@ -378,7 +353,9 @@ const searchResults=async()=>{
                   id="too"
                   type="text"
                   value={filter.prefferedLocation}
-                  onChange={(e)=>setFilter({...filter,prefferedLocation:e.target.value})}
+                  onChange={(e) =>
+                    setFilter({ ...filter, prefferedLocation: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -400,7 +377,9 @@ const searchResults=async()=>{
                   placeholder="Type a Skill"
                   type="text"
                   value={filter.skills}
-                  onChange={(e)=>setFilter({...filter,skills:e.target.value})}
+                  onChange={(e) =>
+                    setFilter({ ...filter, skills: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -427,7 +406,9 @@ const searchResults=async()=>{
                   type="text"
                   type="text"
                   value={filter.inclulde}
-                  onChange={(e)=>setFilter({...filter,include:e.target.value})}
+                  onChange={(e) =>
+                    setFilter({ ...filter, include: e.target.value })
+                  }
                 />
 
                 <label className="form-label" htmlFor="for-exclude">
@@ -440,7 +421,9 @@ const searchResults=async()=>{
                   id="for-exclude"
                   type="text"
                   value={filter.exclude}
-                  onChange={(e)=>setFilter({...filter,exclude:e.target.value})}
+                  onChange={(e) =>
+                    setFilter({ ...filter, exclude: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -487,78 +470,485 @@ const searchResults=async()=>{
               </div>
               <div className="filter-dropdown6">
                 <div className="check-form">
-                  <input id="c-in-o" type="checkbox" checked={filter.date==="all"} onClick={()=>setFilter({...filter,date:"all"})}/>
+                  <input
+                    id="c-in-o"
+                    type="checkbox"
+                    checked={filter.date === "all"}
+                    onClick={() => setFilter({ ...filter, date: "all" })}
+                  />
                   <label htmlFor="c-in-o">All</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-oo" type="checkbox"  checked={filter.date==="1"} onClick={()=>setFilter({...filter,date:"1"})}/>
+                  <input
+                    id="r-in-oo"
+                    type="checkbox"
+                    checked={filter.date === "1"}
+                    onClick={() => setFilter({ ...filter, date: "1" })}
+                  />
                   <label htmlFor="r-in-oo">1 Day</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox"  checked={filter.date==="3"} onClick={()=>setFilter({...filter,date:"3"})}/>
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "3"}
+                    onClick={() => setFilter({ ...filter, date: "3" })}
+                  />
                   <label htmlFor="r-in-o">3 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox"  checked={filter.date==="7"} onClick={()=>setFilter({...filter,date:"7"})}/>
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "7"}
+                    onClick={() => setFilter({ ...filter, date: "7" })}
+                  />
                   <label htmlFor="r-in-o">7 Days</label>
                 </div>
-                <div className="check-form" >
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="15"} onClick={()=>setFilter({...filter,date:"15"})} />
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "15"}
+                    onClick={() => setFilter({ ...filter, date: "15" })}
+                  />
                   <label htmlFor="r-in-o">15 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="30"} onClick={()=>setFilter({...filter,date:"30"})} />
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "30"}
+                    onClick={() => setFilter({ ...filter, date: "30" })}
+                  />
                   <label htmlFor="r-in-o">30 Days</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox"  checked={filter.date==="60"} onClick={()=>setFilter({...filter,date:"60"})}/>
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "60"}
+                    onClick={() => setFilter({ ...filter, date: "60" })}
+                  />
                   <label htmlFor="r-in-o">2 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="90"} onClick={()=>setFilter({...filter,date:"90"})} />
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "90"}
+                    onClick={() => setFilter({ ...filter, date: "90" })}
+                  />
                   <label htmlFor="r-in-o">3 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="180"} onClick={()=>setFilter({...filter,date:"180"})}/>
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "180"}
+                    onClick={() => setFilter({ ...filter, date: "180" })}
+                  />
                   <label htmlFor="r-in-o">6 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="270"} onClick={()=>setFilter({...filter,date:"270"})} />
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "270"}
+                    onClick={() => setFilter({ ...filter, date: "270" })}
+                  />
                   <label htmlFor="r-in-o">9 Months</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="365"} onClick={()=>setFilter({...filter,date:"365"})} />
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "365"}
+                    onClick={() => setFilter({ ...filter, date: "365" })}
+                  />
                   <label htmlFor="r-in-o">1 Year</label>
                 </div>
                 <div className="check-form">
-                  <input id="r-in-o" type="checkbox" checked={filter.date==="1000"} onClick={()=>setFilter({...filter,date:"1000"})} />
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.date === "1000"}
+                    onClick={() => setFilter({ ...filter, date: "1000" })}
+                  />
                   <label htmlFor="r-in-o">More Than 1 Year </label>
                 </div>
               </div>
             </div>
             {/* end of filter fifth */}
-         
-            <div style={{marginTop:"10rem"}}>
-                  <div style={{ minWidth: "0rem", display: "inline-block" ,position:"inherit",top:"0rem"}}>
-                    <div
-                      className="btn btn-w btn-cancel btn-active"
-                      style={{ minWidth: "0rem", display: "inline-block" }}
-                    >
-                      Cancel
-                    </div>
-                  </div>
 
-                  <div style={{ minWidth: "0rem", display: "inline-block" }}>
-                    <button className="btn btn-w btn-inactive reply"
-                    onClick={()=>{handleFilter()}}>
-                  Refine Filter
-                    </button>
+            {/* sixth Filter */}
+
+            <div className="candidates-left-filter-box">
+              <div
+                onClick={() => handleDropdown("filter-dropdown7")}
+                className="candidates-left-filter-box-heading"
+              >
+                <div>- Company</div>
+                <DownArrIcon />
+              </div>
+              <div className="filter-dropdown7">
+                <label className="form-label" htmlFor="for-include">
+                  Include
+                </label>
+                <input
+                  style={{ width: "100%" }}
+                  className="form-input"
+                  placeholder="Type a company name"
+                  id="for-include"
+                  type="text"
+                  type="text"
+                  value={filter.companyInclude}
+                  onChange={(e) =>
+                    setFilter({ ...filter, companyInclude: e.target.value })
+                  }
+                />
+
+                <label className="form-label" htmlFor="for-exclude">
+                  Exclude
+                </label>
+                <input
+                  style={{ width: "100%" }}
+                  className="form-input"
+                  placeholder="Type a company name"
+                  id="for-exclude"
+                  type="text"
+                  value={filter.companyExclude}
+                  onChange={(e) =>
+                    setFilter({ ...filter, companyExclude: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* end of  sixth Filter */}
+
+            {/* seventh Filter */}
+            <div className="candidates-left-filter-box">
+              <div
+                onClick={() => handleDropdown("filter-dropdown8")}
+                className="candidates-left-filter-box-heading"
+              >
+                <div>-Studied At</div>
+                <DownArrIcon />
+              </div>
+              <div className="filter-dropdown8">
+                <label className="form-label" htmlFor="for-include">
+                  Include
+                </label>
+                <input
+                  style={{ width: "100%" }}
+                  className="form-input"
+                  placeholder="Type  institute name"
+                  id="for-include"
+                  type="text"
+                  type="text"
+                  value={filter.studyInclude}
+                  onChange={(e) =>
+                    setFilter({ ...filter, studyInclude: e.target.value })
+                  }
+                />
+
+                <label className="form-label" htmlFor="for-exclude">
+                  Exclude
+                </label>
+                <input
+                  style={{ width: "100%" }}
+                  className="form-input"
+                  placeholder="Type a institute name"
+                  id="for-exclude"
+                  type="text"
+                  value={filter.studyExclude}
+                  onChange={(e) =>
+                    setFilter({ ...filter, studyExclude: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            {/* end of  seventh Filter */}
+
+            {/* eight filter */}
+            <div className="candidates-left-filter-box">
+              <div
+                onClick={() => handleDropdown("filter-dropdown9")}
+                className="candidates-left-filter-box-heading"
+              >
+                <div>- Candidate Activity </div>
+                <DownArrIcon />
+              </div>
+              <div className="filter-dropdown9">
+                <div className="check-form">
+                  <input
+                    id="c-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "all"}
+                    onClick={() => setFilter({ ...filter, activity: "all" })}
+                  />
+                  <label htmlFor="c-in-o">All</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-oo"
+                    type="checkbox"
+                    checked={filter.activity === "1"}
+                    onClick={() => setFilter({ ...filter, activity: "1" })}
+                  />
+                  <label htmlFor="r-in-oo">1 Day</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "3"}
+                    onClick={() => setFilter({ ...filter, activity: "3" })}
+                  />
+                  <label htmlFor="r-in-o">3 Days</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "7"}
+                    onClick={() => setFilter({ ...filter, activity: "7" })}
+                  />
+                  <label htmlFor="r-in-o">7 Days</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "15"}
+                    onClick={() => setFilter({ ...filter, activity: "15" })}
+                  />
+                  <label htmlFor="r-in-o">15 Days</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "30"}
+                    onClick={() => setFilter({ ...filter, activity: "30" })}
+                  />
+                  <label htmlFor="r-in-o">30 Days</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "60"}
+                    onClick={() => setFilter({ ...filter, activity: "60" })}
+                  />
+                  <label htmlFor="r-in-o">2 Months</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "90"}
+                    onClick={() => setFilter({ ...filter, activity: "90" })}
+                  />
+                  <label htmlFor="r-in-o">3 Months</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "180"}
+                    onClick={() => setFilter({ ...filter, activity: "180" })}
+                  />
+                  <label htmlFor="r-in-o">6 Months</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "270"}
+                    onClick={() => setFilter({ ...filter, activity: "270" })}
+                  />
+                  <label htmlFor="r-in-o">9 Months</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "365"}
+                    onClick={() => setFilter({ ...filter, activity: "365" })}
+                  />
+                  <label htmlFor="r-in-o">1 Year</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.activity === "1000"}
+                    onClick={() => setFilter({ ...filter, activity: "1000" })}
+                  />
+                  <label htmlFor="r-in-o">More Than 1 Year </label>
+                </div>
+              </div>
+            </div>
+            {/* end of eight filter */}
+
+            {/* filter nine */}
+            <div className="candidates-left-filter-box">
+              <div
+                onClick={() => handleDropdown("filter-dropdown10")}
+                className="candidates-left-filter-box-heading"
+              >
+                <div> - Expected CTC</div>
+                <DownArrIcon />
+              </div>
+              <div className="filter-dropdown10">
+                <div className="form-group">
+                  <label
+                    style={{ marginTop: "0" }}
+                    className="form-label"
+                    htmlFor="from"
+                  >
+                    From
+                  </label>
+                  <div className="input-box">
+                    <input
+                      className="form-input"
+                      placeholder="0 years"
+                      id="from"
+                      type="number"
+                      value={filter.ctcFrom}
+                      onChange={(e) =>
+                        setFilter({ ...filter, ctcFrom: e.target.value })
+                      }
+                    />
                   </div>
                 </div>
-          
-          </div>
+                <div className="form-group">
+                  <label
+                    style={{ marginTop: "0" }}
+                    className="form-label"
+                    htmlFor="too"
+                    type="number"
+                  >
+                    To
+                  </label>
+                  <input
+                    className="form-input"
+                    placeholder="15 years"
+                    id="too"
+                    type="number"
+                    value={filter.ctcTo}
+                    onChange={(e) =>
+                      setFilter({ ...filter, ctcTo: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            {/* end of filter nine */}
 
-            
+            {/* eight filter */}
+            <div className="candidates-left-filter-box">
+              <div
+                onClick={() => handleDropdown("filter-dropdown11")}
+                className="candidates-left-filter-box-heading"
+              >
+                <div>- Notice Period </div>
+                <DownArrIcon />
+              </div>
+              <div className="filter-dropdown11">
+                <div className="check-form">
+                  <input
+                    id="c-in-o"
+                    type="checkbox"
+                    checked={filter.notice === "immediately"}
+                    onClick={() => setFilter({ ...filter, date: "immediately" })}
+                  />
+                  <label htmlFor="c-in-o">Can Join Immediately</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-oo"
+                    type="checkbox"
+                    checked={filter.notice === "Serving Notice Period"}
+                    onClick={() => setFilter({ ...filter, date: "Serving Notice Period" })}
+                  />
+                  <label htmlFor="r-in-oo">Serving Notice Period</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.notice === "1w"}
+                    onClick={() => setFilter({ ...filter, date: "1w" })}
+                  />
+                  <label htmlFor="r-in-o">1 Week</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.notice === "1m"}
+                    onClick={() => setFilter({ ...filter, date: "1m" })}
+                  />
+                  <label htmlFor="r-in-o">1 Month</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.notice === "2m"}
+                    onClick={() => setFilter({ ...filter, date: "2m" })}
+                  />
+                  <label htmlFor="r-in-o">2 Month</label>
+                </div>
+                <div className="check-form">
+                  <input
+                    id="r-in-o"
+                    type="checkbox"
+                    checked={filter.notice === "3m"}
+                    onClick={() => setFilter({ ...filter, notice: "3m" })}
+                  />
+                  <label htmlFor="r-in-o">3 Month</label>
+                </div>
+           
+              </div>
+            </div>
+            {/* end of eight filter */}
+
+
+
+
+            <div style={{ marginTop: "10rem" }}>
+              <div
+                style={{
+                  minWidth: "0rem",
+                  display: "inline-block",
+                  position: "inherit",
+                  top: "0rem",
+                }}
+              >
+                <div
+                  className="btn btn-w btn-cancel btn-active"
+                  style={{ minWidth: "0rem", display: "inline-block" }}
+                >
+                  Cancel
+                </div>
+              </div>
+
+              <div style={{ minWidth: "0rem", display: "inline-block" }}>
+                <button
+                  className="btn btn-w btn-inactive reply"
+                  onClick={() => {
+                    handleFilter();
+                  }}
+                >
+                  Refine Filter
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="candidates-right">
@@ -591,17 +981,16 @@ const searchResults=async()=>{
             </button>
           </div>
 
-        
           <div className="listings-bar">
             <div className="listings-bar-left">
-            <button onClick={handleBatch} className="btn btn-white">
+              <button onClick={handleBatch} className="btn btn-white">
                 <span className="batch-action-rel">
                   <span>Batch Actions</span>
                   <>
                     <ul className="candi-batch-action">
                       <div className="candi-batch-action-square">&nbsp;</div>
 
-                      <li >
+                      <li>
                         <img src={Share} alt="Share icon" />
                         <span>Share</span>
                       </li>
@@ -615,19 +1004,15 @@ const searchResults=async()=>{
                         <span>Publish</span>
                       </li>
 
-
                       <li>
                         <img src={addToFolder} alt="Delete icon" />
                         <span>Add to Folder</span>
                       </li>
-                   
-                     
-                    
+
                       <li onClick={tagCandidatefunc}>
                         <img src={tagCandidate} alt="Delete icon" />
                         <span>Tag Candidate</span>
                       </li>
-                  
 
                       <li>
                         <img src={tagCandidate} alt="Delete icon" />
@@ -637,151 +1022,148 @@ const searchResults=async()=>{
                   </>
                 </span>
                 {tagPopup && (
-                  <TagPopup batchTag={batchDelete} candidateList={candidateList} setTagPopup={setTagPopup}/>
+                  <TagPopup
+                    batchTag={batchDelete}
+                    candidateList={candidateList}
+                    setTagPopup={setTagPopup}
+                  />
                 )}
-              
+
                 <DownArrIcon className="candi-batch-arrow" />
               </button>
-              
 
               <div className="listings-bar-search">
                 <input
                   type="text"
                   placeholder="Search Candidate Title, Candidate ID, Tags"
-                  value={filter.search} onChange={(e)=>setFilter({...filter,search:e.target.value})} onKeyPress={(e)=>e.key==="Enter"?handleFilter():""}
-
+                  value={filter.search}
+                  onChange={(e) =>
+                    setFilter({ ...filter, search: e.target.value })
+                  }
+                  onKeyPress={(e) => (e.key === "Enter" ? handleFilter() : "")}
                 />
               </div>
               <button
                 className="btn btn-white"
                 style={{ marginLeft: "1rem" }}
-                onClick={() =>setAdvencedSearch(true)}
+                onClick={() => setAdvencedSearch(true)}
               >
                 {" "}
                 Advance Search
               </button>
             </div>
 
-
             <div className="listings-bar-right">
               {/* <div className="plus">
                 <CheckboxIcon />
               </div> */}
-                <div
-              onClick={() => setBatch(!batch)}
-              className={`plus ${batch && "batch-border"}`}>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M18 0H6C4.897 0 4 0.897 4 2V14C4 15.103 4.897 16 6 16H18C19.103 16 20 15.103 20 14V2C20 0.897 19.103 0 18 0ZM6 14V2H18L18.002 14H6Z'
-                  fill='#2186F2'
-                />
-                <path
-                  d='M2 6.00037H0V18.0004C0 19.1034 0.897 20.0004 2 20.0004H14V18.0004H2V6.00037ZM10.933 9.51937L9.207 7.79338L7.793 9.20737L11.067 12.4814L16.769 5.64137L15.231 4.35938L10.933 9.51937Z'
-                  fill='#2186F2'
-                />
-              </svg>
-            </div>
+              <div
+                onClick={() => setBatch(!batch)}
+                className={`plus ${batch && "batch-border"}`}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 0H6C4.897 0 4 0.897 4 2V14C4 15.103 4.897 16 6 16H18C19.103 16 20 15.103 20 14V2C20 0.897 19.103 0 18 0ZM6 14V2H18L18.002 14H6Z"
+                    fill="#2186F2"
+                  />
+                  <path
+                    d="M2 6.00037H0V18.0004C0 19.1034 0.897 20.0004 2 20.0004H14V18.0004H2V6.00037ZM10.933 9.51937L9.207 7.79338L7.793 9.20737L11.067 12.4814L16.769 5.64137L15.231 4.35938L10.933 9.51937Z"
+                    fill="#2186F2"
+                  />
+                </svg>
+              </div>
 
-
-
-              
               <div className="listings-bar-right-filter">
                 {/* 
                 <div>Newest</div>
               <DownArrIcon /> */}
-              <FilterIcon />
-                  <button onClick={handleSort} className='btn btn-white'>
-              <span className='job-sort-batch-action-rel'>
-                <>
-                <span>Newest</span>
-                  <ul className='job-sort-batch-action'>
-                    <div className='job-sort-batch-action-square'>&nbsp;</div>
-                    
-                    <li>
-                   
-                      <span>All</span>
-                    </li>
-                
+                <FilterIcon />
+                <button onClick={handleSort} className="btn btn-white">
+                  <span className="job-sort-batch-action-rel">
+                    <>
+                      <span>Newest</span>
+                      <ul className="job-sort-batch-action">
+                        <div className="job-sort-batch-action-square">
+                          &nbsp;
+                        </div>
 
-                    <li onClick={()=>{setSort("experience");setSortType("desc")}}>
-                   
-                      <span>Experience : High to Low</span>
-                    </li>
+                        <li>
+                          <span>All</span>
+                        </li>
 
-                    <li   onClick={()=>{setSort("experience");setSortType("asc")}}>
-                   
-                   <span>Experience : Low to High</span>
-                 </li>
+                        <li
+                          onClick={() => {
+                            setSort("experience");
+                            setSortType("desc");
+                          }}
+                        >
+                          <span>Experience : High to Low</span>
+                        </li>
 
-                 <li>
-                   
-                   <span>Matching % : High to Low</span>
-                 </li>
+                        <li
+                          onClick={() => {
+                            setSort("experience");
+                            setSortType("asc");
+                          }}
+                        >
+                          <span>Experience : Low to High</span>
+                        </li>
 
+                        <li>
+                          <span>Matching % : High to Low</span>
+                        </li>
 
-                 <li>
-                   
-                   <span>Matching % : Low to High</span>
-                 </li>
+                        <li>
+                          <span>Matching % : Low to High</span>
+                        </li>
+                      </ul>
+                    </>
+                  </span>
 
-
-                  </ul>
-                </>
-              </span>
-
-              <svg
-                width='16'
-                className='job-sort-batch-arrow'
-                height='12'
-                viewBox='0 0 492 492'
-                fill='#2186F2'>
-                <path d='M484.13 124.99l-16.11-16.23a26.72 26.72 0 00-19.04-7.86c-7.2 0-13.96 2.79-19.03 7.86L246.1 292.6 62.06 108.55c-5.07-5.06-11.82-7.85-19.03-7.85s-13.97 2.79-19.04 7.85L7.87 124.68a26.94 26.94 0 000 38.06l219.14 219.93c5.06 5.06 11.81 8.63 19.08 8.63h.09c7.2 0 13.96-3.57 19.02-8.63l218.93-219.33A27.18 27.18 0 00492 144.1c0-7.2-2.8-14.06-7.87-19.12z'></path>
-              </svg>
-
-            </button>
-           
+                  <svg
+                    width="16"
+                    className="job-sort-batch-arrow"
+                    height="12"
+                    viewBox="0 0 492 492"
+                    fill="#2186F2"
+                  >
+                    <path d="M484.13 124.99l-16.11-16.23a26.72 26.72 0 00-19.04-7.86c-7.2 0-13.96 2.79-19.03 7.86L246.1 292.6 62.06 108.55c-5.07-5.06-11.82-7.85-19.03-7.85s-13.97 2.79-19.04 7.85L7.87 124.68a26.94 26.94 0 000 38.06l219.14 219.93c5.06 5.06 11.81 8.63 19.08 8.63h.09c7.2 0 13.96-3.57 19.02-8.63l218.93-219.33A27.18 27.18 0 00492 144.1c0-7.2-2.8-14.06-7.87-19.12z"></path>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
 
-
-
-       
-                  {candidateList.map(candidate=>{
-                    return <NewCandidate 
-                    setIsCandidateDetail={setIsCandidateDetail}
-                    setCandidateDetail={setCandidateDetail}
-                    setBatchDelete={setBatchDelete}
-                    batchDelete={batchDelete}
-                    batch={batch}
-                    candidate={candidate}
-                    key={candidate._id}
-                    
-                    />
-                    })}
-                    {candidateList.length>0 &&(              
-                    <ReactPaginate
-                    previousLabel={"← Previous"}
-                    nextLabel={"Next →"}
-                    pageCount={nop}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
-                      
-                    disabledClassName={"page-numbs"}
-                    activeClassName={"page-numbs active"}
-                    />
-                    )
-                    }
-                
-                
-             
-              
-         
+          {candidateList.map((candidate) => {
+            return (
+              <NewCandidate
+                setIsCandidateDetail={setIsCandidateDetail}
+                setCandidateDetail={setCandidateDetail}
+                setBatchDelete={setBatchDelete}
+                batchDelete={batchDelete}
+                batch={batch}
+                candidate={candidate}
+                key={candidate._id}
+              />
+            );
+          })}
+          {candidateList.length > 0 && (
+            <ReactPaginate
+              previousLabel={"← Previous"}
+              nextLabel={"Next →"}
+              pageCount={nop}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              disabledClassName={"page-numbs"}
+              activeClassName={"page-numbs active"}
+            />
+          )}
         </div>
       </div>
     );

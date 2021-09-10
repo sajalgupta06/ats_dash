@@ -7,6 +7,10 @@
     margin-bottom: 2rem;
   }
 
+  &-container::-webkit-scrollbar{
+    display: none;
+  }
+
   &-left {
     overflow-y: scroll;
     margin-bottom: 3rem;
@@ -18,9 +22,13 @@
     }
   }
 
+  &-left::-webkit-scrollbar{
+    display: none;
+  }
+
   &-right {
     display: grid;
-    grid-template-rows: 6rem 1fr 20rem;
+    grid-template-rows: 10rem 1fr 20rem;
     height: calc(100vh - 7rem);
     background: #fff;
     padding: 1rem;
@@ -32,9 +40,14 @@
     &-middle {
       overflow-y: scroll;
       margin-bottom: 3rem;
+      padding-right: 3rem;
+      padding-left: 3rem;
       &-overflow {
         height: 100%;
       }
+    }
+    &-middle::-webkit-scrollbar{
+      display: none;
     }
 
     &-bottom {

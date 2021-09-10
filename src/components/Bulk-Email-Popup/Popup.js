@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Popup.scss";
 import Cross from "./../../asserts/icons/close.svg";
 
@@ -11,11 +11,75 @@ import I from "../../asserts/icons/I.png";
 import undo from "../../asserts/icons/undo.png";
 import redo from "../../asserts/icons/redo.png";
 import text from "../../asserts/icons/text.png";
+import { WithContext as ReactTags } from 'react-tag-input';
+import { URL } from "../../config";
+import axios from "axios";
+
 
 const Popup = ({
   setPopupOpen,
   setSend,
   }) => {
+
+const[tags ,setTags] = useState([
+],)
+
+const [body,setBody] = useState("")
+const [subject,setSubject] = useState("")
+
+
+    const KeyCodes = {
+      comma: 188,
+      enter: [10, 13],
+    };
+
+    const delimiters = [...KeyCodes.enter, KeyCodes.comma];
+
+
+
+   const  handleDelete=(i)=> {
+      
+      setTags(
+       tags.filter((tag, index) => index !== i),
+      );
+  }
+
+  const handleAddition= (tag)=>{
+      setTags([...tags,tag])
+  }
+
+  const handleSend=async()=>{
+    const token = localStorage.getItem('token')
+
+    
+    const recipients =[]
+    tags.map(tag=>{
+      recipients.push(tag.text)
+    })
+    console.log(recipients,subject,body)
+    try {
+      const response = await axios({
+
+    
+        url: `${URL}/api/dash/bulkEmail`,
+        method: "POST",
+        data:{recipients,subject,body},
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data.status === "success") {
+        console.log("Success Update");
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+
+  }
+
+
+
+
   return (
     <div className="email-popup-container">
       <div className="email-popup">
@@ -44,10 +108,14 @@ const Popup = ({
               <div className="input-container">
                 <label>To</label>
               <div className="input-box">
-                <input type="text" 
-                 
-                >
-                </input>
+              <ReactTags tags={tags}
+                   
+                    handleDelete={(i)=>handleDelete(i)}
+                    handleAddition={(tag)=>handleAddition(tag)}
+                    delimiters={delimiters}
+                    placeholder="Add new recipient"
+                    />
+            
                     
               </div>
 
@@ -57,7 +125,11 @@ const Popup = ({
               <div className="input-container">
                 <label>Subject</label>
                 <div className="input-box">
-                  <input type="text" />
+                  <input type="text" 
+                  placeholder="Subject"
+                  value={subject}
+                  onChange={e=>setSubject(e.target.value)} 
+                  />
                 </div>
               </div>
 
@@ -67,6 +139,8 @@ const Popup = ({
                   <textarea
                     type="text"
                     placeholder="Start Typing Here.."
+                    value={body}
+                    onChange={e=>setBody(e.target.value)}
                   ></textarea>
                   <div className="email-right-bottom-editorOption">
                     {/* <div className="buttons1">
@@ -105,7 +179,7 @@ const Popup = ({
 
                   <div style={{ minWidth: "0rem", display: "inline-block" }}>
                     <button className="btn btn-w btn-inactive reply"
-                    onClick={()=>{setSend(true);setPopupOpen(false)} }>
+                    onClick={()=>{handleSend();setPopupOpen(false)} }>
                       <img src={send}></img>Send
                     </button>
                   </div>
