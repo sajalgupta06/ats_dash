@@ -17,16 +17,16 @@ const [priority , setPriority] = useState("")
         <div>
             
         <form>
-
+               
             <div className="field">
         <h3>Requester</h3>
         <div className="input-box">
             <input type="email" placeholder="sajal@gmail.com"></input>
         </div>
             </div>
-
-
-
+     
+       
+      
             <div className="field">
         <h3>Subject</h3>
    
@@ -61,14 +61,14 @@ dropdown.classList.toggle("ticket-batch-visible-subject");
             </div>
         </div>
            
-
         
-
+        
+             
         <div className="field">
         <h3>Priority</h3>
-   
+          
             <div className="input-box-dropdown" style={{height:"3.4rem",width:"24rem"}} onClick={()=>{
-
+          
 const batchArrow = document.querySelector(".ticket-batch-arrow-priority");
 batchArrow.classList.toggle("ticket-batch-rotate");
 const dropdown = document.querySelector(".ticket-batch-action-priority");

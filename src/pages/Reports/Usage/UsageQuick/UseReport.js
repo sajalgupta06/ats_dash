@@ -1,10 +1,10 @@
 import React from 'react'
 import './UseReport.scss'
-import '../../Candidates/Candidates.scss'
+import '../../../Candidates/Candidates.scss'
 import { AiOutlineDownload } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
 
-import ReportUsage from '../../../components/Table/ReportUsage/ReportUsage'
+import ReportUsage from '../../../../components/Table/ReportUsage/ReportUsage'
 function UseReport(){
 
     const handleSort = () => {
@@ -18,15 +18,7 @@ function UseReport(){
   return(
       <div className = "Container_use">
           <div className = "Contain_use">
-              <div className = "Report_Quick">
-                  Quick Report
-              </div>
-              <div className = "Report_Custom">
-                  Customized Report
-              </div>
-              <div className = "Report_Automail">
-                  Auto Emailing
-              </div>
+             
               <div className = "Excel_contain">
               
               <div className = "Report_Icondow">
@@ -81,7 +73,7 @@ function UseReport(){
             </button>
            
               </div>
-              <div className = "Report_line"/>
+            
               <div>
               <ReportUsage/>
               </div>
@@ -91,3 +83,6 @@ function UseReport(){
 }
 
 export default UseReport
+
+
+

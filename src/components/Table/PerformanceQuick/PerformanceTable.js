@@ -3,7 +3,7 @@ import React from "react";
 import "../JoinedTable/JoinedTable.scss";
 
 
-export default function ReportUsage() {
+export default function PerformanceTable() {
  
   return (
     <div>
@@ -19,41 +19,34 @@ export default function ReportUsage() {
            
        <tr class="table__row">
        <td class="table__cell table__cell--no-wrap">
-         User
+        Name
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         Total <br/>Search
+        Employee ID
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         Duplicate<br/> Candidate <br/>Detected
+         Username
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         Total Email <br/> Sent
+        CV <br/> Viewed
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         Duplicated <br/>Email Sent
+         CV <br/> Unblocked
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         SMS<br/> Sent
+         CV <br/> Submitted
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         Duplicate <br/> SMS Sent
+         Total <br/> Selections
+       </td>
+       
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+       Total<br/>Joined
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        Whatsup <br/> Sent
+         Total<br/>Dropped
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       Duplicated<br/> WA Sent
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         CV<br/>Views
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         CV <br/>Tagged
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         Invite to <br/>Apply
-       </td>
+      
      </tr>
    
 
@@ -61,41 +54,33 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
    
@@ -105,43 +90,36 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
+   
    
 
 
@@ -149,43 +127,36 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
+   
    
 
 
@@ -196,41 +167,70 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
+      
+
+     </tr>
+   
+   
+
+
+
+     <tr className="spacer"></tr>
+     <tr class="table__row">
+       <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+         abhishek@jobsterritory.in
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        30
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        24
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        20
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        16
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
    
@@ -240,41 +240,33 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
    
@@ -284,86 +276,33 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-
-     </tr>
-   
-
-
-
-
-     <tr className="spacer"></tr>
-     <tr class="table__row">
-       <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-         abhishek@jobsterritory.in
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
    
@@ -374,45 +313,36 @@ export default function ReportUsage() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Abhishek Upmanyu
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
          abhishek@jobsterritory.in
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
+        30
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         15
+        24
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
+        20
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
+        16
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
-         10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        25
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       6
+       14
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         10
        </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-       20
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
-       <td class="UserTable__name table__cell table__cell--no-wrap">
-        10
-       </td>
+      
 
      </tr>
    
-
    
    </tbody>
  </table>

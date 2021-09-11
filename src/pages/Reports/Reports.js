@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import Performance from './Performance/Performance'
 import JobPosting from './JobPosting/JobPosting'
 import Usage from './Usage/Usage'
-
+import UserLogin from './UserLogin/UserLogin'
+import Attendence from "./Attendence/Attendence"
+import Leave from "./Leave/Leave"
 
 
 export default function Reports() {
@@ -44,7 +46,31 @@ export default function Reports() {
           Usage
         </button>
 
+        <button
+          className={`btn btn-w btn-${
+            navClicked === "UserLogin" ? "active" : "inactive"
+        }`}
+        onClick={() => setNavClicked("UserLogin")}
+        >
+          UserLogin
+        </button>
 
+        <button
+          className={`btn btn-w btn-${
+            navClicked === "Attendence" ? "active" : "inactive"
+        }`}
+        onClick={() => setNavClicked("Attendence")}
+        >
+          Attendence
+        </button>
+        <button
+          className={`btn btn-w btn-${
+            navClicked === "Leave" ? "active" : "inactive"
+        }`}
+        onClick={() => setNavClicked("Leave")}
+        >
+         Leave
+        </button>
 
 
 
@@ -71,8 +97,22 @@ export default function Reports() {
      
      <Usage></Usage>
    )}
+   
+{navClicked === "UserLogin" && (
+     
+     <UserLogin></UserLogin>
+   )}
+
+{navClicked === "Attendence" && (
+     
+     <Attendence></Attendence>
+   )}
 
 
+{navClicked === "Leave" && (
+     
+     <Leave></Leave>
+   )}
 
 
     </div>
