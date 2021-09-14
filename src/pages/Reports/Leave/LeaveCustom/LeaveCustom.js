@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import './JobCustomized.scss'
+import '../../JobPosting/JobCustom/JobCustomized.scss'
 import CloseIcon from '@material-ui/icons/Close';
 import{  DownArrIcon,
 } from '../../../../asserts/icons'
@@ -103,7 +103,7 @@ export default function JobCustomized() {
       />
     </div>
               </div>
-             
+
               <div className = "custom_choose_dateto">
                 <h2>Date(To)</h2>
                 <div className={classes.containerTo} noValidate>

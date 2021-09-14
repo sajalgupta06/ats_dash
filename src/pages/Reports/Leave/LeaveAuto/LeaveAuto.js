@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
-import './AutoEmail.scss'
+import '../.././JobPosting/JobAuto/AutoEmail.scss'
 import{  DownArrIcon,
 } from '../../../../asserts/icons'
-import AddNewEmail from "../../../../components/AddNewEmail/AddNewEmail";
 export default function AutoEmail() {
     const [email , setEmail] = useState("Daily")
-    const [addEmail, setAddEmail] = useState(false);
     return (
         <div>
             <form>
@@ -31,28 +29,20 @@ export default function AutoEmail() {
                     </ul>
                   </>
                 </span>
-      <DownArrIcon className= "custom_arrow_subject1"  />
+      <DownArrIcon className="custom_arrow_subject1"  />
             </div>
             </div>
         </div>
            <div className = "custom_add_email">
            <h2>Select Email to get Reports: </h2>
            </div>
-          
-           <div className="btn-add_email"
-        onClick={()=>setAddEmail(true)}
-        >+ Add Email</div>
-           
-           {setAddEmail&&(
-          <AddNewEmail setAddEmail={setAddEmail}></AddNewEmail>
-      )}
            <div>
-                <div className = "btn-generate_email">Save</div>
-              </div> 
-     
+           <button className = "btn-add_email"> + Add New</button>
+           </div>
+           <div>
+                <button className = "btn-generate_email">Save</button>
+              </div>
         </form>
         </div>
-     
-  
     )
 }

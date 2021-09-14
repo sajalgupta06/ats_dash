@@ -1,15 +1,15 @@
 import React from 'react'
 import { AiOutlineDownload } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
-import '../Usage/UsageQuick/UseReport.scss'
-import '../../Candidates/Candidates.scss'
-import Leave from '../../../components/Table/Leave/Leave'
+import '../.././Usage/UsageQuick/UseReport.scss'
+import '../../../Candidates/Candidates.scss'
+import Leave from '../../../../components/Table/Leave/Leave'
 function LeaveQuick() {
     
         const handleSort = () => {
             const dropdown = document.querySelector(".job-sort-batch-action");
             const batchArrow = document.querySelector(".job-sort-batch-arrow");
-        
+         
             dropdown.classList.toggle("job-sort-batch-visible");
             batchArrow.classList.toggle("job-sort-batch-rotate");
           };
@@ -17,15 +17,7 @@ function LeaveQuick() {
        return(
         <div className = "Container_use">
         <div className = "Contain_use">
-            <div className = "Report_Quick">
-                Quick Report
-            </div>
-            <div className = "Report_Custom">
-                Customized Report
-            </div>
-            <div className = "Report_Automail">
-                Auto Emailing
-            </div>
+           
             <div className = "Excel_contain">
             
             <div className = "Report_Icondow">
@@ -80,7 +72,7 @@ function LeaveQuick() {
           </button>
          
             </div>
-            <div className = "Report_line"/>
+          
             <div>
            <Leave/>
             </div>

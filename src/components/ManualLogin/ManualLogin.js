@@ -6,14 +6,13 @@ export default function ManualLogin({ setManualLogin }) {
     <div>
         <div
           className="feedbackForm-popup-container"
-        
-        >
+  >                                        
           <div className="feedbackForm-popup" style={{width:"102rem"}}>
             <div className="feedbackForm-popup-body" style={{height:"72rem"}}>
               <div className="form-head">
                 <h1>Manual Lgin</h1>
                 <br></br>
-
+                 
                 <div className='createjob-adddoc-batch'>
           {/* first row */}
           <div>

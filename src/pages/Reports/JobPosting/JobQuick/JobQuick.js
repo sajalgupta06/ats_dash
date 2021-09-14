@@ -8,7 +8,7 @@ function JobQuick(){
     const handleSort = () => {
         const dropdown = document.querySelector(".job-sort-batch-action");
         const batchArrow = document.querySelector(".job-sort-batch-arrow");
-    
+     
         dropdown.classList.toggle("job-sort-batch-visible");
         batchArrow.classList.toggle("job-sort-batch-rotate");
       };
