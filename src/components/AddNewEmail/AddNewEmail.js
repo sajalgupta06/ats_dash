@@ -1,7 +1,7 @@
 import React from 'react'
 import './AddNewEmail.scss'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
-export default function AddNewEmail({ setAddEmail }) {
+export default function AddNewEmail({setAddEmail}) {
 
     return (
         <div className = "popup_container">
@@ -14,14 +14,16 @@ export default function AddNewEmail({ setAddEmail }) {
             <input type = "text"/>
         </div>
        
-             <div className = "popup_cancel"  onClick={() => setAddEmail(false)}>
-                <h3 > Cancel</h3>
+             <div  className="popup_cancel btn-cancel btn-active"
+        
+                  onClick={() => setAddEmail(false)} > cancel
+               
              </div>
              <div className = "popup_Add">
-             <h3> Add </h3>
-           
+                 <div className = "btn_popup_add"> Add </div>
             </div>
-           <AiOutlineCloseCircle className = "popup_close"/>
+            <div className = "popup_close">
+           <AiOutlineCloseCircle /></div>
            </div>
         </div>
     )

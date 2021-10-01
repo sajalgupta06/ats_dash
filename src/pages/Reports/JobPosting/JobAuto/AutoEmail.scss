@@ -123,18 +123,19 @@ input{
     cursor: pointer;
     background: #2186F2;
     border-radius: 18.2692px;
-    
+    padding-top: 4px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
-    /* identical to box height */
-    
-    text-align: center;
-    
+    /*identicaltoboxheight*/text-align: center;
     color: #FFFFFF;
-  }
+    -webkit-border-radius: 18.2692px;
+    -moz-border-radius: 18.2692px;
+    -ms-border-radius: 18.2692px;
+    -o-border-radius: 18.2692px;
+}
   .btn-add_email{
     position: absolute;
     width: 139px;
@@ -149,5 +150,14 @@ input{
     line-height: 27px;
     text-align: center;
     color: #2186F2;
+    
+  }
+  .left-section{
+    input{
+      height: 20px;
+    }
+  }
+  .email_format_listitems{
+    margin-top: 20px;
   }
   

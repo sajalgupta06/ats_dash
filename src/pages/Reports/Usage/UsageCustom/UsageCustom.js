@@ -6,6 +6,8 @@ import{  DownArrIcon,
 } from '../../../../asserts/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Customized from '../../../../components/UsageSession/CustomizedTable/Customized';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -39,15 +41,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  export default function UsageCustom() {
-
-
- 
+  
   const [hello , setHello] = useState("Choose User")
   const classes = useStyles();
-  
-
-  
-    return (
+  const [customAdd, setCustomAdd] = useState(false);
+      return (
         <div>
             <form>
             <div className = "custom_contain1">
@@ -130,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
               <div className = "usage_field">
               <h2>Fields to be seen:</h2>
               <ul className="toppings-list">
-        {Topping.map(({ name, price }, index) => {
+        {Topping.map(({ name }, index) => {
           return (
             <li key={index}>
               <div className="toppings-list-item">
@@ -152,7 +150,10 @@ const useStyles = makeStyles((theme) => ({
       </ul>
               </div> 
               <div>
-                <button className = "btn-generate2">Generate Report</button>
+                <div className = "btn-generate2" onClick={()=>setCustomAdd(true)}>Generate Report</div>
+                {customAdd&&(
+                    <Customized setCustomAdd={setCustomAdd}></Customized>
+                    )}
               </div>
 
               </div>

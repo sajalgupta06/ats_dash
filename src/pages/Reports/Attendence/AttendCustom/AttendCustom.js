@@ -6,7 +6,7 @@ import{  DownArrIcon,
 } from '../../../../asserts/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import  GenerateCustom from '../../../../components/Table/Attendence/GenerateCustom';
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export default function JobCustomized() {
   const [hello , setHello] = useState("Choose User")
   const classes = useStyles();
+  const [customAdd, setCustomAdd] = useState(false);
    
     return (
         <div>
@@ -120,9 +121,11 @@ export default function JobCustomized() {
     </div>
               </div>
               <div>
-                <button className = "btn-generate">Generate Report</button>
+                <div className = "btn-generate" onClick={()=>setCustomAdd(true)}>Generate Report</div>
               </div>
-
+              {customAdd&&(
+          <GenerateCustom setCustomAdd={setCustomAdd}></GenerateCustom>
+      )}
               </div>
             
 

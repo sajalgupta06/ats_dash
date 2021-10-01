@@ -1,9 +1,28 @@
 import React, {useState} from 'react'
 import '../.././JobPosting/JobAuto/AutoEmail.scss'
+import AddNewEmail from "../../../../components/AddNewEmail/AddNewEmail";
 import{  DownArrIcon,
 } from '../../../../asserts/icons'
 export default function AutoEmail() {
     const [email , setEmail] = useState("Daily")
+
+    const [addEmail, setAddEmail] = useState(false);
+    
+    const Topping = [
+      {
+        emailadd: "sarun@jobsterritory.com"
+        
+      },
+      {
+        emailadd: "rajesh@jobsterritory.com"
+       
+      },
+      {
+        emailadd: "rajpal@jobsterritory.com"
+      
+      },]
+
+
     return (
         <div>
             <form>
@@ -37,7 +56,36 @@ export default function AutoEmail() {
            <h2>Select Email to get Reports: </h2>
            </div>
            <div>
-           <button className = "btn-add_email"> + Add New</button>
+           <div className = "btn-add_email" onClick={()=>setAddEmail(true)}
+        >+ Add Email</div>
+           
+           {addEmail&&(
+          <AddNewEmail setAddEmail={setAddEmail}></AddNewEmail>
+      )}
+
+      <div className = "email_format"> 
+      <ul className="email_format_list">
+        {Topping.map(({ emailadd }, index) => {
+          return (
+            <li key={index}>
+              <div className="email_format_listitems">
+                <div className="left-section">
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={emailadd}
+                    value={emailadd}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{emailadd}</label>
+                </div>
+              
+              </div>
+            </li>
+          );
+        })}
+      
+      </ul>
+      </div>
            </div>
            <div>
                 <button className = "btn-generate_email">Save</button>

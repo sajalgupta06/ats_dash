@@ -6,6 +6,21 @@ import AddNewEmail from "../../../../components/AddNewEmail/AddNewEmail";
 export default function AutoEmail() {
     const [email , setEmail] = useState("Daily")
     const [addEmail, setAddEmail] = useState(false);
+    
+    const Topping = [
+      {
+        emailadd: "sarun@jobsterritory.com"
+        
+      },
+      {
+        emailadd: "rajesh@jobsterritory.com"
+       
+      },
+      {
+        emailadd: "rajpal@jobsterritory.com"
+      
+      },]
+
     return (
         <div>
             <form>
@@ -43,16 +58,38 @@ export default function AutoEmail() {
         onClick={()=>setAddEmail(true)}
         >+ Add Email</div>
            
-           {setAddEmail&&(
+           {addEmail&&(
           <AddNewEmail setAddEmail={setAddEmail}></AddNewEmail>
       )}
+
+      <div className = "email_format"> 
+      <ul className="email_format_list">
+        {Topping.map(({ emailadd }, index) => {
+          return (
+            <li key={index}>
+              <div className="email_format_listitems">
+                <div className="left-section">
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={emailadd}
+                    value={emailadd}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{emailadd}</label>
+                </div>
+              
+              </div>
+            </li>
+          );
+        })}
+      
+      </ul>
+      </div>
            <div>
                 <div className = "btn-generate_email">Save</div>
               </div> 
      
         </form>
         </div>
-     
-  
     )
 }

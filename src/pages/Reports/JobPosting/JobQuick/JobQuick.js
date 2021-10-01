@@ -28,10 +28,8 @@ function JobQuick(){
               </div>
               </div>
               <div className="listings-bar-right-filter">
-                
-              
-         
-                  <button onClick={handleSort} className='btn btn-white'>
+             
+             <button onClick={handleSort} className='btn btn-white'>
               <span className='job-sort-batch-action-rel'>
                 <>
                 <FaFilter/>

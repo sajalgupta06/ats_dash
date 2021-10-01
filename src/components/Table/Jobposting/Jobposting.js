@@ -1,13 +1,13 @@
-import React from "react";
-
+import React,{useState} from "react";
+import CustomTable from "../../JobPosting/CustomTable";
 import "../JoinedTable/JoinedTable.scss";
 
 
 export default function Jobposting() {
- 
+  const [addEmail, setAddEmail] = useState(false);
   return (
     <div>
-      <div class="container">
+      <div class="container" >
         <table class="table table--shaded">
           <thead class="table__head">
             
@@ -16,7 +16,7 @@ export default function Jobposting() {
 
             
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row"   >
               <td class="table__cell table__cell--no-wrap">
                 User
               </td>
@@ -38,7 +38,8 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
+      
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -61,7 +62,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -81,7 +82,7 @@ export default function Jobposting() {
             </tr>
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -109,7 +110,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -132,7 +133,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -155,7 +156,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -176,7 +177,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -200,7 +201,7 @@ export default function Jobposting() {
 
 
             <tr className="spacer"></tr>
-            <tr class="table__row">
+            <tr class="table__row" onClick={()=>setAddEmail(true)}>
               <td class="table__cell table__cell--checkbox table__cell--no-wrap">
                 abhishek@jobsterritory.in
               </td>
@@ -218,7 +219,11 @@ export default function Jobposting() {
               </td>
              
             </tr>
-          
+           
+               
+            {addEmail&&(
+          <CustomTable setAddEmail={setAddEmail}></CustomTable>
+      )}
           </tbody>
         </table>
 

@@ -42,12 +42,12 @@ export default function Leave() {
                Total Leave
               </td>
               <td class="UserTable__name table__cell table__cell--no-wrap">
-              Total Worker
+              Total Worked Days
               </td>
             
             </tr>
           
-
+           
 
             <tr className="spacer"></tr>
             <tr class="table__row">
@@ -339,7 +339,7 @@ export default function Leave() {
                     
                     <button className="btn  btn-inactive pages">1</button>
                     <button className="btn  btn-inactive pages">2</button>
-                    <button  className="btn  btn-inactive pages">3</button>
+                    <button  className="btn btn-inactive pages">3</button>
                  
                     
                     <button className="btn btn-w btn-inactive">{`Next >>`}</button>

@@ -1,7 +1,6 @@
 import React from "react";
 
-import "../JoinedTable/JoinedTable.scss";
-
+import "../JoinedTable/JoinedTable.scss"
 
 export default function PerformanceTable() {
  
@@ -90,7 +89,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Remo Arya
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -127,7 +126,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Aryan Bhatt
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -167,7 +166,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+       Rajeev Mann
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -204,7 +203,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Jignesh
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -240,7 +239,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Jethalal Gada
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -276,7 +275,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Champaklal
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -313,7 +312,7 @@ export default function PerformanceTable() {
      <tr className="spacer"></tr>
      <tr class="table__row">
        <td class="table__cell table__cell--checkbox table__cell--no-wrap">
-        Abhishek Upmanyu
+        Sekhar Verma
        </td>
        <td class="UserTable__name table__cell table__cell--no-wrap">
         #JT-00125
@@ -342,7 +341,103 @@ export default function PerformanceTable() {
       
 
      </tr>
-   
+     <tr className="spacer"></tr>
+     <tr class="table__row">
+       <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Manoj Yadav
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+         abhishek@jobsterritory.in
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        30
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        24
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        20
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        16
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+       14
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        10
+       </td>
+      
+
+     </tr>
+     <tr className="spacer"></tr>
+     <tr class="table__row">
+       <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+       Nishant Sharma
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+         abhishek@jobsterritory.in
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        30
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        24
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        20
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        16
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+       14
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        10
+       </td>
+      
+
+     </tr>
+
+     <tr className="spacer"></tr>
+     <tr class="table__row">
+       <td class="table__cell table__cell--checkbox table__cell--no-wrap">
+        Kunal Kamwat
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        #JT-00125
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+         abhishek@jobsterritory.in
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        30
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        24
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        20
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        16
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+       14
+       </td>
+       <td class="UserTable__name table__cell table__cell--no-wrap">
+        10
+       </td>
+      
+
+     </tr>
    
    </tbody>
  </table>

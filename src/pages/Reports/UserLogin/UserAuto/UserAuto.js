@@ -1,9 +1,25 @@
 import React, {useState} from 'react'
 import './UserAuto.scss'
 import{  DownArrIcon } from '../../../../asserts/icons'
-
+import AddNewEmail from "../../../../components/AddNewEmail/AddNewEmail";
 export default function UsageAuto() {
     const [email , setEmail] = useState("Daily")
+    const [addEmail, setAddEmail] = useState(false);
+     
+    const Topping = [
+      {
+        emailadd: "sarun@jobsterritory.com"
+        
+      },
+      {
+        emailadd: "rajesh@jobsterritory.com"
+       
+      },
+      {
+        emailadd: "rajpal@jobsterritory.com"
+      
+      },]
+
     return (
         <div>
             <form>
@@ -37,8 +53,37 @@ export default function UsageAuto() {
                    <h2>Select Email to get Reports: </h2>
                    </div>
                    <div>
-                   <button className = "btn-add_email_h2"> + Add New</button>
-                   </div>
+                   <div className = "btn-add_email_h2" onClick={()=>setAddEmail(true)}
+        >+ Add Email</div>
+           
+           {addEmail&&(
+          <AddNewEmail setAddEmail={setAddEmail}></AddNewEmail>
+      )}
+
+                   </div>  
+                   <div className = "email_format"> 
+      <ul className="email_format_list">
+        {Topping.map(({ emailadd }, index) => {
+          return (
+            <li key={index}>
+              <div className="email_format_listitems">
+                <div className="left-section">
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={emailadd}
+                    value={emailadd}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{emailadd}</label>
+                </div>
+              
+              </div>
+            </li>
+          );
+        })}
+      
+      </ul>
+      </div>
                    <div>
                         <button className = "btn-generate_email_h2">Save</button>
                       </div>

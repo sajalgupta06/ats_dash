@@ -4,9 +4,9 @@ import './JobCustomized.scss'
 import CloseIcon from '@material-ui/icons/Close';
 import{  DownArrIcon,
 } from '../../../../asserts/icons'
+import GenerateCustom from '../../../../components/Table/Jobposting/GenerateCustom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -40,6 +40,7 @@ export default function JobCustomized() {
   const [hello , setHello] = useState("Choose User")
   const classes = useStyles();
    
+const [customAdd, setCustomAdd] = useState(false);
     return (
         <div>
             <form>
@@ -120,15 +121,17 @@ export default function JobCustomized() {
     </div>
               </div>
               <div>
-                <button className = "btn-generate">Generate Report</button>
+                <div className = "btn-generate" 
+        onClick={()=>setCustomAdd(true)}
+        >Generate Report</div>
+           
+           {customAdd&&(
+          <GenerateCustom setCustomAdd={setCustomAdd}></GenerateCustom>
+      )}
               </div>
 
               </div>
             
-
-
-
-
             </form>
         </div>
     )

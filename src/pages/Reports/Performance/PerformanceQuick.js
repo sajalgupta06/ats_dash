@@ -3,7 +3,7 @@ import { AiOutlineDownload } from 'react-icons/ai'
 import { FaFilter } from 'react-icons/fa'
 import '../Usage/UsageQuick/UseReport.scss'
 import '../../Candidates/Candidates.scss'
-import { SearchIcon } from "../../../asserts/icons";
+
 import './PerformanceQuick.scss'
 import PerformanceTable from '../../../components/Table/PerformanceQuick/PerformanceTable'
  function PerformanceQuick() {
@@ -47,18 +47,31 @@ import PerformanceTable from '../../../components/Table/PerformanceQuick/Perform
               
               <li>
              
-                <span>Yesterday</span>
+                <span>All</span>
               </li>
           
 
               <li>
              
-                <span>Last Week</span>
+                <span>Recruiter</span>
+               
+                {/* <ul className = 'Clicked_Sublist'>
+                
+                  <li>
+                    <span>Recuiter A</span>
+                  </li>
+                  <li>
+                    <span>Recuiter B</span>
+                  </li>
+                  <li>
+                    <span>Recuiter C</span>
+                  </li>
+                </ul> */}
               </li>
 
               <li>
              
-             <span>Last Month</span>
+             <span>Period</span>
            </li>
 
             </ul>
@@ -77,7 +90,7 @@ import PerformanceTable from '../../../components/Table/PerformanceQuick/Perform
       </button>
      
         </div>
-      
+    
         <div>
          <PerformanceTable/>
         </div>
